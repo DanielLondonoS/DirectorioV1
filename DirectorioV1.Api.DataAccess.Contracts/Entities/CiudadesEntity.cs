@@ -15,6 +15,14 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
         public string Latitud { get; set; }
         public string Codigo_Postal { get; set; }
 
-        public virtual DepartamentosEntity Departamento { get; set; }
+        public virtual DepartamentosEntity Departamentos { get; set; }
+        public virtual MunicipiosEntity Municipios { get; set; }
+        public virtual ClientesDireccionesEntity ClientesDirecciones { get; set; }
+
+
+        public virtual ICollection<Ciudades2DepartamentosEntity> Ciudades2Departamentos { get; set; }
+        public virtual ICollection<Municipios2CiudadesEntity> Municipios2Ciudades { get; set; }
+
+
     }
 }

@@ -16,6 +16,7 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
         public string Correo { get; set; }
 
         public virtual ICollection<Clientes2DireccionesEntity> Clientes2Direcciones { get; set; }
-        public virtual CategoriasEntity Categoria { get; set; }
+        public virtual CategoriasEntity Categorias { get; set; }
+        public virtual ClientesDireccionesEntity ClientesDirecciones { get; set; }
     }
 }
