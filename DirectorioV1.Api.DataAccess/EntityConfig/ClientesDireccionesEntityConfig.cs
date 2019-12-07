@@ -15,12 +15,12 @@ namespace DirectorioV1.Api.DataAccess.EntityConfig
             entityBuilder.HasKey(x => x.Id);
             entityBuilder.Property(x => x.Id).IsRequired();
 
-            entityBuilder.HasOne(x => x.Paises).WithOne(x => x.ClientesDirecciones);
-            entityBuilder.HasOne(x => x.Departamentos).WithOne(x => x.ClientesDirecciones);
-            entityBuilder.HasOne(x => x.Ciudades).WithOne(x => x.ClientesDirecciones);
-            entityBuilder.HasOne(x => x.Municipios).WithOne(x => x.ClientesDirecciones);
-            entityBuilder.HasOne(x => x.Barrios).WithOne(x => x.ClientesDirecciones);
-            entityBuilder.HasOne(x => x.Clientes).WithOne(x => x.ClientesDirecciones);
+            //entityBuilder.HasOne(x => x.Paises).WithOne(x => x.ClientesDirecciones);
+            //entityBuilder.HasOne(x => x.Departamentos).WithOne(x => x.ClientesDirecciones);
+            //entityBuilder.HasOne(x => x.Ciudades).WithOne(x => x.ClientesDirecciones);
+            //entityBuilder.HasOne(x => x.Municipios).WithOne(x => x.ClientesDirecciones);
+            ////entityBuilder.HasOne(x => x.Barrios).WithOne(x => x.ClientesDirecciones);
+            //entityBuilder.HasOne(x => x.Clientes).WithOne(x => x.ClientesDirecciones);
 
         }
     }

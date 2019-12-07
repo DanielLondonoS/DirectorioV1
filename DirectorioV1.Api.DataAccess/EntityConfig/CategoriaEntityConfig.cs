@@ -15,7 +15,7 @@ namespace DirectorioV1.Api.DataAccess.EntityConfig
             entityBuilder.HasKey(x => x.Id);
             entityBuilder.Property(x => x.Id).IsRequired();
 
-            entityBuilder.HasOne(x => x.Clientes).WithOne(x => x.Categorias);
+            //entityBuilder.HasOne(x => x.Clientes).WithOne(x => x.Categorias);
         }
     }
 }
