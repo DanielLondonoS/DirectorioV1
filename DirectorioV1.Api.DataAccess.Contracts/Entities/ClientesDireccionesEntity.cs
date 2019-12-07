@@ -25,7 +25,13 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
         public bool Servicio_Domicilio { get; set; }
         public bool Estado { get; set; }
 
-        //public virtual ClientesEntity Cliente { get; set; }
+        public virtual ClientesEntity Cliente { get; set; }
+        public virtual PaisesEntity Pais { get; set; }
+        public virtual DepartamentosEntity Departamento { get; set; }
+        public virtual CiudadesEntity Ciudad { get; set; }
+        public virtual MunicipiosEntity Municipio { get; set; }
+        public virtual BarriosEntity Barriio { get; set; }
+
         public virtual ICollection<Clientes2DireccionesEntity> Clientes2Direcciones { get; set; }
 
     }
