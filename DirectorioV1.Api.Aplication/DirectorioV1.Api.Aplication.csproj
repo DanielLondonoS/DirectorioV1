@@ -6,7 +6,13 @@
 
   <ItemGroup>
     <Folder Include="Mappers\" />
-    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DirectorioV1.Api.Aplication.Contracts\DirectorioV1.Api.Aplication.Contracts.csproj" />
+    <ProjectReference Include="..\DirectorioV1.Api.Business\DirectorioV1.Api.Business.csproj" />
+    <ProjectReference Include="..\DirectorioV1.Api.DataAccess.Contracts\DirectorioV1.Api.DataAccess.Contracts.csproj" />
+    <ProjectReference Include="..\DirectorioV1.Api.DataAccess\DirectorioV1.Api.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

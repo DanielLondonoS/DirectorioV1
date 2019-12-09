@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DirectorioV1.Api.Config;
+using DirectorioV1.Api.CrossCutting.Register;
 using DirectorioV1.Api.DataAccess;
+using DirectorioV1.Api.DataAccess.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,7 +34,10 @@ namespace DirectorioV1.Api
             services.AddDbContext<DirectorioV1DBContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("DataBaseConnection"))
             );
+            services.AddScoped<IDirectorioV1DBContext, DirectorioV1DBContext>();
 
+            IoCRegister.AddRegistration(services);
+            SwaggerConfig.AddRegistration(services);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -46,6 +52,7 @@ namespace DirectorioV1.Api
             {
                 app.UseHsts();
             }
+            SwaggerConfig.AddRegistration(app);
 
             app.UseHttpsRedirection();
             app.UseMvc();

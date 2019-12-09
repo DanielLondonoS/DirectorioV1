@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>J:\Desarrollo\PROYECTOS\DirectorioV1\DirectorioV1\DirectorioV1.Api\DirectorioV1.Api.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Folder Include="Filters\" />
     <Folder Include="wwwroot\" />
@@ -12,9 +16,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DirectorioV1.Api.CrossCutting\DirectorioV1.Api.CrossCutting.csproj" />
     <ProjectReference Include="..\DirectorioV1.Api.DataAccess\DirectorioV1.Api.DataAccess.csproj" />
   </ItemGroup>
 
