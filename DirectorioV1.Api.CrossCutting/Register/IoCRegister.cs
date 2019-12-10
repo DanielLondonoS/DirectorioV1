@@ -21,6 +21,10 @@ namespace DirectorioV1.Api.CrossCutting.Register
         private static IServiceCollection RegistrationServices(IServiceCollection services)
         {
             services.AddTransient<IBarriosServices, BarriosServices>();
+            services.AddTransient<ICiudadesServices, CiudadesServices>();
+            services.AddTransient<IDepartamentosServices, DepartamentosServices>();
+            services.AddTransient<IMunicipiosServices, MunicipiosServices>();
+            services.AddTransient<IPaisesServices, PaisesServices>();
 
             return services;
         }

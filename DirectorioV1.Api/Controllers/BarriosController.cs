@@ -71,5 +71,59 @@ namespace DirectorioV1.Api.Controllers
             };
 
         }
+
+        [HttpGet]
+        [Route("ObtenerBarrioPorId")]
+        public async Task<ActionResult<BarriosRespuesta>> ObtenerBarrioPorId(int id)
+        {
+            var listaDeBarrios = await _barriosServices.BarrioPorId(id);
+            if (listaDeBarrios != null)
+            {
+                return new BarriosRespuesta()
+                {
+                    Barrio = listaDeBarrios,
+                    EsExitoso = true,
+                    Mensaje = "Listado de Barrios",
+                    ListadoDeBarrios = null
+                };
+            }
+
+            return new BarriosRespuesta()
+            {
+                Barrio = null,
+                EsExitoso = false,
+                Mensaje = "Ocurrio un error al recuperar el listado de barrios",
+                ListadoDeBarrios = null
+            };
+
+        }
+
+        [HttpPut]
+        [Route("ActualizarBarrio")]
+        public async Task<ActionResult<BarriosRespuesta>> ActualizarBarrio(int id, [FromBody] Barrios barrio)
+        {
+            var listaDeBarrios = await _barriosServices.EditarBarrio(id,barrio);
+            if (listaDeBarrios != null)
+            {
+                return new BarriosRespuesta()
+                {
+                    Barrio = listaDeBarrios,
+                    EsExitoso = true,
+                    Mensaje = "Listado de Barrios",
+                    ListadoDeBarrios = null
+                };
+            }
+
+            return new BarriosRespuesta()
+            {
+                Barrio = null,
+                EsExitoso = false,
+                Mensaje = "Ocurrio un error al recuperar el listado de barrios",
+                ListadoDeBarrios = null
+            };
+
+        }
+
+        
     }
 }

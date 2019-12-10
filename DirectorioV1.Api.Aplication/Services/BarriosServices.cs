@@ -22,27 +22,27 @@ namespace DirectorioV1.Api.Aplication.Services
         public async Task<List<Barrios>> ListadoDeBarrios()
         {
             var listaDeBarrios =  await _barriosRepository.GetAll();
-            return CategoriasMapper.map(listaDeBarrios);
+            return BarriosMapper.map(listaDeBarrios);
         }
 
         public async Task<Barrios> BarrioPorId(int id)
         {
             var Barrios = await _barriosRepository.Get(id);
-            return CategoriasMapper.map(Barrios);
+            return BarriosMapper.map(Barrios);
         }
 
         public async Task<Barrios> CrearNuevoBarrio(Barrios dto)
         {
-            BarriosEntity barrioMap = CategoriasMapper.map(dto);
+            BarriosEntity barrioMap = BarriosMapper.map(dto);
             var Barrios = await _barriosRepository.Add(barrioMap);
-            return CategoriasMapper.map(Barrios);
+            return BarriosMapper.map(Barrios);
         }
 
         public async Task<Barrios> EditarBarrio(int id,Barrios dto)
         {
-            BarriosEntity barrioMap = CategoriasMapper.map(dto);
+            BarriosEntity barrioMap = BarriosMapper.map(dto);
             var Barrios = await _barriosRepository.Update(id,barrioMap);
-            return CategoriasMapper.map(Barrios);
+            return BarriosMapper.map(Barrios);
         }
     }
 }

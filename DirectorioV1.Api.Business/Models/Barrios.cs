@@ -7,7 +7,7 @@ namespace DirectorioV1.Api.Business.Models
     public class Barrios
     {
         public int Id { get; set; }
-        //public string Municipio_Id { get; set; }
+        public string Municipio_Id { get; set; }
         public string Descripcion { get; set; }
         public string Codigo { get; set; }
         public bool Estado { get; set; }
