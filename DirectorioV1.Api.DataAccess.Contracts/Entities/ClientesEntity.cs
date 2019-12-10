@@ -14,9 +14,5 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
         public DateTime Fecha_Creacion { get; set; }
         public Boolean Estado { get; set; }
         public string Correo { get; set; }
-
-        public virtual ICollection<Clientes2DireccionesEntity> Clientes2Direcciones { get; set; }
-        public virtual CategoriasEntity Categorias { get; set; }
-        public virtual ClientesDireccionesEntity ClientesDirecciones { get; set; }
     }
 }

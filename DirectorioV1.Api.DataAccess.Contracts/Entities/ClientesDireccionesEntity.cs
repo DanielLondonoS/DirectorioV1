@@ -7,7 +7,7 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
     public class ClientesDireccionesEntity
     {
         public int Id { get; set; }
-        //public int Cliente_Id { get; set; }
+        public int Cliente_Id { get; set; }
         public string Direccion_Tipo_A { get; set; }
         public string Direccion_A { get; set; }
         public string Direccion_Tipo_B { get; set; }
@@ -24,15 +24,6 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
         public string Telefono { get; set; }
         public bool Servicio_Domicilio { get; set; }
         public bool Estado { get; set; }
-
-        //public virtual ClientesEntity Clientes { get; set; }
-        //public virtual PaisesEntity Paises { get; set; }
-        //public virtual DepartamentosEntity Departamentos { get; set; }
-        //public virtual CiudadesEntity Ciudades { get; set; }
-        //public virtual MunicipiosEntity Municipios { get; set; }
-        //public virtual BarriosEntity Barrios { get; set; }
-
-        public virtual ICollection<Clientes2DireccionesEntity> Clientes2Direcciones { get; set; }
 
     }
 }

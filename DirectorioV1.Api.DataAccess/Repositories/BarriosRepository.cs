@@ -42,8 +42,7 @@ namespace DirectorioV1.Api.DataAccess.Repositories
 
         public async Task<BarriosEntity> Get(int id)
         {
-            var result = await _directorioV1DBContext.Barrios.Include(r => r.Municipios)
-                .FirstOrDefaultAsync(r => r.Id == id);
+            var result = await _directorioV1DBContext.Barrios.FirstOrDefaultAsync(r => r.Id == id);
             return result;
         }
 

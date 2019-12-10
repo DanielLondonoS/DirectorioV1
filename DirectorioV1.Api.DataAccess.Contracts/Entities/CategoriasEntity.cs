@@ -10,6 +10,5 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
         public string Descripcion { get; set; }
         public bool Estado { get; set; }
 
-        //public virtual ClientesEntity Clientes { get; set; }
     }
 }

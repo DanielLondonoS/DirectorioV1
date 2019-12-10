@@ -33,15 +33,15 @@ namespace DirectorioV1.Api.Aplication.Services
 
         public async Task<Departamentos> CrearNuevoDepartamento(Departamentos dto)
         {
-            DepartamentosEntity paisesMap = DepartamentosMapper.map(dto);
-            var paises = await _departamentosRepository.Add(paisesMap);
+            DepartamentosEntity departamentosMap = DepartamentosMapper.map(dto);
+            var paises = await _departamentosRepository.Add(departamentosMap);
             return DepartamentosMapper.map(paises);
         }
 
         public async Task<Departamentos> EditarDepartamento(int id, Departamentos dto)
         {
-            DepartamentosEntity paisMap = DepartamentosMapper.map(dto);
-            var pais = await _departamentosRepository.Update(id, paisMap);
+            DepartamentosEntity departamentosMap = DepartamentosMapper.map(dto);
+            var pais = await _departamentosRepository.Update(id, departamentosMap);
             return DepartamentosMapper.map(pais);
         }
     }

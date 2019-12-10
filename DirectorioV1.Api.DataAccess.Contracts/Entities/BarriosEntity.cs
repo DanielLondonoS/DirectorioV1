@@ -7,7 +7,7 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
     public class BarriosEntity
     {
         public int Id { get; set; }
-        //public string Municipio_Id { get; set; }
+        public string CIudad_Id { get; set; }
         public string Descripcion { get; set; }
         public string Codigo { get; set; }
         public bool Estado { get; set; }
@@ -15,10 +15,6 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
         public string Latitud { get; set; }
         public string Codigo_Postal { get; set; }
 
-        public virtual MunicipiosEntity Municipios { get; set; }
-        //public virtual ClientesDireccionesEntity ClientesDirecciones { get; set; }
-
-        public virtual ICollection<Barrios2MunicipiosEntity> Barrios2Municipios { get; set; }
 
     }
 }

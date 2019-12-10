@@ -10,6 +10,7 @@ namespace DirectorioV1.Api.DataAccess.Mappers
     {
         public static DepartamentosEntity map(Departamentos dto)
         {
+
             return new DepartamentosEntity()
             {
                 Id = dto.Id,
