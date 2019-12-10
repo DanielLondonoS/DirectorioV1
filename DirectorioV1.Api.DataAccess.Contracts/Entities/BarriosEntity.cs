@@ -7,7 +7,7 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
     public class BarriosEntity
     {
         public int Id { get; set; }
-        public string CIudad_Id { get; set; }
+        public string Ciudad_Id { get; set; }
         public string Descripcion { get; set; }
         public string Codigo { get; set; }
         public bool Estado { get; set; }

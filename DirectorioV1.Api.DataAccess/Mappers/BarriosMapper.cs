@@ -18,7 +18,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Codigo_Postal = dto.Codigo_Postal,
                 Descripcion = dto.Descripcion,
                 Latitud = dto.Latitud,
-                Longitud = dto.Longitud
+                Longitud = dto.Longitud,
+                Ciudad_Id = dto.Ciudad_Id
             };
         }
 
@@ -32,7 +33,9 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Codigo_Postal = dto.Codigo_Postal,
                 Descripcion = dto.Descripcion,
                 Latitud = dto.Latitud,
-                Longitud = dto.Longitud
+                Longitud = dto.Longitud,
+                Ciudad_Id = dto.Ciudad_Id
+
             };
         }
 

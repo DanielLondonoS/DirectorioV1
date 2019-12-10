@@ -28,7 +28,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Municipio_Id = dto.Municipio_Id,
                 Pais_Id = dto.Pais_Id,
                 Telefono = dto.Telefono,
-                Servicio_Domicilio = dto.Servicio_Domicilio
+                Servicio_Domicilio = dto.Servicio_Domicilio,
+                Cliente_Id = dto.Cliente_Id
             };
         }
 
@@ -52,7 +53,9 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Municipio_Id = dto.Municipio_Id,
                 Pais_Id = dto.Pais_Id,
                 Telefono = dto.Telefono,
-                Servicio_Domicilio = dto.Servicio_Domicilio
+                Servicio_Domicilio = dto.Servicio_Domicilio,
+                Cliente_Id = dto.Cliente_Id
+
             };
         }
 

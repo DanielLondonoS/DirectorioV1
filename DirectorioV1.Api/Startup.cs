@@ -35,6 +35,14 @@ namespace DirectorioV1.Api
                 options.UseSqlServer(Configuration.GetConnectionString("DataBaseConnection"))
             );
             services.AddScoped<IDirectorioV1DBContext, DirectorioV1DBContext>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
 
             IoCRegister.AddRegistration(services);
             SwaggerConfig.AddRegistration(services);
@@ -53,7 +61,7 @@ namespace DirectorioV1.Api
                 app.UseHsts();
             }
             SwaggerConfig.AddRegistration(app);
-
+            app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
             app.UseMvc();
         }

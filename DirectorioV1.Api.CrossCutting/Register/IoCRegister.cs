@@ -24,6 +24,7 @@ namespace DirectorioV1.Api.CrossCutting.Register
             services.AddTransient<ICiudadesServices, CiudadesServices>();
             services.AddTransient<IDepartamentosServices, DepartamentosServices>();
             services.AddTransient<IPaisesServices, PaisesServices>();
+            services.AddTransient<ICategoriasServices, CategoriasServices>();
 
             return services;
         }
