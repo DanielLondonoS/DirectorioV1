@@ -35,3 +35,34 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+DirectorioV1.App/*~
+DirectorioV1.App/*.sw[mnpcod]
+DirectorioV1.App/.tmp
+DirectorioV1.App/*.tmp
+DirectorioV1.App/*.tmp.*
+DirectorioV1.App/*.sublime-project
+DirectorioV1.App/*.sublime-workspace
+DirectorioV1.App/.DS_Store
+DirectorioV1.App/Thumbs.db
+DirectorioV1.App/UserInterfaceState.xcuserstate
+DirectorioV1.App/$RECYCLE.BIN/
+
+DirectorioV1.App/*.log
+DirectorioV1.App/log.txt
+DirectorioV1.App/npm-debug.log*
+
+DirectorioV1.App/.idea
+DirectorioV1.App/.ionic
+DirectorioV1.App/.sass-cache
+DirectorioV1.App/.sourcemaps
+DirectorioV1.App/.versions
+DirectorioV1.App/.vscode
+DirectorioV1.App/coverage
+DirectorioV1.App/dist
+DirectorioV1.App/node_modules
+DirectorioV1.App/platforms
+DirectorioV1.App/plugins
+DirectorioV1.App/www
