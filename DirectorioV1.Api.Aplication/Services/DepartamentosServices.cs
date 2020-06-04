@@ -50,5 +50,19 @@ namespace DirectorioV1.Api.Aplication.Services
             var departamentos = await _departamentosRepository.UpdateAsync(departamentosMap);
             return DepartamentosMapper.map(departamentos);
         }
+
+        public void EliminarDepartamento(Departamentos dto)
+        {
+            if (dto == null)
+                return;
+            var departamentos = DepartamentosMapper.map(dto);
+            this._departamentosRepository.DeleteAsync(departamentos);
+
+        }
+
+        public async Task<bool> ExisteDepartamento(int? id)
+        {
+            return await this._departamentosRepository.ExistAsync(id.Value);
+        }
     }
 }

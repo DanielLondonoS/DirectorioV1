@@ -15,5 +15,8 @@ namespace DirectorioV1.Api.Aplication.Contracts.Services
         Task<Paises> PaisPorId(int? id);
 
         List<Paises> ListadoDePaises();
+        void EliminarPais(Paises dto);
+
+        Task<bool> ExistePais(int? id);
     }
 }

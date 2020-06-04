@@ -15,5 +15,8 @@ namespace DirectorioV1.Api.Aplication.Contracts.Services
         Task<Departamentos> DepartamentoPorId(int? id);
 
         List<Departamentos> ListadoDeDepartamentos();
+        void EliminarDepartamento(Departamentos dto);
+
+        Task<bool> ExisteDepartamento(int? id);
     }
 }

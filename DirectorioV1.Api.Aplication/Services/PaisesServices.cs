@@ -50,5 +50,19 @@ namespace DirectorioV1.Api.Aplication.Services
             var pais = await _paisesRepository.UpdateAsync(paisMap);
             return PaisesMapper.map(pais);
         }
+
+        public void EliminarPais(Paises dto)
+        {
+            if (dto == null)
+                return;
+            var pais = PaisesMapper.map(dto);
+            this._paisesRepository.DeleteAsync(pais);
+
+        }
+
+        public async Task<bool> ExistePais(int? id)
+        {
+            return await this._paisesRepository.ExistAsync(id.Value);
+        }
     }
 }

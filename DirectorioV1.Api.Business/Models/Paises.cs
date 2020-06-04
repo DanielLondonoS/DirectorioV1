@@ -13,5 +13,6 @@ namespace DirectorioV1.Api.Business.Models
         public string Longitud { get; set; }
         public string Latitud { get; set; }
         public string Codigo_Postal { get; set; }
+        public ICollection<Departamentos> Departamentos { get; set; }
     }
 }
