@@ -49,7 +49,7 @@ namespace DirectorioV1.Api.Controllers
         [Route("ObtenerPaises")]
         public async Task<ActionResult<PaisesRespuesta>> ObtenerPaises()
         {
-            var lista = await _paisesServices.ListadoDePaises();
+            var lista = _paisesServices.ListadoDePaises();
             if (lista != null)
             {
                 return new PaisesRespuesta()
@@ -102,7 +102,7 @@ namespace DirectorioV1.Api.Controllers
         [Route("ActualizarPais")]
         public async Task<ActionResult<PaisesRespuesta>> ActualizarPais(int id, [FromBody] Paises paises)
         {
-            var dto = await _paisesServices.EditarPais(id, paises);
+            var dto = await _paisesServices.EditarPais(paises);
             if (dto != null)
             {
                 return new PaisesRespuesta()

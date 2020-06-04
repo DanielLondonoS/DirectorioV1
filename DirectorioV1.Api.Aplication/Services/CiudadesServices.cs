@@ -19,29 +19,35 @@ namespace DirectorioV1.Api.Aplication.Services
             this._ciudadesRepository = ciudadesRepository;
         }
 
-        public async Task<List<Ciudades>> ListadoDeCiudades()
+        public List<Ciudades> ListadoDeCiudades()
         {
-            var listaDeCiudades =  await _ciudadesRepository.GetAll();
+            var listaDeCiudades =  _ciudadesRepository.GetAll();
             return CiudadesMapper.map(listaDeCiudades);
         }
 
-        public async Task<Ciudades> CiudadPorId(int id)
+        public async Task<Ciudades> CiudadPorId(int? id)
         {
-            var Pais = await _ciudadesRepository.Get(id);
+            if (id == null)
+                return null;
+            var Pais = await _ciudadesRepository.GetByIdAsync(id.Value);
             return CiudadesMapper.map(Pais);
         }
 
         public async Task<Ciudades> CrearNuevoCiudad(Ciudades dto)
         {
+            if (dto == null)
+                return null;
             CiudadesEntity paisesMap = CiudadesMapper.map(dto);
-            var paises = await _ciudadesRepository.Add(paisesMap);
+            var paises = await _ciudadesRepository.CreateAsync(paisesMap);
             return CiudadesMapper.map(paises);
         }
 
-        public async Task<Ciudades> EditarCiudad(int id, Ciudades dto)
+        public async Task<Ciudades> EditarCiudad(Ciudades dto)
         {
+            if (dto == null)
+                return null;
             CiudadesEntity paisMap = CiudadesMapper.map(dto);
-            var pais = await _ciudadesRepository.Update(id, paisMap);
+            var pais = await _ciudadesRepository.UpdateAsync(paisMap);
             return CiudadesMapper.map(pais);
         }
     }

@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace DirectorioV1.Api.DataAccess.Contracts.Repositories
 {
-    public interface IBarriosRepository : IRepository<BarriosEntity>
+    public interface IBarriosRepository : IGenericRepository<BarriosEntity>
     {
-        Task<BarriosEntity> Update(BarriosEntity element);
     }
 }

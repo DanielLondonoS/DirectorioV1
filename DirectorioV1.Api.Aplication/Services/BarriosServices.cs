@@ -5,6 +5,7 @@ using DirectorioV1.Api.DataAccess.Contracts.Repositories;
 using DirectorioV1.Api.DataAccess.Mappers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,29 +20,37 @@ namespace DirectorioV1.Api.Aplication.Services
             this._barriosRepository = barriosRepository;
         }
 
-        public async Task<List<Barrios>> ListadoDeBarrios()
+        public List<Barrios> ListadoDeBarrios()
         {
-            var listaDeBarrios =  await _barriosRepository.GetAll();
+            var listaDeBarrios =  _barriosRepository.GetAll().ToList();
             return BarriosMapper.map(listaDeBarrios);
         }
 
-        public async Task<Barrios> BarrioPorId(int id)
+        public async Task<Barrios> BarrioPorId(int? id)
         {
-            var Barrios = await _barriosRepository.Get(id);
+            if (id == null)
+            {
+                return null;
+            }
+            var Barrios = await _barriosRepository.GetByIdAsync(id.Value);
             return BarriosMapper.map(Barrios);
         }
 
         public async Task<Barrios> CrearNuevoBarrio(Barrios dto)
         {
+            if (dto == null)
+                return null;
             BarriosEntity barrioMap = BarriosMapper.map(dto);
-            var Barrios = await _barriosRepository.Add(barrioMap);
+            var Barrios = await _barriosRepository.CreateAsync(barrioMap);
             return BarriosMapper.map(Barrios);
         }
 
-        public async Task<Barrios> EditarBarrio(int id,Barrios dto)
+        public async Task<Barrios> EditarBarrio(Barrios dto)
         {
+            if (dto == null)
+                return null;
             BarriosEntity barrioMap = BarriosMapper.map(dto);
-            var Barrios = await _barriosRepository.Update(id,barrioMap);
+            var Barrios = await _barriosRepository.UpdateAsync(barrioMap);
             return BarriosMapper.map(Barrios);
         }
     }

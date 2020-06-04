@@ -11,9 +11,9 @@ namespace DirectorioV1.Api.DataAccess.EntityConfig
     {
         public static void SetEntityBuilder(EntityTypeBuilder<UsuariosEntity> entityBuilder)
         {
-            entityBuilder.ToTable("Usuarios");
-            entityBuilder.HasKey(x => x.Id);
-            entityBuilder.Property(x => x.Id).IsRequired();
+            //entityBuilder.ToTable("Usuarios");
+            //entityBuilder.HasKey(x => x.Id);
+            //entityBuilder.Property(x => x.Id).IsRequired();
         }
     }
 }

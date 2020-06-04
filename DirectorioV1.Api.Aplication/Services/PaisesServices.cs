@@ -19,29 +19,35 @@ namespace DirectorioV1.Api.Aplication.Services
             this._paisesRepository = paisesRepository;
         }
 
-        public async Task<List<Paises>> ListadoDePaises()
+        public List<Paises> ListadoDePaises()
         {
-            var listaDePaises =  await _paisesRepository.GetAll();
+            var listaDePaises =  _paisesRepository.GetAll();
             return PaisesMapper.map(listaDePaises);
         }
 
-        public async Task<Paises> PaisPorId(int id)
+        public async Task<Paises> PaisPorId(int? id)
         {
-            var Pais = await _paisesRepository.Get(id);
+            if (id == null)
+                return null;
+            var Pais = await _paisesRepository.GetByIdAsync(id.Value);
             return PaisesMapper.map(Pais);
         }
 
         public async Task<Paises> CrearNuevoPais(Paises dto)
         {
+            if (dto == null)
+                return null;
             PaisesEntity paisesMap = PaisesMapper.map(dto);
-            var paises = await _paisesRepository.Add(paisesMap);
+            var paises = await _paisesRepository.CreateAsync(paisesMap);
             return PaisesMapper.map(paises);
         }
 
-        public async Task<Paises> EditarPais(int id, Paises dto)
+        public async Task<Paises> EditarPais(Paises dto)
         {
+            if (dto == null)
+                return null;
             PaisesEntity paisMap = PaisesMapper.map(dto);
-            var pais = await _paisesRepository.Update(id, paisMap);
+            var pais = await _paisesRepository.UpdateAsync(paisMap);
             return PaisesMapper.map(pais);
         }
     }

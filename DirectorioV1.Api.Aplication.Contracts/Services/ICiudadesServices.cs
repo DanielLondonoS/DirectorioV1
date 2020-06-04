@@ -8,12 +8,12 @@ namespace DirectorioV1.Api.Aplication.Contracts.Services
 {
     public interface ICiudadesServices
     {
-        Task<Ciudades> EditarCiudad(int id, Ciudades dto);
+        Task<Ciudades> EditarCiudad(Ciudades dto);
 
         Task<Ciudades> CrearNuevoCiudad(Ciudades dto);
 
-        Task<Ciudades> CiudadPorId(int id);
+        Task<Ciudades> CiudadPorId(int? id);
 
-        Task<List<Ciudades>> ListadoDeCiudades();
+        List<Ciudades> ListadoDeCiudades();
     }
 }

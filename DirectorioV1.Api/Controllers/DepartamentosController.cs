@@ -49,7 +49,7 @@ namespace DirectorioV1.Api.Controllers
         [Route("ObtenerDepartamentos")]
         public async Task<ActionResult<DepartamentosRespuesta>> ObtenerDepartamentos()
         {
-            var lista = await _departamentosServices.ListadoDeDepartamentos();
+            var lista = _departamentosServices.ListadoDeDepartamentos();
             if (lista != null)
             {
                 return new DepartamentosRespuesta()
@@ -102,7 +102,7 @@ namespace DirectorioV1.Api.Controllers
         [Route("ActualizarPais")]
         public async Task<ActionResult<DepartamentosRespuesta>> ActualizarPais(int id, [FromBody] Departamentos departamentos)
         {
-            var dto = await _departamentosServices.EditarDepartamento(id, departamentos);
+            var dto = await _departamentosServices.EditarDepartamento(departamentos);
             if (dto != null)
             {
                 return new DepartamentosRespuesta()

@@ -8,12 +8,12 @@ namespace DirectorioV1.Api.Aplication.Contracts.Services
 {
     public interface IClientesServices
     {
-        Task<Clientes> EditarCliente(int id, Clientes dto);
+        Task<Clientes> EditarCliente(Clientes dto);
 
         Task<Clientes> CrearNuevoCliente(Clientes dto);
 
-        Task<Clientes> ClientePorId(int id);
+        Task<Clientes> ClientePorId(int? id);
 
-        Task<List<ClientesForDirecciones>> ListadoDeClientes();
+        List<Clientes> ListadoDeClientes();
     }
 }

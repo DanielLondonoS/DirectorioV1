@@ -47,9 +47,9 @@ namespace DirectorioV1.Api.Controllers
         }
         [HttpGet]
         [Route("ObtenerBarrios")]
-        public async Task<ActionResult<BarriosRespuesta>> ObtenerBarrios()
+        public ActionResult<BarriosRespuesta> ObtenerBarrios()
         {
-            var listaDeBarrios = await _barriosServices.ListadoDeBarrios();
+            var listaDeBarrios = _barriosServices.ListadoDeBarrios();
             if (listaDeBarrios != null)
             {
                 return new BarriosRespuesta()
@@ -102,7 +102,7 @@ namespace DirectorioV1.Api.Controllers
         [Route("ActualizarBarrio")]
         public async Task<ActionResult<BarriosRespuesta>> ActualizarBarrio(int id, [FromBody] Barrios barrio)
         {
-            var listaDeBarrios = await _barriosServices.EditarBarrio(id,barrio);
+            var listaDeBarrios = await _barriosServices.EditarBarrio(barrio);
             if (listaDeBarrios != null)
             {
                 return new BarriosRespuesta()

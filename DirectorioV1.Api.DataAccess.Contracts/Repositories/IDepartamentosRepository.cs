@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace DirectorioV1.Api.DataAccess.Contracts.Repositories
 {
-    public interface IDepartamentosRepository : IRepository<DepartamentosEntity>
+    public interface IDepartamentosRepository : IGenericRepository<DepartamentosEntity>
     {
-        Task<DepartamentosEntity> Update(DepartamentosEntity element);
     }
 }

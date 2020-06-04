@@ -47,9 +47,9 @@ namespace DirectorioV1.Api.Controllers
         }
         [HttpGet]
         [Route("ObtenerCategorias")]
-        public async Task<ActionResult<CategoriasRespuesta>> ObtenerCategorias()
+        public ActionResult<CategoriasRespuesta> ObtenerCategorias()
         {
-            var lista = await _categoriasServices.ListadoDeCategorias();
+            var lista = _categoriasServices.ListadoDeCategorias();
             if (lista != null)
             {
                 return new CategoriasRespuesta()
@@ -102,7 +102,7 @@ namespace DirectorioV1.Api.Controllers
         [Route("ActualizarCategoria")]
         public async Task<ActionResult<CategoriasRespuesta>> ActualizarCategoria(int id, [FromBody] Categorias categorias)
         {
-            var dto = await _categoriasServices.EditarCategoria(id, categorias);
+            var dto = await _categoriasServices.EditarCategoria(categorias);
             if (dto != null)
             {
                 return new CategoriasRespuesta()

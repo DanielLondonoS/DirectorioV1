@@ -1,5 +1,7 @@
 ﻿using DirectorioV1.Api.DataAccess.Contracts.Entities;
 using DirectorioV1.Api.DataAccess.Contracts.Repositories;
+using DirectorioV1.Api.DataAccess.Contracts.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,58 +14,125 @@ namespace DirectorioV1.Api.DataAccess.Repositories
     public class UsuariosRepository : IUsuariosRepository
     {
         private readonly DirectorioV1DBContext _directorioV1DBContext;
-        public UsuariosRepository(DirectorioV1DBContext directorioV1DBContext)
+        private readonly UserManager<UsuariosEntity> userManager;
+        private readonly SignInManager<UsuariosEntity> signInManager;
+        private readonly RoleManager<IdentityRole> roleManager;
+        public UsuariosRepository(
+            DirectorioV1DBContext directorioV1DBContext,
+            UserManager<UsuariosEntity> userManager,
+            SignInManager<UsuariosEntity> signInManager,
+            RoleManager<IdentityRole> roleManager)
         {
             this._directorioV1DBContext = directorioV1DBContext;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+            this.roleManager = roleManager;
+        }
+        public async Task<IdentityResult> AddUserAsync(UsuariosEntity user, string password)
+        {
+            return await this.userManager.CreateAsync(user, password);
         }
 
-        public async Task<UsuariosEntity> Add(UsuariosEntity usuariosEntity)
+        public async Task AddUserToRoleAsync(UsuariosEntity user, string roleName)
         {
-            await _directorioV1DBContext.Usuarios.AddAsync(usuariosEntity);
-            await _directorioV1DBContext.SaveChangesAsync();
-            return usuariosEntity;
+            await this.userManager.AddToRoleAsync(user, roleName);
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<IdentityResult> ChangePasswordAsync(UsuariosEntity user, string oldPassword, string newPassword)
         {
-            var entity = await _directorioV1DBContext.Usuarios.SingleAsync(x=>x.Id == id);
-            _directorioV1DBContext.Usuarios.Remove(entity);
-            await _directorioV1DBContext.SaveChangesAsync();
+            return await this.userManager.ChangePasswordAsync(user, oldPassword, newPassword);
         }
 
-        public async Task<bool> Exist(int id)
+        public async Task CheckRoleAsync(string roleName)
         {
-            var entity = await _directorioV1DBContext.Usuarios.FirstOrDefaultAsync(x => x.Id == id);
-            if(entity != null) {
-                return true;
+            var roleExists = await this.roleManager.RoleExistsAsync(roleName);
+            if (!roleExists)
+            {
+                await this.roleManager.CreateAsync(new IdentityRole
+                {
+                    Name = roleName
+                });
             }
-            return false;
         }
 
-        public async Task<UsuariosEntity> Get(int id)
+        public async Task<UsuariosEntity> GetUserByEmailAsync(string email)
         {
-            var result = await _directorioV1DBContext.Usuarios.FirstOrDefaultAsync(r => r.Id == id);
-            return result;
+            return await this.userManager.FindByEmailAsync(email);
         }
 
-        public async Task<IEnumerable<UsuariosEntity>> GetAll()
+        public async Task<bool> IsUserInRoleAsync(UsuariosEntity user, string roleName)
         {
-            return await _directorioV1DBContext.Usuarios.ToListAsync();
+            return await this.userManager.IsInRoleAsync(user, roleName);
         }
 
-        public async Task<UsuariosEntity> Update(int id, UsuariosEntity element)
+        public async Task<SignInResult> LoginAsync(LoginViewModel model)
         {
-            var entity = await Get(id);
-            entity.Nombre = element.Nombre;
-            return await Update(entity);
-
+            return await this.signInManager.PasswordSignInAsync(
+                model.Username,
+                model.Password,
+                model.RememberMe,
+                false);
         }
 
-        public async Task<UsuariosEntity> Update(UsuariosEntity element)
+        public async Task LogoutAsync()
         {
-            var updateUsuarios = _directorioV1DBContext.Usuarios.Update(element);
-            await _directorioV1DBContext.SaveChangesAsync();
-            return updateUsuarios.Entity;
+            await this.signInManager.SignOutAsync();
+        }
+
+        public async Task<IdentityResult> UpdateUserAsync(UsuariosEntity user)
+        {
+            return await this.userManager.UpdateAsync(user);
+        }
+
+        public async Task<SignInResult> ValidatePasswordAsync(UsuariosEntity user, string password)
+        {
+            return await this.signInManager.CheckPasswordSignInAsync(
+                user,
+                password,
+                false);
+        }
+
+        public async Task<IdentityResult> ConfirmEmailAsync(UsuariosEntity user, string token)
+        {
+            return await this.userManager.ConfirmEmailAsync(user, token);
+        }
+
+        public async Task<string> GenerateEmailConfirmationTokenAsync(UsuariosEntity user)
+        {
+            return await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+        }
+
+        public async Task<UsuariosEntity> GetUserByIdAsync(string userId)
+        {
+            return await this.userManager.FindByIdAsync(userId);
+        }
+
+        public async Task<string> GeneratePasswordResetTokenAsync(UsuariosEntity user)
+        {
+            return await this.userManager.GeneratePasswordResetTokenAsync(user);
+        }
+
+        public async Task<IdentityResult> ResetPasswordAsync(UsuariosEntity user, string token, string password)
+        {
+            return await this.userManager.ResetPasswordAsync(user, token, password);
+        }
+
+        public async Task<List<UsuariosEntity>> GetAllUsersAsync()
+        {
+            return await this.userManager.Users
+                .OrderBy(u => u.Nombre)
+                .ThenBy(u => u.Apellido)
+                .ToListAsync();
+        }
+
+        public async Task RemoveUserFromRoleAsync(UsuariosEntity user, string roleName)
+        {
+            await this.userManager.RemoveFromRoleAsync(user, roleName);
+        }
+
+        public async Task DeleteUserAsync(UsuariosEntity user)
+        {
+            await this.userManager.DeleteAsync(user);
         }
     }
 }

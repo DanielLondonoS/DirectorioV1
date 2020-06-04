@@ -47,9 +47,9 @@ namespace DirectorioV1.Api.Controllers
         }
         [HttpGet]
         [Route("ObtenerCiudades")]
-        public async Task<ActionResult<CiudadesRespuesta>> ObtenerCiudades()
+        public ActionResult<CiudadesRespuesta> ObtenerCiudades()
         {
-            var lista = await _ciudadesServices.ListadoDeCiudades();
+            var lista = _ciudadesServices.ListadoDeCiudades();
             if (lista != null)
             {
                 return new CiudadesRespuesta()
@@ -102,7 +102,7 @@ namespace DirectorioV1.Api.Controllers
         [Route("ActualizarCiudad")]
         public async Task<ActionResult<CiudadesRespuesta>> ActualizarCiudad(int id, [FromBody] Ciudades ciudades)
         {
-            var dto = await _ciudadesServices.EditarCiudad(id, ciudades);
+            var dto = await _ciudadesServices.EditarCiudad(ciudades);
             if (dto != null)
             {
                 return new CiudadesRespuesta()

@@ -19,29 +19,35 @@ namespace DirectorioV1.Api.Aplication.Services
             this._categoriasRepository = categoriasRepository;
         }
 
-        public async Task<List<Categorias>> ListadoDeCategorias()
+        public List<Categorias> ListadoDeCategorias()
         {
-            var listaDePaises =  await _categoriasRepository.GetAll();
+            var listaDePaises =  _categoriasRepository.GetAll();
             return CategoriasMapper.map(listaDePaises);
         }
 
-        public async Task<Categorias> CategoriaPorId(int id)
+        public async Task<Categorias> CategoriaPorId(int? id)
         {
-            var Pais = await _categoriasRepository.Get(id);
+            if (id == null)
+                return null;
+            var Pais = await _categoriasRepository.GetByIdAsync(id.Value);
             return CategoriasMapper.map(Pais);
         }
 
         public async Task<Categorias> CrearNuevoCategoria(Categorias dto)
         {
+            if (dto == null)
+                return null;
             CategoriasEntity paisesMap = CategoriasMapper.map(dto);
-            var paises = await _categoriasRepository.Add(paisesMap);
+            var paises = await _categoriasRepository.CreateAsync(paisesMap);
             return CategoriasMapper.map(paises);
         }
 
-        public async Task<Categorias> EditarCategoria(int id, Categorias dto)
+        public async Task<Categorias> EditarCategoria( Categorias dto)
         {
+            if (dto == null)
+                return null;
             CategoriasEntity paisMap = CategoriasMapper.map(dto);
-            var pais = await _categoriasRepository.Update(id, paisMap);
+            var pais = await _categoriasRepository.UpdateAsync(paisMap);
             return CategoriasMapper.map(pais);
         }
     }

@@ -12,10 +12,10 @@ namespace DirectorioV1.Api.DataAccess.Mappers
         {
             return new UsuariosEntity()
             {
-                Id = dto.Id,
+                Id = dto.Id.ToString(),
                 Apellido = dto.Apellido,
-                Contrasena = dto.Contrasena,
-                Correo = dto.Correo,
+                //Contrasena = dto.Contrasena,
+                //Correo = dto.Correo,
                 Nombre = dto.Nombre
             };
         }
@@ -24,10 +24,10 @@ namespace DirectorioV1.Api.DataAccess.Mappers
         {
             return new Usuarios()
             {
-                Id = dto.Id,
+                Id = int.Parse(dto.Id),
                 Apellido = dto.Apellido,
-                Contrasena =dto.Contrasena,
-                Correo = dto.Correo,
+                //Contrasena =dto.Contrasena,
+                //Correo = dto.Correo,
                 Nombre = dto.Nombre
             };
         }

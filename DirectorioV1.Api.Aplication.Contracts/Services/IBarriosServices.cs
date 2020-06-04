@@ -8,12 +8,12 @@ namespace DirectorioV1.Api.Aplication.Contracts.Services
 {
     public interface IBarriosServices
     {
-        Task<Barrios> EditarBarrio(int id, Barrios dto);
+        Task<Barrios> EditarBarrio(Barrios dto);
 
         Task<Barrios> CrearNuevoBarrio(Barrios dto);
 
-        Task<Barrios> BarrioPorId(int id);
+        Task<Barrios> BarrioPorId(int? id);
 
-        Task<List<Barrios>> ListadoDeBarrios();
+        List<Barrios> ListadoDeBarrios();
     }
 }

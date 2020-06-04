@@ -8,12 +8,12 @@ namespace DirectorioV1.Api.Aplication.Contracts.Services
 {
     public interface ICategoriasServices
     {
-        Task<Categorias> EditarCategoria(int id, Categorias dto);
+        Task<Categorias> EditarCategoria(Categorias dto);
 
         Task<Categorias> CrearNuevoCategoria(Categorias dto);
 
-        Task<Categorias> CategoriaPorId(int id);
+        Task<Categorias> CategoriaPorId(int? id);
 
-        Task<List<Categorias>> ListadoDeCategorias();
+        List<Categorias> ListadoDeCategorias();
     }
 }

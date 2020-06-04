@@ -19,30 +19,36 @@ namespace DirectorioV1.Api.Aplication.Services
             this._departamentosRepository = departamentosRepository;
         }
 
-        public async Task<List<Departamentos>> ListadoDeDepartamentos()
+        public List<Departamentos> ListadoDeDepartamentos()
         {
-            var listaDeDepartamentos =  await _departamentosRepository.GetAll();
+            var listaDeDepartamentos =  _departamentosRepository.GetAll();
             return DepartamentosMapper.map(listaDeDepartamentos);
         }
 
-        public async Task<Departamentos> DepartamentoPorId(int id)
+        public async Task<Departamentos> DepartamentoPorId(int? id)
         {
-            var Pais = await _departamentosRepository.Get(id);
-            return DepartamentosMapper.map(Pais);
+            if (id == null)
+                return null;
+            var departamentos = await _departamentosRepository.GetByIdAsync(id.Value);
+            return DepartamentosMapper.map(departamentos);
         }
 
         public async Task<Departamentos> CrearNuevoDepartamento(Departamentos dto)
         {
+            if (dto == null)
+                return null;
             DepartamentosEntity departamentosMap = DepartamentosMapper.map(dto);
-            var paises = await _departamentosRepository.Add(departamentosMap);
-            return DepartamentosMapper.map(paises);
+            var departamento = await _departamentosRepository.CreateAsync(departamentosMap);
+            return DepartamentosMapper.map(departamento);
         }
 
-        public async Task<Departamentos> EditarDepartamento(int id, Departamentos dto)
+        public async Task<Departamentos> EditarDepartamento(Departamentos dto)
         {
+            if (dto == null)
+                return null;
             DepartamentosEntity departamentosMap = DepartamentosMapper.map(dto);
-            var pais = await _departamentosRepository.Update(id, departamentosMap);
-            return DepartamentosMapper.map(pais);
+            var departamentos = await _departamentosRepository.UpdateAsync(departamentosMap);
+            return DepartamentosMapper.map(departamentos);
         }
     }
 }

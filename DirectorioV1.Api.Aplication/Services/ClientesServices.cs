@@ -5,6 +5,7 @@ using DirectorioV1.Api.DataAccess.Contracts.Repositories;
 using DirectorioV1.Api.DataAccess.Mappers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,32 +20,36 @@ namespace DirectorioV1.Api.Aplication.Services
             this._clientesRepository = clientesRepository;
         }
 
-        public async Task<List<ClientesForDirecciones>> ListadoDeClientes()
+        public List<Clientes> ListadoDeClientes()
         {
-            var cliente =  await _clientesRepository.GetAll();
-            ClientesForDirecciones resultado = new ClientesForDirecciones();
-            resultado.Cliente = ClientesMapper.map(cliente);
-            return PaisesMapper.map(listaDePaises);
+            var cliente =  _clientesRepository.GetAll().ToList();            
+            return ClientesMapper.map(cliente);
         }
 
-        public async Task<Clientes> ClientePorId(int id)
+        public async Task<Clientes> ClientePorId(int? id)
         {
-            var Pais = await _paisesRepository.Get(id);
-            return PaisesMapper.map(Pais);
+            if (id == null)
+                return null;
+            var cliente = await _clientesRepository.GetByIdAsync(id.Value);
+            return ClientesMapper.map(cliente);
         }
 
         public async Task<Clientes> CrearNuevoCliente(Clientes dto)
         {
-            PaisesEntity paisesMap = PaisesMapper.map(dto);
-            var paises = await _paisesRepository.Add(paisesMap);
-            return PaisesMapper.map(paises);
+            if (dto == null)
+                return null;
+            ClientesEntity clientesMap = ClientesMapper.map(dto);
+            var cliente = await _clientesRepository.CreateAsync(clientesMap);
+            return ClientesMapper.map(cliente);
         }
 
-        public async Task<Clientes> EditarCliente(int id, Clientes dto)
+        public async Task<Clientes> EditarCliente(Clientes dto)
         {
-            PaisesEntity paisMap = PaisesMapper.map(dto);
-            var pais = await _paisesRepository.Update(id, paisMap);
-            return PaisesMapper.map(pais);
+            if (dto == null)
+                return null;
+            ClientesEntity clienteMap = ClientesMapper.map(dto);
+            var pais = await _clientesRepository.UpdateAsync(clienteMap);
+            return ClientesMapper.map(pais);
         }
     }
 }

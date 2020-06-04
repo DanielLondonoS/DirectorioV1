@@ -8,12 +8,12 @@ namespace DirectorioV1.Api.Aplication.Contracts.Services
 {
     public interface IDepartamentosServices
     {
-        Task<Departamentos> EditarDepartamento(int id, Departamentos dto);
+        Task<Departamentos> EditarDepartamento(Departamentos dto);
 
         Task<Departamentos> CrearNuevoDepartamento(Departamentos dto);
 
-        Task<Departamentos> DepartamentoPorId(int id);
+        Task<Departamentos> DepartamentoPorId(int? id);
 
-        Task<List<Departamentos>> ListadoDeDepartamentos();
+        List<Departamentos> ListadoDeDepartamentos();
     }
 }

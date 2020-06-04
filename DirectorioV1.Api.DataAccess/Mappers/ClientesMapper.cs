@@ -32,7 +32,7 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Categoria_Id = dto.Categoria_Id,
                 Correo = dto.Correo,
                 Documento = dto.Documento,
-                Fecha_Creacion = dto.Fecha_Creacion,
+                Fecha_Creacion = dto.Fecha_Creacion.Value,
                 Nombre = dto.Nombre,
                 Tipo_Documento = dto.Tipo_Documento
             };
