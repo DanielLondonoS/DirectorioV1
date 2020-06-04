@@ -50,5 +50,19 @@ namespace DirectorioV1.Api.Aplication.Services
             var pais = await _categoriasRepository.UpdateAsync(paisMap);
             return CategoriasMapper.map(pais);
         }
+
+        public void EliminarCategorias(Categorias dto)
+        {
+            if (dto == null)
+                return;
+            var categoria = CategoriasMapper.map(dto);
+            this._categoriasRepository.DeleteAsync(categoria);
+
+        }
+
+        public async Task<bool> ExisteCategoria(int? id)
+        {
+            return await this._categoriasRepository.ExistAsync(id.Value);
+        }
     }
 }

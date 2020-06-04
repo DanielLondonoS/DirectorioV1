@@ -2,6 +2,7 @@
 using DirectorioV1.Api.DataAccess.Contracts.Entities;
 using DirectorioV1.Api.DataAccess.EntityConfig;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +12,7 @@ namespace DirectorioV1.Api.DataAccess
     public class DirectorioV1DBContext : DbContext, IDirectorioV1DBContext
     {
 
-        public DbSet<UsuariosEntity> Usuarios { get; set; }
+        //public DbSet<UsuariosEntity> Usuarios { get; set; }
         public DbSet<BarriosEntity> Barrios { get; set; }
         public DbSet<CategoriasEntity> Categorias { get; set; }
         public DbSet<CiudadesEntity> Ciudades { get; set; }
@@ -29,17 +30,18 @@ namespace DirectorioV1.Api.DataAccess
         {
 
         }
+    
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            BarriosEntityConfig.SetEntityBuilder(modelBuilder.Entity<BarriosEntity>());
-            CategoriaEntityConfig.SetEntityBuilder(modelBuilder.Entity<CategoriasEntity>());
-            CiudadesEntityConfig.SetEntityBuilder(modelBuilder.Entity<CiudadesEntity>());
-            ClientesDireccionEntityConfig.SetEntityBuilder(modelBuilder.Entity<ClientesDireccionesEntity>());
-            ClientesEntityConfig.SetEntityBuilder(modelBuilder.Entity<ClientesEntity>());
-            DepartamentosEntityConfig.SetEntityBuilder(modelBuilder.Entity<DepartamentosEntity>());
-            PaisesEntityConfig.SetEntityBuilder(modelBuilder.Entity<PaisesEntity>());
-            UsuarioEntityConfig.SetEntityBuilder(modelBuilder.Entity<UsuariosEntity>());
+            //BarriosEntityConfig.SetEntityBuilder(modelBuilder.Entity<BarriosEntity>());
+            //CategoriaEntityConfig.SetEntityBuilder(modelBuilder.Entity<CategoriasEntity>());
+            //CiudadesEntityConfig.SetEntityBuilder(modelBuilder.Entity<CiudadesEntity>());
+            //ClientesDireccionEntityConfig.SetEntityBuilder(modelBuilder.Entity<ClientesDireccionesEntity>());
+            //ClientesEntityConfig.SetEntityBuilder(modelBuilder.Entity<ClientesEntity>());
+            //DepartamentosEntityConfig.SetEntityBuilder(modelBuilder.Entity<DepartamentosEntity>());
+            //PaisesEntityConfig.SetEntityBuilder(modelBuilder.Entity<PaisesEntity>());
+            //UsuarioEntityConfig.SetEntityBuilder(modelBuilder.Entity<UsuariosEntity>());
 
             base.OnModelCreating(modelBuilder);
         }

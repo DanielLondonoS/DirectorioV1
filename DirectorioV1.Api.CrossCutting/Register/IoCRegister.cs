@@ -38,7 +38,7 @@ namespace DirectorioV1.Api.CrossCutting.Register
             services.AddTransient<IClientesDireccionesRepository, ClientesDireccionesRepository>();
             services.AddTransient<IDepartamentosRepository, DepartamentosRepository>();
             services.AddTransient<IPaisesRepository, PaisesRepository>();
-            services.AddTransient<IUsuariosRepository, UsuariosRepository>();
+            services.AddScoped<IUsuariosRepository, UsuariosRepository>();
             return services;
         }
 

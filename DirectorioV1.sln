@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2050
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectorioV1.Api", "DirectorioV1.Api\DirectorioV1.Api.csproj", "{081EA390-B063-4F1D-BB5E-E8FFA2537114}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectorioV1.Api", "DirectorioV1.Api\DirectorioV1.Api.csproj", "{081EA390-B063-4F1D-BB5E-E8FFA2537114}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Layers", "1.Layers", "{8EE35829-3BA7-4827-B0C1-9C9F46EA8346}"
 EndProject
@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1ServiciosDistribuidos", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.2Aplicacion", "1.2Aplicacion", "{C97000B1-2AFF-44CC-A86A-742C37F3B2F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectorioV1.Api.Aplication", "DirectorioV1.Api.Aplication\DirectorioV1.Api.Aplication.csproj", "{CE4E511F-C993-443A-9AD0-4C8005C370CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectorioV1.Api.Aplication", "DirectorioV1.Api.Aplication\DirectorioV1.Api.Aplication.csproj", "{CE4E511F-C993-443A-9AD0-4C8005C370CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectorioV1.Api.Aplication.Contracts", "DirectorioV1.Api.Aplication.Contracts\DirectorioV1.Api.Aplication.Contracts.csproj", "{1CD4339E-60F5-447F-B224-A6E875705B95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectorioV1.Api.Aplication.Contracts", "DirectorioV1.Api.Aplication.Contracts\DirectorioV1.Api.Aplication.Contracts.csproj", "{1CD4339E-60F5-447F-B224-A6E875705B95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectorioV1.Api.Aplication.Test", "DirectorioV1.Api.Aplication.Test\DirectorioV1.Api.Aplication.Test.csproj", "{B51B2953-3782-4187-AAA7-1C35428C6A44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectorioV1.Api.Aplication.Test", "DirectorioV1.Api.Aplication.Test\DirectorioV1.Api.Aplication.Test.csproj", "{B51B2953-3782-4187-AAA7-1C35428C6A44}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.3Business", "1.3Business", "{E20250B1-76C1-4570-A07E-E788FECD5AA4}"
 EndProject
@@ -23,13 +23,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.4DataAccess", "1.4DataAcc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.5CrossCutting", "1.5CrossCutting", "{5006C336-178F-4313-8FB9-F1D83F808BA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectorioV1.Api.DataAccess", "DirectorioV1.Api.DataAccess\DirectorioV1.Api.DataAccess.csproj", "{83E1F158-2770-4E5A-8487-F2F3400E6BB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectorioV1.Api.DataAccess", "DirectorioV1.Api.DataAccess\DirectorioV1.Api.DataAccess.csproj", "{83E1F158-2770-4E5A-8487-F2F3400E6BB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectorioV1.Api.DataAccess.Contracts", "DirectorioV1.Api.DataAccess.Contracts\DirectorioV1.Api.DataAccess.Contracts.csproj", "{BC3108B6-DF73-4D7D-A58F-05FE9EB8E0CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectorioV1.Api.DataAccess.Contracts", "DirectorioV1.Api.DataAccess.Contracts\DirectorioV1.Api.DataAccess.Contracts.csproj", "{BC3108B6-DF73-4D7D-A58F-05FE9EB8E0CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectorioV1.Api.CrossCutting", "DirectorioV1.Api.CrossCutting\DirectorioV1.Api.CrossCutting.csproj", "{8C8F0C93-A874-4BAB-A0BF-B59AAEBDC551}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectorioV1.Api.CrossCutting", "DirectorioV1.Api.CrossCutting\DirectorioV1.Api.CrossCutting.csproj", "{8C8F0C93-A874-4BAB-A0BF-B59AAEBDC551}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectorioV1.Api.Business", "DirectorioV1.Api.Business\DirectorioV1.Api.Business.csproj", "{A04B5C0F-C449-4C81-B8DB-1C2619018CC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectorioV1.Api.Business", "DirectorioV1.Api.Business\DirectorioV1.Api.Business.csproj", "{A04B5C0F-C449-4C81-B8DB-1C2619018CC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectorioV1.WebApi", "DirectorioV1.WebApi\DirectorioV1.WebApi.csproj", "{7CE3A95B-A082-4F3A-A09E-0E2E88D1D0C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{A04B5C0F-C449-4C81-B8DB-1C2619018CC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A04B5C0F-C449-4C81-B8DB-1C2619018CC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A04B5C0F-C449-4C81-B8DB-1C2619018CC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CE3A95B-A082-4F3A-A09E-0E2E88D1D0C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CE3A95B-A082-4F3A-A09E-0E2E88D1D0C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CE3A95B-A082-4F3A-A09E-0E2E88D1D0C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CE3A95B-A082-4F3A-A09E-0E2E88D1D0C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +93,7 @@ Global
 		{BC3108B6-DF73-4D7D-A58F-05FE9EB8E0CD} = {495302ED-B321-4493-AA27-4D59C67A004E}
 		{8C8F0C93-A874-4BAB-A0BF-B59AAEBDC551} = {5006C336-178F-4313-8FB9-F1D83F808BA8}
 		{A04B5C0F-C449-4C81-B8DB-1C2619018CC1} = {E20250B1-76C1-4570-A07E-E788FECD5AA4}
+		{7CE3A95B-A082-4F3A-A09E-0E2E88D1D0C8} = {B809F88F-04E0-4275-88CD-477BBB80EEF4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {88275351-A3BD-43D3-A102-9555057E91DE}

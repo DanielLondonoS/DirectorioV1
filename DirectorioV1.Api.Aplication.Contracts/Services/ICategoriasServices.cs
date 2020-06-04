@@ -15,5 +15,8 @@ namespace DirectorioV1.Api.Aplication.Contracts.Services
         Task<Categorias> CategoriaPorId(int? id);
 
         List<Categorias> ListadoDeCategorias();
+        void EliminarCategorias(Categorias dto);
+
+        Task<bool> ExisteCategoria(int? id);
     }
 }

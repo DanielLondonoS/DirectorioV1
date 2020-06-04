@@ -12,7 +12,7 @@ namespace DirectorioV1.Api.DataAccess.Contracts
 {
     public interface IDirectorioV1DBContext
     {
-        DbSet<UsuariosEntity> Usuarios { get; set; }
+        //DbSet<UsuariosEntity> Usuarios { get; set; }
         DbSet<BarriosEntity> Barrios { get; set; }
         DbSet<CategoriasEntity> Categorias { get; set; }
         DbSet<CiudadesEntity> Ciudades { get; set; }

@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DirectorioV1.Api.Config;
+﻿using DirectorioV1.Api.Config;
 using DirectorioV1.Api.CrossCutting.Register;
 using DirectorioV1.Api.DataAccess;
-using DirectorioV1.Api.DataAccess.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Hosting;
 
 namespace DirectorioV1.Api
 {
@@ -31,26 +23,27 @@ namespace DirectorioV1.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<DirectorioV1DBContext>(options => 
+            services.AddDbContext<DirectorioV1DBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DataBaseConnection"))
             );
-            services.AddScoped<IDirectorioV1DBContext, DirectorioV1DBContext>();
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
-            });
+            //services.AddScoped<IDirectorioV1DBContext, DirectorioV1DBContext>();
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("CorsPolicy",
+            //        builder => builder.AllowAnyOrigin()
+            //        .AllowAnyMethod()
+            //        .AllowAnyHeader()
+            //        .AllowCredentials());
+            //});
 
             IoCRegister.AddRegistration(services);
             SwaggerConfig.AddRegistration(services);
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddControllers();
+            //services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -61,9 +54,15 @@ namespace DirectorioV1.Api
                 app.UseHsts();
             }
             SwaggerConfig.AddRegistration(app);
-            app.UseCors("CorsPolicy");
+            //app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
+            });
+
         }
     }
 }
