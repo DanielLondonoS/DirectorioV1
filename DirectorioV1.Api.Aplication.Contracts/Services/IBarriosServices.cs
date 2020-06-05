@@ -15,5 +15,9 @@ namespace DirectorioV1.Api.Aplication.Contracts.Services
         Task<Barrios> BarrioPorId(int? id);
 
         List<Barrios> ListadoDeBarrios();
+
+        void EliminarBarrio(Barrios dto);
+
+        Task<bool> ExisteBarrio(int? id);
     }
 }

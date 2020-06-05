@@ -50,5 +50,19 @@ namespace DirectorioV1.Api.Aplication.Services
             var pais = await _ciudadesRepository.UpdateAsync(paisMap);
             return CiudadesMapper.map(pais);
         }
+
+        public void EliminarCiudad(Ciudades dto)
+        {
+            if (dto == null)
+                return;
+            var ciudad = CiudadesMapper.map(dto);
+            this._ciudadesRepository.DeleteAsync(ciudad);
+
+        }
+
+        public async Task<bool> ExisteCiudad(int? id)
+        {
+            return await this._ciudadesRepository.ExistAsync(id.Value);
+        }
     }
 }

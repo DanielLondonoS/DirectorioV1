@@ -53,5 +53,19 @@ namespace DirectorioV1.Api.Aplication.Services
             var Barrios = await _barriosRepository.UpdateAsync(barrioMap);
             return BarriosMapper.map(Barrios);
         }
+
+        public void EliminarBarrio(Barrios dto)
+        {
+            if (dto == null)
+                return;
+            var barrio = BarriosMapper.map(dto);
+            this._barriosRepository.DeleteAsync(barrio);
+
+        }
+
+        public async Task<bool> ExisteBarrio(int? id)
+        {
+            return await this._barriosRepository.ExistAsync(id.Value);
+        }
     }
 }

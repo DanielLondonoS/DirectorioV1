@@ -15,5 +15,8 @@ namespace DirectorioV1.Api.Aplication.Contracts.Services
         Task<Ciudades> CiudadPorId(int? id);
 
         List<Ciudades> ListadoDeCiudades();
+        void EliminarCiudad(Ciudades dto);
+
+        Task<bool> ExisteCiudad(int? id);
     }
 }
