@@ -29,7 +29,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Pais_Id = dto.Pais_Id,
                 Telefono = dto.Telefono,
                 Servicio_Domicilio = dto.Servicio_Domicilio,
-                Cliente_Id = dto.Cliente_Id
+                Cliente_Id = dto.Cliente_Id,
+                Cliente = ClientesMapper.map(dto.Cliente)
             };
         }
 
@@ -54,8 +55,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Pais_Id = dto.Pais_Id,
                 Telefono = dto.Telefono,
                 Servicio_Domicilio = dto.Servicio_Domicilio,
-                Cliente_Id = dto.Cliente_Id
-
+                Cliente_Id = dto.Cliente_Id,
+                Cliente = ClientesMapper.map(dto.Cliente)
             };
         }
 

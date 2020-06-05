@@ -14,5 +14,7 @@ namespace DirectorioV1.Api.Business.Models
         public DateTime Fecha_Creacion { get; set; }
         public Boolean Estado { get; set; }
         public string Correo { get; set; }
+
+        public ICollection<ClientesDirecciones> Direcciones { get; set; }
     }
 }

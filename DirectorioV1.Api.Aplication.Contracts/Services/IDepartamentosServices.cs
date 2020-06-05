@@ -18,5 +18,7 @@ namespace DirectorioV1.Api.Aplication.Contracts.Services
         void EliminarDepartamento(Departamentos dto);
 
         Task<bool> ExisteDepartamento(int? id);
+
+        Task<List<Departamentos>> DepartamentosConPais();
     }
 }

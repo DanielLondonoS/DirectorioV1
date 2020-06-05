@@ -19,7 +19,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Documento = dto.Documento,
                 Fecha_Creacion = dto.Fecha_Creacion,
                 Nombre = dto.Nombre,
-                Tipo_Documento = dto.Tipo_Documento
+                Tipo_Documento = dto.Tipo_Documento,
+                Direcciones = ClientesDireccionesMapper.map(dto.Direcciones)
             };
         }
 
@@ -34,7 +35,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Documento = dto.Documento,
                 Fecha_Creacion = dto.Fecha_Creacion.Value,
                 Nombre = dto.Nombre,
-                Tipo_Documento = dto.Tipo_Documento
+                Tipo_Documento = dto.Tipo_Documento,
+                Direcciones = ClientesDireccionesMapper.map(dto.Direcciones)
             };
         }
 

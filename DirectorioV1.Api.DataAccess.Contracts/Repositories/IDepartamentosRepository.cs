@@ -8,5 +8,6 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Repositories
 {
     public interface IDepartamentosRepository : IGenericRepository<DepartamentosEntity>
     {
+        Task<ICollection<DepartamentosEntity>> ListaDepartamentosConPaises();
     }
 }

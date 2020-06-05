@@ -17,6 +17,9 @@ namespace DirectorioV1.Api.DataAccess.Repositories
             this._directorioV1DBContext = directorioV1DBContext;
         }
 
-        
+        public async Task<ICollection<DepartamentosEntity>> ListaDepartamentosConPaises()
+        {
+            return await this._directorioV1DBContext.Departamentos.Include(p => p.Pais).ToListAsync();
+        }
     }
 }

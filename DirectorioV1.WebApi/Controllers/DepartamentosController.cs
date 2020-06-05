@@ -147,5 +147,17 @@ namespace DirectorioV1.WebApi.Controllers
         {
             return await this.services.ExisteDepartamento(id);
         }
+
+        public async Task<IActionResult> DepartametosConPais()
+        {
+
+            var departamentosEntity = await this.services.DepartamentosConPais();
+            if (departamentosEntity == null)
+            {
+                return NotFound();
+            }
+
+            return View(departamentosEntity);
+        }
     }
 }

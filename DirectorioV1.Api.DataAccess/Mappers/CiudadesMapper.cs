@@ -19,7 +19,9 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Descripcion = dto.Descripcion,
                 Latitud = dto.Latitud,
                 Longitud = dto.Longitud,
-                Departamento_Id = dto.Departamento_Id
+                Departamento_Id = dto.Departamento_Id,
+                Barrios = BarriosMapper.map(dto.Barrios),
+                Departamento = DepartamentosMapper.map(dto.Departamento)
             };
         }
 
@@ -34,7 +36,9 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Descripcion = dto.Descripcion,
                 Latitud = dto.Latitud,
                 Longitud = dto.Longitud,
-                Departamento_Id = dto.Departamento_Id
+                Departamento_Id = dto.Departamento_Id,
+                Barrios = BarriosMapper.map(dto.Barrios),
+                Departamento = DepartamentosMapper.map(dto.Departamento)
 
             };
         }

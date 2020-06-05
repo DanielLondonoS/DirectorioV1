@@ -24,5 +24,7 @@ namespace DirectorioV1.Api.Business.Models
         public string Telefono { get; set; }
         public bool Servicio_Domicilio { get; set; }
         public bool Estado { get; set; }
+
+        public Clientes Cliente { get; set; }
     }
 }

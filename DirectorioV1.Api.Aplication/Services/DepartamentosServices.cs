@@ -64,5 +64,10 @@ namespace DirectorioV1.Api.Aplication.Services
         {
             return await this._departamentosRepository.ExistAsync(id.Value);
         }
+
+        public async Task<List<Departamentos>> DepartamentosConPais()
+        {
+            return DepartamentosMapper.map( await this._departamentosRepository.ListaDepartamentosConPaises());
+        }
     }
 }

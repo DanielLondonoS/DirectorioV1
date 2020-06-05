@@ -23,5 +23,7 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
         public string Codigo_Postal { get; set; }
 
         public ICollection<BarriosEntity> Barrios { get; set; }
+
+        public DepartamentosEntity Departamento { get; set; }
     }
 }

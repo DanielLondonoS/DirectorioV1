@@ -20,7 +20,9 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Descripcion = dto.Descripcion,
                 Latitud = dto.Latitud,
                 Longitud = dto.Longitud,
-                Pais_Id = dto.Pais_Id
+                Pais_Id = dto.Pais_Id,
+                Ciudades = CiudadesMapper.map(dto.Ciudades),
+                Pais = PaisesMapper.map(dto.Pais)
             };
         }
 
@@ -35,8 +37,9 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Descripcion = dto.Descripcion,
                 Latitud = dto.Latitud,
                 Longitud = dto.Longitud,
-                Pais_Id = dto.Pais_Id
-                 
+                Pais_Id = dto.Pais_Id,
+                Ciudades = CiudadesMapper.map(dto.Ciudades),
+                Pais = PaisesMapper.map(dto.Pais)
             };
         }
 
