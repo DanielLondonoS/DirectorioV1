@@ -9,16 +9,19 @@ using DirectorioV1.Api.DataAccess;
 using DirectorioV1.Api.DataAccess.Contracts.Entities;
 using DirectorioV1.Api.Aplication.Contracts.Services;
 using DirectorioV1.Api.Business.Models;
+using Newtonsoft.Json.Linq;
 
 namespace DirectorioV1.WebApi.Controllers
 {
     public class DepartamentosController : Controller
     {
         private readonly IDepartamentosServices services;
+        private readonly IPaisesServices paisesServices;
 
-        public DepartamentosController(IDepartamentosServices services)
+        public DepartamentosController(IDepartamentosServices services,IPaisesServices paisesServices)
         {
             this.services = services;
+            this.paisesServices = paisesServices;
         }
 
         // GET: Departamentos
@@ -40,14 +43,16 @@ namespace DirectorioV1.WebApi.Controllers
             {
                 return NotFound();
             }
-
+            departamentosEntity.PaisesList = this.paisesServices.ObtenerComboPaises();
             return View(departamentosEntity);
         }
 
         // GET: Departamentos/Create
         public IActionResult Create()
         {
-            return View();
+            Departamentos departamento = new Departamentos();
+            departamento.PaisesList = this.paisesServices.ObtenerComboPaises();
+            return View(departamento);
         }
 
         // POST: Departamentos/Create
@@ -59,6 +64,7 @@ namespace DirectorioV1.WebApi.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 await this.services.CrearNuevoDepartamento(departamentosEntity);
                 return RedirectToAction(nameof(Index));
             }
@@ -78,6 +84,8 @@ namespace DirectorioV1.WebApi.Controllers
             {
                 return NotFound();
             }
+            departamentosEntity.PaisesList = this.paisesServices.ObtenerComboPaises();
+             
             return View(departamentosEntity);
         }
 
@@ -97,7 +105,8 @@ namespace DirectorioV1.WebApi.Controllers
             {
                 try
                 {
-                    this.services.EditarDepartamento(departamentosEntity);
+
+                    await this.services.EditarDepartamento(departamentosEntity);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -129,7 +138,7 @@ namespace DirectorioV1.WebApi.Controllers
             {
                 return NotFound();
             }
-
+            departamentosEntity.PaisesList = this.paisesServices.ObtenerComboPaises();
             return View(departamentosEntity);
         }
 
@@ -148,16 +157,6 @@ namespace DirectorioV1.WebApi.Controllers
             return await this.services.ExisteDepartamento(id);
         }
 
-        public async Task<IActionResult> DepartametosConPais()
-        {
-
-            var departamentosEntity = await this.services.DepartamentosConPais();
-            if (departamentosEntity == null)
-            {
-                return NotFound();
-            }
-
-            return View(departamentosEntity);
-        }
+        
     }
 }

@@ -10,6 +10,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
     {
         public static ClientesDireccionesEntity map(ClientesDirecciones dto)
         {
+            if (dto == null)
+                return null;
             return new ClientesDireccionesEntity()
             {
                 Id = dto.Id,
@@ -29,13 +31,15 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Pais_Id = dto.Pais_Id,
                 Telefono = dto.Telefono,
                 Servicio_Domicilio = dto.Servicio_Domicilio,
-                Cliente_Id = dto.Cliente_Id,
+                ClienteId = dto.ClienteId,
                 Cliente = ClientesMapper.map(dto.Cliente)
             };
         }
 
         public static ClientesDirecciones map(ClientesDireccionesEntity dto)
         {
+            if (dto == null)
+                return null;
             return new ClientesDirecciones()
             {
                 Id = dto.Id,
@@ -55,13 +59,15 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Pais_Id = dto.Pais_Id,
                 Telefono = dto.Telefono,
                 Servicio_Domicilio = dto.Servicio_Domicilio,
-                Cliente_Id = dto.Cliente_Id,
+                ClienteId = dto.ClienteId,
                 Cliente = ClientesMapper.map(dto.Cliente)
             };
         }
 
         public static List<ClientesDirecciones> map(IEnumerable<ClientesDireccionesEntity> lista)
         {
+            if (lista == null)
+                return null;
             List<ClientesDirecciones> listaResultante = new List<ClientesDirecciones>();
             foreach (var item in lista)
             {
@@ -73,6 +79,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
 
         public static List<ClientesDireccionesEntity> map(IEnumerable<ClientesDirecciones> lista)
         {
+            if (lista == null)
+                return null;
             List<ClientesDireccionesEntity> listaResultante = new List<ClientesDireccionesEntity>();
             foreach (var item in lista)
             {

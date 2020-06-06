@@ -10,7 +10,7 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
     {
         public int Id { get; set; }
         [DisplayName("Cliente")]
-        public int Cliente_Id { get; set; }
+        public int ClienteId { get; set; }
         [DisplayName("Seleccione tipo")]
         public string Direccion_Tipo_A { get; set; }
         [DisplayName("Dato")]

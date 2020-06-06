@@ -10,6 +10,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
     {
         public static CiudadesEntity map(Ciudades dto)
         {
+            if (dto == null)
+                return null;
             return new CiudadesEntity()
             {
                 Id = dto.Id,
@@ -19,7 +21,7 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Descripcion = dto.Descripcion,
                 Latitud = dto.Latitud,
                 Longitud = dto.Longitud,
-                Departamento_Id = dto.Departamento_Id,
+                DepartamentoId = dto.DepartamentoId,
                 Barrios = BarriosMapper.map(dto.Barrios),
                 Departamento = DepartamentosMapper.map(dto.Departamento)
             };
@@ -27,6 +29,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
 
         public static Ciudades map(CiudadesEntity dto)
         {
+            if (dto == null)
+                return null;
             return new Ciudades()
             {
                 Id = dto.Id,
@@ -36,7 +40,7 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Descripcion = dto.Descripcion,
                 Latitud = dto.Latitud,
                 Longitud = dto.Longitud,
-                Departamento_Id = dto.Departamento_Id,
+                DepartamentoId = dto.DepartamentoId,
                 Barrios = BarriosMapper.map(dto.Barrios),
                 Departamento = DepartamentosMapper.map(dto.Departamento)
 
@@ -45,6 +49,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
 
         public static List<Ciudades> map(IEnumerable<CiudadesEntity> lista)
         {
+            if (lista == null)
+                return null;
             List<Ciudades> listaResultante = new List<Ciudades>();
             foreach (var item in lista)
             {
@@ -56,6 +62,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
 
         public static List<CiudadesEntity> map(IEnumerable<Ciudades> lista)
         {
+            if (lista == null)
+                return null;
             List<CiudadesEntity> listaResultante = new List<CiudadesEntity>();
             foreach (var item in lista)
             {

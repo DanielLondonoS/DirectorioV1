@@ -1,4 +1,5 @@
 ﻿using DirectorioV1.Api.Business.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,5 +19,6 @@ namespace DirectorioV1.Api.Aplication.Contracts.Services
         void EliminarCiudad(Ciudades dto);
 
         Task<bool> ExisteCiudad(int? id);
+        IEnumerable<SelectListItem> ObtenerComboCiudades();
     }
 }

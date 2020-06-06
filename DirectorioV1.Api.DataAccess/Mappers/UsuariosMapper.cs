@@ -10,6 +10,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
     {
         public static UsuariosEntity map(Usuarios dto)
         {
+            if (dto == null)
+                return null;
             return new UsuariosEntity()
             {
                 Id = dto.Id.ToString(),
@@ -22,6 +24,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
 
         public static Usuarios map(UsuariosEntity dto)
         {
+            if (dto == null)
+                return null;
             return new Usuarios()
             {
                 Id = int.Parse(dto.Id),
@@ -34,6 +38,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
 
         public static List<Usuarios> map(IEnumerable<UsuariosEntity> lista)
         {
+            if (lista == null)
+                return null;
             List<Usuarios> listaResultante = new List<Usuarios>();
             foreach (var item in lista)
             {
@@ -45,6 +51,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
 
         public static List<UsuariosEntity> map(IEnumerable<Usuarios> lista)
         {
+            if (lista == null)
+                return null;
             List<UsuariosEntity> listaResultante = new List<UsuariosEntity>();
             foreach (var item in lista)
             {

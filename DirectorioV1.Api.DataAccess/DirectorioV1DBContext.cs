@@ -34,14 +34,14 @@ namespace DirectorioV1.Api.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //BarriosEntityConfig.SetEntityBuilder(modelBuilder.Entity<BarriosEntity>());
-            //CategoriaEntityConfig.SetEntityBuilder(modelBuilder.Entity<CategoriasEntity>());
-            //CiudadesEntityConfig.SetEntityBuilder(modelBuilder.Entity<CiudadesEntity>());
-            //ClientesDireccionEntityConfig.SetEntityBuilder(modelBuilder.Entity<ClientesDireccionesEntity>());
-            //ClientesEntityConfig.SetEntityBuilder(modelBuilder.Entity<ClientesEntity>());
-            //DepartamentosEntityConfig.SetEntityBuilder(modelBuilder.Entity<DepartamentosEntity>());
-            //PaisesEntityConfig.SetEntityBuilder(modelBuilder.Entity<PaisesEntity>());
-            //UsuarioEntityConfig.SetEntityBuilder(modelBuilder.Entity<UsuariosEntity>());
+            BarriosEntityConfig.SetEntityBuilder(modelBuilder.Entity<BarriosEntity>());
+            CategoriaEntityConfig.SetEntityBuilder(modelBuilder.Entity<CategoriasEntity>());
+            CiudadesEntityConfig.SetEntityBuilder(modelBuilder.Entity<CiudadesEntity>());
+            ClientesDireccionEntityConfig.SetEntityBuilder(modelBuilder.Entity<ClientesDireccionesEntity>());
+            ClientesEntityConfig.SetEntityBuilder(modelBuilder.Entity<ClientesEntity>());
+            DepartamentosEntityConfig.SetEntityBuilder(modelBuilder.Entity<DepartamentosEntity>());
+            PaisesEntityConfig.SetEntityBuilder(modelBuilder.Entity<PaisesEntity>());
+            UsuarioEntityConfig.SetEntityBuilder(modelBuilder.Entity<UsuariosEntity>());
 
             base.OnModelCreating(modelBuilder);
         }

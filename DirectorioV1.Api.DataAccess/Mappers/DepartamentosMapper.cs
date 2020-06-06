@@ -10,7 +10,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
     {
         public static DepartamentosEntity map(Departamentos dto)
         {
-
+            if (dto == null)
+                return null;
             return new DepartamentosEntity()
             {
                 Id = dto.Id,
@@ -20,7 +21,7 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Descripcion = dto.Descripcion,
                 Latitud = dto.Latitud,
                 Longitud = dto.Longitud,
-                Pais_Id = dto.Pais_Id,
+                PaisId = int.Parse(dto.PaisId),
                 Ciudades = CiudadesMapper.map(dto.Ciudades),
                 Pais = PaisesMapper.map(dto.Pais)
             };
@@ -28,6 +29,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
 
         public static Departamentos map(DepartamentosEntity dto)
         {
+            if (dto == null)
+                return null;
             return new Departamentos()
             {
                 Id = dto.Id,
@@ -37,7 +40,7 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Descripcion = dto.Descripcion,
                 Latitud = dto.Latitud,
                 Longitud = dto.Longitud,
-                Pais_Id = dto.Pais_Id,
+                PaisId = dto.PaisId.ToString(),
                 Ciudades = CiudadesMapper.map(dto.Ciudades),
                 Pais = PaisesMapper.map(dto.Pais)
             };
@@ -45,6 +48,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
 
         public static List<Departamentos> map(IEnumerable<DepartamentosEntity> lista)
         {
+            if (lista == null)
+                return null;
             List<Departamentos> listaResultante = new List<Departamentos>();
             foreach (var item in lista)
             {
@@ -56,6 +61,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
 
         public static List<DepartamentosEntity> map(IEnumerable<Departamentos> lista)
         {
+            if (lista == null)
+                return null;
             List<DepartamentosEntity> listaResultante = new List<DepartamentosEntity>();
             foreach (var item in lista)
             {

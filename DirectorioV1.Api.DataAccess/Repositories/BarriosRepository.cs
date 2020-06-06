@@ -1,11 +1,8 @@
 ﻿using DirectorioV1.Api.DataAccess.Contracts.Entities;
 using DirectorioV1.Api.DataAccess.Contracts.Repositories;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DirectorioV1.Api.DataAccess.Repositories
 {
@@ -15,6 +12,17 @@ namespace DirectorioV1.Api.DataAccess.Repositories
         public BarriosRepository(DirectorioV1DBContext directorioV1DBContext) : base(directorioV1DBContext)
         {
             this._directorioV1DBContext = directorioV1DBContext;
+        }
+
+        public IEnumerable<SelectListItem> ComboBarrios()
+        {
+            return this._directorioV1DBContext.Barrios.Select(a =>
+
+                new SelectListItem
+                {
+                    Value = a.Id.ToString(),
+                    Text = a.Descripcion
+                }).ToList();
         }
 
         //public async Task<BarriosEntity> Add(BarriosEntity barriosEntity)

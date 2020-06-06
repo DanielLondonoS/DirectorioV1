@@ -4,14 +4,16 @@ using DirectorioV1.Api.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DirectorioV1.Api.DataAccess.Migrations
 {
     [DbContext(typeof(DirectorioV1DBContext))]
-    partial class DirectorioV1DBContextModelSnapshot : ModelSnapshot
+    [Migration("20200605214508_TestIdentity")]
+    partial class TestIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,8 +28,11 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CiudadId")
+                    b.Property<int?>("CiudadId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Ciudad_Id")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Codigo")
                         .HasColumnType("nvarchar(10)")
@@ -90,7 +95,10 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
-                    b.Property<int>("DepartamentoId")
+                    b.Property<int?>("DepartamentoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Departamento_Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
@@ -126,7 +134,10 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                     b.Property<int>("Ciudad_Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("ClienteId")
+                    b.Property<int?>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Cliente_Id")
                         .HasColumnType("int");
 
                     b.Property<int>("Departamento_Id")
@@ -245,13 +256,13 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                     b.Property<string>("Longitud")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PaisId")
+                    b.Property<int>("Pais_Id")
                         .HasColumnType("int")
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PaisId");
+                    b.HasIndex("Pais_Id");
 
                     b.ToTable("Departamentos");
                 });
@@ -288,96 +299,32 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                     b.ToTable("Paises");
                 });
 
-            modelBuilder.Entity("DirectorioV1.Api.DataAccess.Contracts.Entities.UsuariosEntity", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Apellido")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UsuariosEntity");
-                });
-
             modelBuilder.Entity("DirectorioV1.Api.DataAccess.Contracts.Entities.BarriosEntity", b =>
                 {
                     b.HasOne("DirectorioV1.Api.DataAccess.Contracts.Entities.CiudadesEntity", "Ciudad")
                         .WithMany("Barrios")
-                        .HasForeignKey("CiudadId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CiudadId");
                 });
 
             modelBuilder.Entity("DirectorioV1.Api.DataAccess.Contracts.Entities.CiudadesEntity", b =>
                 {
                     b.HasOne("DirectorioV1.Api.DataAccess.Contracts.Entities.DepartamentosEntity", "Departamento")
                         .WithMany("Ciudades")
-                        .HasForeignKey("DepartamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DepartamentoId");
                 });
 
             modelBuilder.Entity("DirectorioV1.Api.DataAccess.Contracts.Entities.ClientesDireccionesEntity", b =>
                 {
                     b.HasOne("DirectorioV1.Api.DataAccess.Contracts.Entities.ClientesEntity", "Cliente")
                         .WithMany("Direcciones")
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClienteId");
                 });
 
             modelBuilder.Entity("DirectorioV1.Api.DataAccess.Contracts.Entities.DepartamentosEntity", b =>
                 {
                     b.HasOne("DirectorioV1.Api.DataAccess.Contracts.Entities.PaisesEntity", "Pais")
                         .WithMany("Departamentos")
-                        .HasForeignKey("PaisId")
+                        .HasForeignKey("Pais_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

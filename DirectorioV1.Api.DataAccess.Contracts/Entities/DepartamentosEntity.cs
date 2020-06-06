@@ -11,7 +11,7 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
         public int Id { get; set; }
         [DisplayName("Pais")]
         [MaxLength(100, ErrorMessage = "El campo {0} solo puede contener hasta {1} caracteres.")]
-        public int Pais_Id { get; set; }
+        public int PaisId { get; set; }
         [DisplayName("Nombre del departamento")]
         [MaxLength(100, ErrorMessage = "El campo {0} solo puede contener hasta {1} caracteres.")]
         public string Descripcion { get; set; }
@@ -23,7 +23,7 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
         [MaxLength(10, ErrorMessage = "El campo {0} solo puede contener hasta {1} caracteres.")]
         public string Codigo_Postal { get; set; }
 
-        public virtual ICollection<CiudadesEntity> Ciudades { get; set; }
-        public virtual PaisesEntity Pais { get; set; }
+        public ICollection<CiudadesEntity> Ciudades { get; set; }
+        public PaisesEntity Pais { get; set; }
     }
 }

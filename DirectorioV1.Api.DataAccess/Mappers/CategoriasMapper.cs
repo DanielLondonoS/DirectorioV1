@@ -10,6 +10,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
     {
         public static CategoriasEntity map(Categorias dto)
         {
+            if (dto == null)
+                return null;
             return new CategoriasEntity()
             {
                 Id = dto.Id,
@@ -20,6 +22,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
 
         public static Categorias map(CategoriasEntity dto)
         {
+            if (dto == null)
+                return null;
             return new Categorias()
             {
                 Id = dto.Id,
@@ -31,6 +35,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
         public static List<Categorias> map(IEnumerable<CategoriasEntity> lista)
         {
             List<Categorias> listaResultante = new List<Categorias>();
+            if (lista == null)
+                return null;
             foreach (var item in lista)
             {
                 var dto = map(item);
@@ -41,6 +47,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
 
         public static List<CategoriasEntity> map(IEnumerable<Categorias> lista)
         {
+            if (lista == null)
+                return null;
             List<CategoriasEntity> listaResultante = new List<CategoriasEntity>();
             foreach (var item in lista)
             {

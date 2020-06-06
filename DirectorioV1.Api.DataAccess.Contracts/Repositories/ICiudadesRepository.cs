@@ -1,13 +1,12 @@
 ﻿using DirectorioV1.Api.DataAccess.Contracts.Entities;
-using System;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DirectorioV1.Api.DataAccess.Contracts.Repositories
 {
-    public interface ICategoriasRepository : IGenericRepository<CategoriasEntity> 
+    public interface ICiudadesRepository : IGenericRepository<CiudadesEntity>
     {
-        
+        IEnumerable<SelectListItem> ComboCiudades();
     }
 }

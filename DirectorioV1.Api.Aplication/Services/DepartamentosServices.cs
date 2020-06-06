@@ -3,6 +3,7 @@ using DirectorioV1.Api.Business.Models;
 using DirectorioV1.Api.DataAccess.Contracts.Entities;
 using DirectorioV1.Api.DataAccess.Contracts.Repositories;
 using DirectorioV1.Api.DataAccess.Mappers;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -67,7 +68,13 @@ namespace DirectorioV1.Api.Aplication.Services
 
         public async Task<List<Departamentos>> DepartamentosConPais()
         {
-            return DepartamentosMapper.map( await this._departamentosRepository.ListaDepartamentosConPaises());
+            var departamentos = await this._departamentosRepository.ListaDepartamentosConPaises();
+            return DepartamentosMapper.map(departamentos);
+        }
+
+        public IEnumerable<SelectListItem> ObtenerComboDepartamentos()
+        {
+            return this._departamentosRepository.ComboDepartamentos();
         }
     }
 }

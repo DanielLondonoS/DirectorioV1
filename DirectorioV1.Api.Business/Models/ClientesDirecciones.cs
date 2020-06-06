@@ -7,7 +7,7 @@ namespace DirectorioV1.Api.Business.Models
     public class ClientesDirecciones
     {
         public int Id { get; set; }
-        public int Cliente_Id { get; set; }
+        public int ClienteId { get; set; }
         public string Direccion_Tipo_A { get; set; }
         public string Direccion_A { get; set; }
         public string Direccion_Tipo_B { get; set; }

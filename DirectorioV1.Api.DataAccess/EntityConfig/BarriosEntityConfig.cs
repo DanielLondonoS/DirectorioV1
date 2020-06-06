@@ -14,8 +14,6 @@ namespace DirectorioV1.Api.DataAccess.EntityConfig
             entityBuilder.ToTable("Barrios");
             entityBuilder.HasKey(x => x.Id);
             entityBuilder.Property(x => x.Id).IsRequired();
-
-
         }
     }
 }

@@ -4,14 +4,16 @@ using DirectorioV1.Api.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DirectorioV1.Api.DataAccess.Migrations
 {
     [DbContext(typeof(DirectorioV1DBContext))]
-    partial class DirectorioV1DBContextModelSnapshot : ModelSnapshot
+    [Migration("20200605220745_IdentityKeys")]
+    partial class IdentityKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,7 +28,7 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CiudadId")
+                    b.Property<int>("Ciudad_Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Codigo")
@@ -52,7 +54,7 @@ namespace DirectorioV1.Api.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CiudadId");
+                    b.HasIndex("Ciudad_Id");
 
                     b.ToTable("Barrios");
                 });
@@ -90,7 +92,7 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
-                    b.Property<int>("DepartamentoId")
+                    b.Property<int>("Departamento_Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
@@ -108,7 +110,7 @@ namespace DirectorioV1.Api.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DepartamentoId");
+                    b.HasIndex("Departamento_Id");
 
                     b.ToTable("Ciudades");
                 });
@@ -126,7 +128,7 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                     b.Property<int>("Ciudad_Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("ClienteId")
+                    b.Property<int>("Cliente_Id")
                         .HasColumnType("int");
 
                     b.Property<int>("Departamento_Id")
@@ -175,7 +177,7 @@ namespace DirectorioV1.Api.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClienteId");
+                    b.HasIndex("Cliente_Id");
 
                     b.ToTable("ClientesDirecciones");
                 });
@@ -245,13 +247,13 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                     b.Property<string>("Longitud")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PaisId")
+                    b.Property<int>("Pais_Id")
                         .HasColumnType("int")
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PaisId");
+                    b.HasIndex("Pais_Id");
 
                     b.ToTable("Departamentos");
                 });
@@ -350,7 +352,7 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                 {
                     b.HasOne("DirectorioV1.Api.DataAccess.Contracts.Entities.CiudadesEntity", "Ciudad")
                         .WithMany("Barrios")
-                        .HasForeignKey("CiudadId")
+                        .HasForeignKey("Ciudad_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -359,7 +361,7 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                 {
                     b.HasOne("DirectorioV1.Api.DataAccess.Contracts.Entities.DepartamentosEntity", "Departamento")
                         .WithMany("Ciudades")
-                        .HasForeignKey("DepartamentoId")
+                        .HasForeignKey("Departamento_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -368,7 +370,7 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                 {
                     b.HasOne("DirectorioV1.Api.DataAccess.Contracts.Entities.ClientesEntity", "Cliente")
                         .WithMany("Direcciones")
-                        .HasForeignKey("ClienteId")
+                        .HasForeignKey("Cliente_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -377,7 +379,7 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                 {
                     b.HasOne("DirectorioV1.Api.DataAccess.Contracts.Entities.PaisesEntity", "Pais")
                         .WithMany("Departamentos")
-                        .HasForeignKey("PaisId")
+                        .HasForeignKey("Pais_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

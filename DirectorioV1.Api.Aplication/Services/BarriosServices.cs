@@ -3,6 +3,7 @@ using DirectorioV1.Api.Business.Models;
 using DirectorioV1.Api.DataAccess.Contracts.Entities;
 using DirectorioV1.Api.DataAccess.Contracts.Repositories;
 using DirectorioV1.Api.DataAccess.Mappers;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,6 +67,11 @@ namespace DirectorioV1.Api.Aplication.Services
         public async Task<bool> ExisteBarrio(int? id)
         {
             return await this._barriosRepository.ExistAsync(id.Value);
+        }
+
+        public IEnumerable<SelectListItem> ObtenerComboBarrios()
+        {
+            return this._barriosRepository.ComboBarrios();
         }
     }
 }

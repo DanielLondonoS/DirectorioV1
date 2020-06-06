@@ -11,7 +11,7 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
         [Display(Name = "Id")]
         public int Id { get; set; }
         [Display(Name = "Ciudad")]
-        public string Ciudad_Id { get; set; }
+        public int CiudadId { get; set; }
         [DisplayName("Nombre del barrio")]
         [MaxLength(100, ErrorMessage = "El campo {0} solo puede contener hasta {1} caracteres.")]
         public string Descripcion { get; set; }

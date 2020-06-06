@@ -4,14 +4,16 @@ using DirectorioV1.Api.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DirectorioV1.Api.DataAccess.Migrations
 {
     [DbContext(typeof(DirectorioV1DBContext))]
-    partial class DirectorioV1DBContextModelSnapshot : ModelSnapshot
+    [Migration("20200605225856_ModificacionesBD")]
+    partial class ModificacionesBD
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,7 +28,10 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CiudadId")
+                    b.Property<int?>("CiudadId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CiudadesId")
                         .HasColumnType("int");
 
                     b.Property<string>("Codigo")
@@ -90,7 +95,10 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
-                    b.Property<int>("DepartamentoId")
+                    b.Property<int?>("DepartamentoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DepartamentosId")
                         .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
@@ -126,7 +134,10 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                     b.Property<int>("Ciudad_Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("ClienteId")
+                    b.Property<int?>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClientesId")
                         .HasColumnType("int");
 
                     b.Property<int>("Departamento_Id")
@@ -245,7 +256,10 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                     b.Property<string>("Longitud")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PaisId")
+                    b.Property<int?>("PaisId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PaisesId")
                         .HasColumnType("int")
                         .HasMaxLength(100);
 
@@ -350,36 +364,28 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                 {
                     b.HasOne("DirectorioV1.Api.DataAccess.Contracts.Entities.CiudadesEntity", "Ciudad")
                         .WithMany("Barrios")
-                        .HasForeignKey("CiudadId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CiudadId");
                 });
 
             modelBuilder.Entity("DirectorioV1.Api.DataAccess.Contracts.Entities.CiudadesEntity", b =>
                 {
                     b.HasOne("DirectorioV1.Api.DataAccess.Contracts.Entities.DepartamentosEntity", "Departamento")
                         .WithMany("Ciudades")
-                        .HasForeignKey("DepartamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DepartamentoId");
                 });
 
             modelBuilder.Entity("DirectorioV1.Api.DataAccess.Contracts.Entities.ClientesDireccionesEntity", b =>
                 {
                     b.HasOne("DirectorioV1.Api.DataAccess.Contracts.Entities.ClientesEntity", "Cliente")
                         .WithMany("Direcciones")
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClienteId");
                 });
 
             modelBuilder.Entity("DirectorioV1.Api.DataAccess.Contracts.Entities.DepartamentosEntity", b =>
                 {
                     b.HasOne("DirectorioV1.Api.DataAccess.Contracts.Entities.PaisesEntity", "Pais")
                         .WithMany("Departamentos")
-                        .HasForeignKey("PaisId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PaisId");
                 });
 #pragma warning restore 612, 618
         }
