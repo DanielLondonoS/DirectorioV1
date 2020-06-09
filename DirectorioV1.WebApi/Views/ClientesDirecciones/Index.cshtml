@@ -1,0 +1,127 @@
+﻿@model IEnumerable<DirectorioV1.Api.Business.Models.ClientesDirecciones>
+
+@{
+    ViewData["Title"] = "Administrador de direcciones";
+}
+
+<h1>Listado de direcciones</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Crear</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ClienteId)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Direccion_Tipo_A)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion_A)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion_Tipo_B)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion_B)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion_Observacion)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion_Compuesta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pais_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Departamento_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ciudad_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Barrio_Id)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Latitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitud)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Servicio_Domicilio)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Direccion_Tipo_A)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion_A)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion_Tipo_B)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion_B)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion_Observacion)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion_Compuesta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pais_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamento_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ciudad_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Barrio_Id)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Latitud)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Longitud)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Servicio_Domicilio)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+
+            <td>
+                <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalle</a>
+                <a class="btn btn-warning" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

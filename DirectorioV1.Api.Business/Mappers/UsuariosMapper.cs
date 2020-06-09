@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DirectorioV1.Api.DataAccess.Mappers
+namespace DirectorioV1.Api.Business.Mappers
 {
     public static class UsuariosMapper
     {

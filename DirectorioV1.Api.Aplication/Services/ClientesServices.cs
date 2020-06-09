@@ -2,12 +2,13 @@
 using DirectorioV1.Api.Business.Models;
 using DirectorioV1.Api.DataAccess.Contracts.Entities;
 using DirectorioV1.Api.DataAccess.Contracts.Repositories;
-using DirectorioV1.Api.DataAccess.Mappers;
+using DirectorioV1.Api.Business.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DirectorioV1.Api.Aplication.Services
 {
@@ -50,6 +51,25 @@ namespace DirectorioV1.Api.Aplication.Services
             ClientesEntity clienteMap = ClientesMapper.map(dto);
             var pais = await _clientesRepository.UpdateAsync(clienteMap);
             return ClientesMapper.map(pais);
+        }
+
+        public void EliminarCliente(Clientes dto)
+        {
+            if (dto == null)
+                return;
+            var clientes = ClientesMapper.map(dto);
+            this._clientesRepository.DeleteAsync(clientes);
+
+        }
+
+        public async Task<bool> ExisteCliente(int? id)
+        {
+            return await this._clientesRepository.ExistAsync(id.Value);
+        }
+
+        public IEnumerable<SelectListItem> ObtenerComboClientes()
+        {
+            return this._clientesRepository.ComboClientes();
         }
     }
 }

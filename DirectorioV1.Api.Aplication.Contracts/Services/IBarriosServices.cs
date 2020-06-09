@@ -22,6 +22,7 @@ namespace DirectorioV1.Api.Aplication.Contracts.Services
         Task<bool> ExisteBarrio(int? id);
 
         IEnumerable<SelectListItem> ObtenerComboBarrios();
+        Task<List<Barrios>> BarriosConCiudades();
 
     }
 }

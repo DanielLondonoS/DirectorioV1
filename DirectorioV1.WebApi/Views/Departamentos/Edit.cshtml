@@ -1,12 +1,12 @@
 ﻿@model DirectorioV1.Api.Business.Models.Departamentos
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Administrador - Editar departamento";
 }
 
-<h1>Edit</h1>
+<h1>Editar departamento</h1>
 
-<h4>DepartamentosEntity</h4>
+<h4>Departamento</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label asp-for="PaisId" class="control-label"></label>
                 @*<input asp-for="PaisId" class="form-control" />*@
-                <select name="PaisId" asp-items="Model.PaisesList"></select>
+                <select class="form-control" asp-for="PaisId" asp-items="Model.PaisesList"></select>
                 <span asp-validation-for="PaisId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -50,14 +50,15 @@
                 <span asp-validation-for="Codigo_Postal" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    
 </div>
 
 @section Scripts {

@@ -20,5 +20,6 @@ namespace DirectorioV1.Api.Aplication.Contracts.Services
 
         Task<bool> ExisteCiudad(int? id);
         IEnumerable<SelectListItem> ObtenerComboCiudades();
+        Task<List<Ciudades>> CiudadesConDepartamentos();
     }
 }

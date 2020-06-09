@@ -15,16 +15,18 @@ namespace DirectorioV1.WebApi.Controllers
     public class CiudadesController : Controller
     {
         private readonly ICiudadesServices services;
+        private readonly IDepartamentosServices departamentosServices;
 
-        public CiudadesController(ICiudadesServices services)
+        public CiudadesController(ICiudadesServices services, IDepartamentosServices departamentosServices)
         {
             this.services = services;
+            this.departamentosServices = departamentosServices;
         }
 
         // GET: CiudadesConfigs
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(this.services.ListadoDeCiudades());
+            return View(await this.services.CiudadesConDepartamentos());
         }
 
         // GET: CiudadesConfigs/Details/5
@@ -40,14 +42,18 @@ namespace DirectorioV1.WebApi.Controllers
             {
                 return NotFound();
             }
-
+            ciudadesEntity.DepartamentosList = this.departamentosServices.ObtenerComboDepartamentos();
+            ciudadesEntity.Departamento = await this.departamentosServices.DepartamentoPorId(int.Parse(ciudadesEntity.DepartamentoId));
             return View(ciudadesEntity);
         }
 
         // GET: CiudadesConfigs/Create
         public IActionResult Create()
         {
-            return View();
+            Ciudades ciudades = new Ciudades();
+            ciudades.DepartamentosList = this.departamentosServices.ObtenerComboDepartamentos();
+
+            return View(ciudades);
         }
 
         // POST: CiudadesConfigs/Create
@@ -78,6 +84,8 @@ namespace DirectorioV1.WebApi.Controllers
             {
                 return NotFound();
             }
+            ciudadesEntity.DepartamentosList = this.departamentosServices.ObtenerComboDepartamentos();
+            ciudadesEntity.Departamento = await this.departamentosServices.DepartamentoPorId(int.Parse(ciudadesEntity.DepartamentoId));
             return View(ciudadesEntity);
         }
 
@@ -129,7 +137,7 @@ namespace DirectorioV1.WebApi.Controllers
             {
                 return NotFound();
             }
-
+            ciudadesEntity.Departamento = await this.departamentosServices.DepartamentoPorId(int.Parse(ciudadesEntity.DepartamentoId));
             return View(ciudadesEntity);
         }
 

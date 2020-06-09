@@ -1,0 +1,115 @@
+﻿@model DirectorioV1.Api.Business.Models.ClientesDirecciones
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>ClientesDireccionesEntity</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="ClienteId" class="control-label"></label>
+                <select asp-for="ClienteId" class="form-control" asp-items="Model.ClientesList"></select>
+                <span asp-validation-for="ClienteId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion_Tipo_A" class="control-label"></label>
+                @*<input asp-for="Direccion_Tipo_A" class="form-control" />*@
+                <select class="form-control" asp-for="Direccion_Tipo_A" asp-items="Model.DireccionTiposAList"></select>
+                <span asp-validation-for="Direccion_Tipo_A" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion_A" class="control-label"></label>
+                <input asp-for="Direccion_A" class="form-control" />
+                <span asp-validation-for="Direccion_A" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion_Tipo_B" class="control-label"></label>
+                @*<input asp-for="Direccion_Tipo_B" class="form-control" />*@
+                <select class="form-control" asp-for="Direccion_Tipo_B" asp-items="Model.DireccionTiposAList"></select>
+                <span asp-validation-for="Direccion_Tipo_B" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion_B" class="control-label"></label>
+                <input asp-for="Direccion_B" class="form-control" />
+                <span asp-validation-for="Direccion_B" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion_Observacion" class="control-label"></label>
+                <input asp-for="Direccion_Observacion" class="form-control" />
+                <span asp-validation-for="Direccion_Observacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion_Compuesta" class="control-label"></label>
+                <input asp-for="Direccion_Compuesta" class="form-control" />
+                <span asp-validation-for="Direccion_Compuesta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pais_Id" class="control-label"></label>
+                @*<input asp-for="Pais_Id" class="form-control" />*@
+                <select class="form-control" asp-for="Pais_Id" asp-items="Model.PaisesList"></select>
+                <span asp-validation-for="Pais_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Departamento_Id" class="control-label"></label>
+                @*<input asp-for="Departamento_Id" class="form-control" />k*@
+                <select class="form-control" asp-for="Departamento_Id" asp-items="Model.DepartamentosList"></select>
+                <span asp-validation-for="Departamento_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ciudad_Id" class="control-label"></label>
+                @*<input asp-for="Ciudad_Id" class="form-control" />*@
+                <select class="form-control" asp-for="Ciudad_Id" asp-items="Model.CiudadesList"></select>
+                <span asp-validation-for="Ciudad_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Barrio_Id" class="control-label"></label>
+                @*<input asp-for="Barrio_Id" class="form-control" />*@
+                <select class="form-control" asp-for="Barrio_Id" asp-items="Model.BarriosList"></select>
+                <span asp-validation-for="Barrio_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Latitud" class="control-label"></label>
+                <input asp-for="Latitud" class="form-control" />
+                <span asp-validation-for="Latitud" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Longitud" class="control-label"></label>
+                <input asp-for="Longitud" class="form-control" />
+                <span asp-validation-for="Longitud" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefono" class="control-label"></label>
+                <input asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Servicio_Domicilio" /> @Html.DisplayNameFor(model => model.Servicio_Domicilio)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Estado" /> @Html.DisplayNameFor(model => model.Estado)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

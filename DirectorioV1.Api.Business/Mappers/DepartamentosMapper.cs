@@ -1,10 +1,11 @@
 ﻿using DirectorioV1.Api.Business.Models;
 using DirectorioV1.Api.DataAccess.Contracts.Entities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DirectorioV1.Api.DataAccess.Mappers
+namespace DirectorioV1.Api.Business.Mappers
 {
     public static class DepartamentosMapper
     {
@@ -22,8 +23,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Latitud = dto.Latitud,
                 Longitud = dto.Longitud,
                 PaisId = int.Parse(dto.PaisId),
-                Ciudades = CiudadesMapper.map(dto.Ciudades),
-                Pais = PaisesMapper.map(dto.Pais)
+                //Ciudades = CiudadesMapper.map(dto.Ciudades),
+                //Pais = PaisesMapper.map(dto.Pais)
             };
         }
 
@@ -41,8 +42,15 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Latitud = dto.Latitud,
                 Longitud = dto.Longitud,
                 PaisId = dto.PaisId.ToString(),
-                Ciudades = CiudadesMapper.map(dto.Ciudades),
-                Pais = PaisesMapper.map(dto.Pais)
+                //Ciudades = JsonConvert.DeserializeObject<ICollection<Ciudades>>(JsonConvert.SerializeObject(dto.Ciudades),new JsonSerializerSettings { 
+                //    NullValueHandling = NullValueHandling.Ignore,
+                //    DefaultValueHandling = DefaultValueHandling.Ignore
+                //}),
+                //Pais = JsonConvert.DeserializeObject<Paises>(JsonConvert.SerializeObject(dto.Pais), new JsonSerializerSettings
+                //{
+                //    NullValueHandling = NullValueHandling.Ignore,
+                //    DefaultValueHandling = DefaultValueHandling.Ignore
+                //})
             };
         }
 

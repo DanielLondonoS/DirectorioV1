@@ -1,12 +1,12 @@
 ﻿@model DirectorioV1.Api.Business.Models.Categorias
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Administrador - Editar categoria";
 }
 
-<h1>Edit</h1>
+<h1>Editar categoria</h1>
 
-<h4>CategoriasEntity</h4>
+<h4>Categoria</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,14 +24,14 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

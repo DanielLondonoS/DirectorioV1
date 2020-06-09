@@ -1,4 +1,5 @@
 ﻿using DirectorioV1.Api.Business.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,5 +16,10 @@ namespace DirectorioV1.Api.Aplication.Contracts.Services
         Task<Clientes> ClientePorId(int? id);
 
         List<Clientes> ListadoDeClientes();
+
+        Task<bool> ExisteCliente(int? id);
+
+        void EliminarCliente(Clientes dto);
+        IEnumerable<SelectListItem> ObtenerComboClientes();
     }
 }

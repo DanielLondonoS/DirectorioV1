@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DirectorioV1.Api.DataAccess.Mappers
+namespace DirectorioV1.Api.Business.Mappers
 {
     public static class BarriosMapper
     {
@@ -21,8 +21,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Descripcion = dto.Descripcion,
                 Latitud = dto.Latitud,
                 Longitud = dto.Longitud,
-                CiudadId = dto.CiudadId,
-                Ciudad = CiudadesMapper.map(dto.Ciudad)
+                CiudadId = int.Parse(dto.CiudadId),
+                //Ciudad = CiudadesMapper.map(dto.Ciudad)
 
             };
         }
@@ -40,8 +40,8 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Descripcion = dto.Descripcion,
                 Latitud = dto.Latitud,
                 Longitud = dto.Longitud,
-                CiudadId = dto.CiudadId,
-                Ciudad = CiudadesMapper.map(dto.Ciudad)
+                CiudadId = dto.CiudadId.ToString(),
+                //Ciudad = CiudadesMapper.map(dto.Ciudad)
             };
         }
 

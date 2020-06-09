@@ -1,12 +1,12 @@
 ﻿@model DirectorioV1.Api.Business.Models.Ciudades
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Administrador - Crear ciudad";
 }
 
-<h1>Create</h1>
+<h1>Crear ciudad</h1>
 
-<h4>CiudadesEntity</h4>
+<h4>Ciudad</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,7 +14,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="DepartamentoId" class="control-label"></label>
-                <input asp-for="DepartamentoId" class="form-control" />
+                @*<input asp-for="DepartamentoId" class="form-control" />*@
+                <select class="form-control" asp-for="DepartamentoId" asp-items="Model.DepartamentosList"></select>
                 <span asp-validation-for="DepartamentoId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -48,14 +49,15 @@
                 <span asp-validation-for="Codigo_Postal" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    
 </div>
 
 @section Scripts {

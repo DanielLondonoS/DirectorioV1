@@ -1,5 +1,6 @@
 ﻿using DirectorioV1.Api.DataAccess.Contracts.Entities;
 using DirectorioV1.Api.DataAccess.Contracts.Repositories;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,15 @@ namespace DirectorioV1.Api.DataAccess.Repositories
             this._directorioV1DBContext = directorioV1DBContext;
         }
 
-       
+        public IEnumerable<SelectListItem> ComboCategorias()
+        {
+            return this._directorioV1DBContext.Categorias.Select(r => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+            {
+                Text = r.Descripcion,
+                Value = r.Id.ToString()
+            });
+        }
+
+
     }
 }

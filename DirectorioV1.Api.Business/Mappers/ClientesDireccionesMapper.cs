@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DirectorioV1.Api.DataAccess.Mappers
+namespace DirectorioV1.Api.Business.Mappers
 {
     public static class ClientesDireccionesMapper
     {
@@ -23,16 +23,15 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Departamento_Id = dto.Departamento_Id,
                 Direccion_A = dto.Direccion_A,
                 Direccion_B = dto.Direccion_B,
-                Direccion_Compuesta = dto.Direccion_Compuesta,
+                Direccion_Compuesta =  dto.Direccion_Tipo_A+" "+dto.Direccion_A+" "+dto.Direccion_Tipo_B+" "+dto.Direccion_B+" "+dto.Direccion_Observacion,
                 Direccion_Observacion = dto.Direccion_Observacion,
                 Direccion_Tipo_A = dto.Direccion_Tipo_A,
                 Direccion_Tipo_B = dto.Direccion_Tipo_B,
-                Municipio_Id = dto.Municipio_Id,
                 Pais_Id = dto.Pais_Id,
                 Telefono = dto.Telefono,
                 Servicio_Domicilio = dto.Servicio_Domicilio,
                 ClienteId = dto.ClienteId,
-                Cliente = ClientesMapper.map(dto.Cliente)
+                //Cliente = ClientesMapper.map(dto.Cliente)
             };
         }
 
@@ -51,16 +50,15 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Departamento_Id = dto.Departamento_Id,
                 Direccion_A = dto.Direccion_A,
                 Direccion_B = dto.Direccion_B,
-                Direccion_Compuesta = dto.Direccion_Compuesta,
+                Direccion_Compuesta = dto.Direccion_Tipo_A + " " + dto.Direccion_A + " " + dto.Direccion_Tipo_B + " " + dto.Direccion_B + " " + dto.Direccion_Observacion,
                 Direccion_Observacion = dto.Direccion_Observacion,
                 Direccion_Tipo_A = dto.Direccion_Tipo_A,
                 Direccion_Tipo_B = dto.Direccion_Tipo_B,
-                Municipio_Id = dto.Municipio_Id,
                 Pais_Id = dto.Pais_Id,
                 Telefono = dto.Telefono,
                 Servicio_Domicilio = dto.Servicio_Domicilio,
                 ClienteId = dto.ClienteId,
-                Cliente = ClientesMapper.map(dto.Cliente)
+                //Cliente = ClientesMapper.map(dto.Cliente)
             };
         }
 

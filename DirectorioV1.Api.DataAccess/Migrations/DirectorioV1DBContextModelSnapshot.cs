@@ -161,9 +161,6 @@ namespace DirectorioV1.Api.DataAccess.Migrations
                     b.Property<string>("Longitud")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Municipio_Id")
-                        .HasColumnType("int");
-
                     b.Property<int>("Pais_Id")
                         .HasColumnType("int");
 

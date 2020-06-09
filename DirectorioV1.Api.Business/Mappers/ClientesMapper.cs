@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DirectorioV1.Api.DataAccess.Mappers
+namespace DirectorioV1.Api.Business.Mappers
 {
     public static class ClientesMapper
     {
@@ -22,7 +22,7 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Fecha_Creacion = dto.Fecha_Creacion,
                 Nombre = dto.Nombre,
                 Tipo_Documento = dto.Tipo_Documento,
-                Direcciones = ClientesDireccionesMapper.map(dto.Direcciones)
+                //Direcciones = ClientesDireccionesMapper.map(dto.Direcciones)
             };
         }
 
@@ -40,7 +40,7 @@ namespace DirectorioV1.Api.DataAccess.Mappers
                 Fecha_Creacion = dto.Fecha_Creacion.Value,
                 Nombre = dto.Nombre,
                 Tipo_Documento = dto.Tipo_Documento,
-                Direcciones = ClientesDireccionesMapper.map(dto.Direcciones)
+                //Direcciones = ClientesDireccionesMapper.map(dto.Direcciones)
             };
         }
 

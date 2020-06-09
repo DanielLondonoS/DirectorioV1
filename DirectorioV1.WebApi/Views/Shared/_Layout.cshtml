@@ -24,21 +24,36 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Categorias" asp-action="Index">Categorias</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Administrador
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-controller="Paises" asp-action="Index">Países</a>
+                                <a class="dropdown-item" asp-controller="Departamentos" asp-action="Index">Departamentos</a>
+                                <a class="dropdown-item" asp-controller="Ciudades" asp-action="Index">Ciudades</a>
+                                <a class="dropdown-item" asp-controller="Barrios" asp-action="Index">Barrios</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-controller="Categorias" asp-action="Index">Categorias</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-controller="Clientes" asp-action="Index">Clientes</a>
+                                <a class="dropdown-item" asp-controller="ClientesDirecciones" asp-action="Index">Clientes Direcciones</a>
+
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Paises" asp-action="Index">Países</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Departamentos" asp-action="Index">Departamentos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Ciudades" asp-action="Index">Ciudades</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Barrios" asp-action="Index">Barrios</a>
-                        </li>
+                        
+                        @*<li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Paises" asp-action="Index">Países</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Departamentos" asp-action="Index">Departamentos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Ciudades" asp-action="Index">Ciudades</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Barrios" asp-action="Index">Barrios</a>
+        </li>*@
                     </ul>
                 </div>
             </div>

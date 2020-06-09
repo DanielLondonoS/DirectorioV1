@@ -1,13 +1,13 @@
 ﻿@model DirectorioV1.Api.Business.Models.Categorias
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Administrador - Detalle categoria";
 }
 
-<h1>Details</h1>
+<h1>Detalle de la categoria</h1>
 
 <div>
-    <h4>CategoriasEntity</h4>
+    <h4>Categoria</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -25,6 +25,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.Id">Editar</a>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
 </div>

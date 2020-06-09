@@ -3,6 +3,8 @@ using DirectorioV1.Api.DataAccess.Contracts.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DirectorioV1.Api.DataAccess.Repositories
 {
@@ -23,6 +25,11 @@ namespace DirectorioV1.Api.DataAccess.Repositories
                     Value = a.Id.ToString(),
                     Text = a.Descripcion
                 }).ToList();
+        }
+
+        public async Task<ICollection<BarriosEntity>> ListaBarriosConCiudades()
+        {
+            return await this._directorioV1DBContext.Barrios.Include(p => p.Ciudad).ToListAsync();
         }
 
         //public async Task<BarriosEntity> Add(BarriosEntity barriosEntity)

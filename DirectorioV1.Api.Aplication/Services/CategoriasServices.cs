@@ -2,11 +2,12 @@
 using DirectorioV1.Api.Business.Models;
 using DirectorioV1.Api.DataAccess.Contracts.Entities;
 using DirectorioV1.Api.DataAccess.Contracts.Repositories;
-using DirectorioV1.Api.DataAccess.Mappers;
+using DirectorioV1.Api.Business.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DirectorioV1.Api.Aplication.Services
 {
@@ -63,6 +64,11 @@ namespace DirectorioV1.Api.Aplication.Services
         public async Task<bool> ExisteCategoria(int? id)
         {
             return await this._categoriasRepository.ExistAsync(id.Value);
+        }
+
+        public IEnumerable<SelectListItem> ObtenerComboCategorias()
+        {
+            return this._categoriasRepository.ComboCategorias();
         }
     }
 }

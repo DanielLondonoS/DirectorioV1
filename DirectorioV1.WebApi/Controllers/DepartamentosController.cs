@@ -25,9 +25,10 @@ namespace DirectorioV1.WebApi.Controllers
         }
 
         // GET: Departamentos
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(this.services.ListadoDeDepartamentos());
+
+            return View(await this.services.DepartamentosConPais());
         }
 
         // GET: Departamentos/Details/5
@@ -44,6 +45,7 @@ namespace DirectorioV1.WebApi.Controllers
                 return NotFound();
             }
             departamentosEntity.PaisesList = this.paisesServices.ObtenerComboPaises();
+            departamentosEntity.Pais = await this.paisesServices.PaisPorId(int.Parse(departamentosEntity.PaisId));
             return View(departamentosEntity);
         }
 
@@ -85,6 +87,8 @@ namespace DirectorioV1.WebApi.Controllers
                 return NotFound();
             }
             departamentosEntity.PaisesList = this.paisesServices.ObtenerComboPaises();
+            var idPais = int.Parse(departamentosEntity.PaisId);
+            departamentosEntity.Pais = await this.paisesServices.PaisPorId(idPais);
              
             return View(departamentosEntity);
         }
@@ -138,7 +142,7 @@ namespace DirectorioV1.WebApi.Controllers
             {
                 return NotFound();
             }
-            departamentosEntity.PaisesList = this.paisesServices.ObtenerComboPaises();
+            departamentosEntity.Pais = await this.paisesServices.PaisPorId(int.Parse(departamentosEntity.PaisId));
             return View(departamentosEntity);
         }
 

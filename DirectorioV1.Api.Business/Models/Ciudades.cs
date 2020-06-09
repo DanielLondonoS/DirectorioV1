@@ -10,7 +10,7 @@ namespace DirectorioV1.Api.Business.Models
     {
         public int Id { get; set; }
         [DisplayName("Departamento")]
-        public int DepartamentoId { get; set; }
+        public string DepartamentoId { get; set; }
         public IEnumerable<SelectListItem> DepartamentosList { get; set; }
         [DisplayName("Nombre de la ciudad")]
         [MaxLength(100, ErrorMessage = "El campo {0} solo puede contener hasta {1} caracteres.")]

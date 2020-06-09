@@ -29,8 +29,7 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
         public int Departamento_Id { get; set; }
         [DisplayName("Ciudad")]
         public int Ciudad_Id { get; set; }
-        [DisplayName("Municipio")]
-        public int Municipio_Id { get; set; }
+
         [DisplayName("Barrio")]
         public int Barrio_Id { get; set; }
         public string Latitud { get; set; }

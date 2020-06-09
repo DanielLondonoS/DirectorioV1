@@ -17,6 +17,10 @@ namespace DirectorioV1.Api.DataAccess.Repositories
             this._directorioV1DBContext = directorioV1DBContext;
         }
 
-      
+        public async Task<ICollection<ClientesDireccionesEntity>> ListaDireccionesConClientes()
+        {
+            return await this._directorioV1DBContext.ClientesDirecciones.Include(p => p.Cliente).ToListAsync();
+        }
+
     }
 }

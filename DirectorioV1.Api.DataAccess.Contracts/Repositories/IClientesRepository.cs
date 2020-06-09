@@ -1,4 +1,5 @@
 ﻿using DirectorioV1.Api.DataAccess.Contracts.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,5 +9,6 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Repositories
 {
     public interface IClientesRepository : IGenericRepository<ClientesEntity>
     {
+        IEnumerable<SelectListItem> ComboClientes();
     }
 }

@@ -2,7 +2,7 @@
 using DirectorioV1.Api.Business.Models;
 using DirectorioV1.Api.DataAccess.Contracts.Entities;
 using DirectorioV1.Api.DataAccess.Contracts.Repositories;
-using DirectorioV1.Api.DataAccess.Mappers;
+using DirectorioV1.Api.Business.Mappers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -15,9 +15,18 @@ namespace DirectorioV1.Api.Aplication.Services
     public class CiudadesServices : ICiudadesServices
     {
         private readonly ICiudadesRepository _ciudadesRepository;
-        public CiudadesServices(ICiudadesRepository ciudadesRepository)
+        private readonly IBarriosRepository barriosRepository;
+        private readonly IDepartamentosRepository departamentosRepository;
+
+        public CiudadesServices(
+            ICiudadesRepository ciudadesRepository,
+            IBarriosRepository barriosRepository,
+            IDepartamentosRepository departamentosRepository
+            )
         {
             this._ciudadesRepository = ciudadesRepository;
+            this.barriosRepository = barriosRepository;
+            this.departamentosRepository = departamentosRepository;
         }
 
         public List<Ciudades> ListadoDeCiudades()
@@ -69,6 +78,28 @@ namespace DirectorioV1.Api.Aplication.Services
         public IEnumerable<SelectListItem> ObtenerComboCiudades()
         {
             return this._ciudadesRepository.ComboCiudades();
+        }
+
+        public async Task<List<Ciudades>> CiudadesConDepartamentos()
+        {
+            var ciudades = await this._ciudadesRepository.ListaCiudadesConDepartamentos();
+            List<Ciudades> rta = new List<Ciudades>();
+            foreach (var item in ciudades)
+            {
+                Ciudades ci = new Ciudades();
+                ci.Barrios = BarriosMapper.map(this.barriosRepository.GetAll());
+                ci.Codigo = item.Codigo;
+                ci.Codigo_Postal = item.Codigo_Postal;
+                ci.Descripcion = item.Descripcion;
+                ci.Estado = item.Estado;
+                ci.Id = item.Id;
+                ci.Latitud = item.Latitud;
+                ci.Longitud = item.Longitud;
+                ci.Departamento = DepartamentosMapper.map( await this.departamentosRepository.GetByIdAsync(item.DepartamentoId));
+                ci.DepartamentoId = item.DepartamentoId.ToString();
+                rta.Add(ci);
+            }
+            return rta;
         }
     }
 }

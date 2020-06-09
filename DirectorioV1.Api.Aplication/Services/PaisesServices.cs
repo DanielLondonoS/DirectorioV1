@@ -2,7 +2,7 @@
 using DirectorioV1.Api.Business.Models;
 using DirectorioV1.Api.DataAccess.Contracts.Entities;
 using DirectorioV1.Api.DataAccess.Contracts.Repositories;
-using DirectorioV1.Api.DataAccess.Mappers;
+using DirectorioV1.Api.Business.Mappers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;

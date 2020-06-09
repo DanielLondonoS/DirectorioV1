@@ -1,20 +1,20 @@
 ﻿@model DirectorioV1.Api.Business.Models.Barrios
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Administrador - Detalle ";
 }
 
-<h1>Details</h1>
+<h1>Detalle del barrio</h1>
 
 <div>
-    <h4>BarriosEntity</h4>
+    <h4>Barrio</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CiudadId)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CiudadId)
+            @Html.DisplayFor(model => model.Ciudad.Descripcion)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Descripcion)
@@ -55,6 +55,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.Id">Editar</a>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
 </div>

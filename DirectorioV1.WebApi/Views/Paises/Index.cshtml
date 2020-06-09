@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<DirectorioV1.Api.Business.Models.Paises>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Administrador - Paises";
 }
 
-<h1>Index</h1>
+<h1>Listado de países</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-action="Create">Crear</a>
 </p>
 <table class="table">
     <thead>
@@ -55,9 +55,9 @@
                 @Html.DisplayFor(modelItem => item.Codigo_Postal)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id">Editar</a> 
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalle</a> 
+                <a class="btn btn-warning" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
             </td>
         </tr>
 }

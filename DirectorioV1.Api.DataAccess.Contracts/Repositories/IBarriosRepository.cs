@@ -11,6 +11,8 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Repositories
     public interface IBarriosRepository : IGenericRepository<BarriosEntity>
     {
         IEnumerable<SelectListItem> ComboBarrios();
+
+        Task<ICollection<BarriosEntity>> ListaBarriosConCiudades();
     }
 
 }

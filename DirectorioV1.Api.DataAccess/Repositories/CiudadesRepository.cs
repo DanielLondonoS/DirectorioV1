@@ -1,8 +1,10 @@
 ﻿using DirectorioV1.Api.DataAccess.Contracts.Entities;
 using DirectorioV1.Api.DataAccess.Contracts.Repositories;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DirectorioV1.Api.DataAccess.Repositories
 {
@@ -21,6 +23,11 @@ namespace DirectorioV1.Api.DataAccess.Repositories
                 Text = r.Descripcion,
                 Value = r.Id.ToString()
             });
+        }
+
+        public async Task<ICollection<CiudadesEntity>> ListaCiudadesConDepartamentos()
+        {
+            return await this._directorioV1DBContext.Ciudades.Include(p => p.Departamento).ToListAsync();
         }
     }
 }

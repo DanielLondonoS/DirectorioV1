@@ -15,16 +15,18 @@ namespace DirectorioV1.WebApi.Controllers
     public class BarriosController : Controller
     {
         private readonly IBarriosServices services;
+        private readonly ICiudadesServices ciudadesServices;
 
-        public BarriosController(IBarriosServices services)
+        public BarriosController(IBarriosServices services,ICiudadesServices ciudadesServices)
         {
             this.services = services;
+            this.ciudadesServices = ciudadesServices;
         }
 
         // GET: Barrios
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(this.services.ListadoDeBarrios());
+            return View(await this.services.BarriosConCiudades());
         }
 
         // GET: Barrios/Details/5
@@ -40,14 +42,16 @@ namespace DirectorioV1.WebApi.Controllers
             {
                 return NotFound();
             }
-
+            barriosEntity.Ciudad = await this.ciudadesServices.CiudadPorId(int.Parse(barriosEntity.CiudadId));
             return View(barriosEntity);
         }
 
         // GET: Barrios/Create
         public IActionResult Create()
         {
-            return View();
+            Barrios barrios = new Barrios();
+            barrios.CiudadesList = this.ciudadesServices.ObtenerComboCiudades();
+            return View(barrios);
         }
 
         // POST: Barrios/Create
@@ -78,6 +82,8 @@ namespace DirectorioV1.WebApi.Controllers
             {
                 return NotFound();
             }
+            barriosEntity.Ciudad = await this.ciudadesServices.CiudadPorId(int.Parse(barriosEntity.CiudadId));
+            barriosEntity.CiudadesList = this.ciudadesServices.ObtenerComboCiudades();
             return View(barriosEntity);
         }
 
@@ -129,7 +135,7 @@ namespace DirectorioV1.WebApi.Controllers
             {
                 return NotFound();
             }
-
+            barriosEntity.Ciudad = await this.ciudadesServices.CiudadPorId(int.Parse(barriosEntity.CiudadId));
             return View(barriosEntity);
         }
 
