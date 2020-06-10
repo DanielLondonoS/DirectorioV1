@@ -9,5 +9,6 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Repositories
     public interface IClientesDireccionesRepository : IGenericRepository<ClientesDireccionesEntity>
     {
         Task<ICollection<ClientesDireccionesEntity>> ListaDireccionesConClientes();
+        Task<ICollection<ClientesDireccionesEntity>> ListaDireccionesPorClientes(int id);
     }
 }

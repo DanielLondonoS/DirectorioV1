@@ -18,6 +18,7 @@ namespace DirectorioV1.Api.DataAccess.Contracts
         DbSet<CiudadesEntity> Ciudades { get; set; }
         DbSet<ClientesDireccionesEntity> ClientesDirecciones { get; set; }
         DbSet<ClientesEntity> Clientes { get; set; }
+        DbSet<ClientesImagenesEntity> ClientesImagenes { get; set; }
         DbSet<DepartamentosEntity> Departamentos { get; set; }
         DbSet<PaisesEntity> Paises { get; set; }
 

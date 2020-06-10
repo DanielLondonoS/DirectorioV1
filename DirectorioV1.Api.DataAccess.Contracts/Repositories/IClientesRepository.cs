@@ -10,5 +10,7 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Repositories
     public interface IClientesRepository : IGenericRepository<ClientesEntity>
     {
         IEnumerable<SelectListItem> ComboClientes();
+        Task<ICollection<ClientesEntity>> ListaClientesConCategorias();
+        Task<ICollection<ClientesEntity>> ListaClientesConTodo();
     }
 }

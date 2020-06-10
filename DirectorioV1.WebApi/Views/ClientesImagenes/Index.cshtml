@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DirectorioV1.Api.Business.Models.ClientesImagenes>
+
+@{
+    ViewData["Title"] = "Administrador de imagenes";
+}
+
+<h1>Listado de imagenes</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Crear</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @if (!string.IsNullOrEmpty(item.ImageUrl))
+                {
+                    <img src="@Url.Content(item.ImageUrl)" alt="Image" style="width:75px;height:75px;max-width: 100%; height: auto;" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+            </td>
+            <td>
+                <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalle</a>
+                <a class="btn btn-warning" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

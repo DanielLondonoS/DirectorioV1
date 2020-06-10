@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 /**
  * Generated class for the PostComponent component.
@@ -10,12 +10,17 @@ import { Component, Input } from '@angular/core';
   selector: 'post',
   templateUrl: 'post.html'
 })
-export class PostComponent {
-  @Input() clienteDatos : any;
-
+export class PostComponent implements OnInit {
+  @Input() clienteDatos : any[] = [];
+  text:any =""
   constructor() {
-    console.log('Hello PostComponent Component');
-    this.text = 'Hello World';
+    console.log({Funcion:'Hello PostComponent Component',clienteDatos:this.clienteDatos});
+    
+  }
+
+  ngOnInit(){
+    console.log({Funcion:' PostComponent ionViewDidLoad',clienteDatos:this.clienteDatos});
+
   }
 
 }

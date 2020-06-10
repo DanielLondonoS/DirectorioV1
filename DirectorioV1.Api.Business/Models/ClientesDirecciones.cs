@@ -9,17 +9,26 @@ namespace DirectorioV1.Api.Business.Models
 {
     public class ClientesDirecciones
     {
+        public ClientesDirecciones()
+        {
+            this.Cliente = new Clientes();
+            this.Paises = new Paises();
+            this.Ciudades = new Ciudades();
+            this.Departamentos = new Departamentos();
+        }
         public int Id { get; set; }
         [DisplayName("Cliente")]
         public int ClienteId { get; set; }
         public IEnumerable<SelectListItem> ClientesList { get; set; }
-        [DisplayName("Seleccione tipo")]
+        [DisplayName("Seleccione tipo(ej: calle,carrera...)")]
         public string Direccion_Tipo_A { get; set; }
         public IEnumerable<SelectListItem> DireccionTiposAList { get; set; }
         [DisplayName("Dato")]
         public string Direccion_A { get; set; }
+        [DisplayName("Seleccione tipo(ej: calle,carrera...)")]
         public string Direccion_Tipo_B { get; set; }
         //public IEnumerable<SelectListItem> DireccionTiposBList { get; set; }
+        [DisplayName("Dato")]
         public string Direccion_B { get; set; }
         [DisplayName("Observaciones de la dirección")]
         [MaxLength(250, ErrorMessage = "El campo {0} solo puede contener hasta {1} caracteres.")]
@@ -28,16 +37,16 @@ namespace DirectorioV1.Api.Business.Models
         [MaxLength(400, ErrorMessage = "El campo {0} solo puede contener hasta {1} caracteres.")]
         public string Direccion_Compuesta { get; set; }
         [DisplayName("Pais")]
-        public int Pais_Id { get; set; }
+        public int PaisId { get; set; }
         public IEnumerable<SelectListItem> PaisesList { get; set; }
         [DisplayName("Departamento")]
-        public int Departamento_Id { get; set; }
+        public int DepartamentoId { get; set; }
         public IEnumerable<SelectListItem> DepartamentosList { get; set; }
         [DisplayName("Ciudad")]
-        public int Ciudad_Id { get; set; }
+        public int CiudadId { get; set; }
         public IEnumerable<SelectListItem> CiudadesList { get; set; }
         [DisplayName("Barrio")]
-        public int Barrio_Id { get; set; }
+        public int BarrioId { get; set; }
         public IEnumerable<SelectListItem> BarriosList { get; set; }
         public string Latitud { get; set; }
         public string Longitud { get; set; }
@@ -46,6 +55,9 @@ namespace DirectorioV1.Api.Business.Models
         public bool Servicio_Domicilio { get; set; }
         public bool Estado { get; set; }
 
-        public Clientes Cliente { get; set; }
+        public Clientes Cliente { get; set; } 
+        public Paises Paises { get; set; } 
+        public Ciudades Ciudades { get; set; } 
+        public Departamentos Departamentos { get; set; }
     }
 }

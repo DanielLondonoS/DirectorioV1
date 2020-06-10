@@ -24,10 +24,9 @@ namespace DirectorioV1.WebApi.Controllers
         }
 
         // GET: Clientes
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            
-            return View(this.clientesServices.ListadoDeClientes());
+            return View(await this.clientesServices.ListadoDeClientesConCategorias());
         }
 
         // GET: Clientes/Details/5

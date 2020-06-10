@@ -1,4 +1,5 @@
 ﻿using DirectorioV1.Api.Business.Models;
+using DirectorioV1.Api.DataAccess.Contracts.Entities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -21,5 +22,9 @@ namespace DirectorioV1.Api.Aplication.Contracts.Services
 
         void EliminarCliente(Clientes dto);
         IEnumerable<SelectListItem> ObtenerComboClientes();
+
+        Task<List<Clientes>> ListadoDeClientesConCategorias();
+
+        Task<ICollection<Clientes>> ListadoDeClientesConDatos();
     }
 }

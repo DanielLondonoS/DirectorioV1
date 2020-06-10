@@ -7,6 +7,7 @@
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4">
       <PrivateAssets>all</PrivateAssets>
@@ -23,6 +24,10 @@
     <ProjectReference Include="..\DirectorioV1.Api.Aplication\DirectorioV1.Api.Aplication.csproj" />
     <ProjectReference Include="..\DirectorioV1.Api.CrossCutting\DirectorioV1.Api.CrossCutting.csproj" />
     <ProjectReference Include="..\DirectorioV1.Api.DataAccess\DirectorioV1.Api.DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\Clientes\" />
   </ItemGroup>
 
 </Project>

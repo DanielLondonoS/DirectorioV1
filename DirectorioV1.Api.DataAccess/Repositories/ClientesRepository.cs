@@ -27,6 +27,18 @@ namespace DirectorioV1.Api.DataAccess.Repositories
             });
         }
 
+        public async Task<ICollection<ClientesEntity>> ListaClientesConCategorias()
+        {
+            return await this._directorioV1DBContext.Clientes.Include(p => p.Categoria).ToListAsync();
+        }
 
+        public async Task<ICollection<ClientesEntity>> ListaClientesConTodo()
+        {
+            return await this._directorioV1DBContext.Clientes
+                //.Include(p => p.Categoria)
+                //.Include(p => p.Imagenes)
+                //.Include(p => p.Direcciones)
+                .ToListAsync();
+        }
     }
 }

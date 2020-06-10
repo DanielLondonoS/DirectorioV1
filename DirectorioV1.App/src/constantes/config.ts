@@ -1,3 +1,3 @@
 export const API = {
-    url:'https://localhost:44320/api/'
+    url:'https://localhost:44396/api/'
 }

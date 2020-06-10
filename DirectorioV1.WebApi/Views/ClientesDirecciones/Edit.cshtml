@@ -1,12 +1,12 @@
 ﻿@model DirectorioV1.Api.Business.Models.ClientesDirecciones
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Adminsitrador - Editar direccion";
 }
 
-<h1>Edit</h1>
+<h1>Editar dirección</h1>
 
-<h4>ClientesDireccionesEntity</h4>
+<h4>Dirección</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -51,28 +51,28 @@
                 <span asp-validation-for="Direccion_Compuesta" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Pais_Id" class="control-label"></label>
+                <label asp-for="PaisId" class="control-label"></label>
                 @*<input asp-for="Pais_Id" class="form-control" />*@
-                <select class="form-control" asp-for="Pais_Id" asp-items="Model.PaisesList"></select>
-                <span asp-validation-for="Pais_Id" class="text-danger"></span>
+                <select class="form-control" asp-for="PaisId" asp-items="Model.PaisesList"></select>
+                <span asp-validation-for="PaisId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Departamento_Id" class="control-label"></label>
+                <label asp-for="DepartamentoId" class="control-label"></label>
                 @*<input asp-for="Departamento_Id" class="form-control" />k*@
-                <select class="form-control" asp-for="Departamento_Id" asp-items="Model.DepartamentosList"></select>
-                <span asp-validation-for="Departamento_Id" class="text-danger"></span>
+                <select class="form-control" asp-for="DepartamentoId" asp-items="Model.DepartamentosList"></select>
+                <span asp-validation-for="DepartamentoId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Ciudad_Id" class="control-label"></label>
+                <label asp-for="CiudadId" class="control-label"></label>
                 @*<input asp-for="Ciudad_Id" class="form-control" />*@
-                <select class="form-control" asp-for="Ciudad_Id" asp-items="Model.CiudadesList"></select>
-                <span asp-validation-for="Ciudad_Id" class="text-danger"></span>
+                <select class="form-control" asp-for="CiudadId" asp-items="Model.CiudadesList"></select>
+                <span asp-validation-for="CiudadId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Barrio_Id" class="control-label"></label>
+                <label asp-for="BarrioId" class="control-label"></label>
                 @*<input asp-for="Barrio_Id" class="form-control" />*@
-                <select class="form-control" asp-for="Barrio_Id" asp-items="Model.BarriosList"></select>
-                <span asp-validation-for="Barrio_Id" class="text-danger"></span>
+                <select class="form-control" asp-for="BarrioId" asp-items="Model.BarriosList"></select>
+                <span asp-validation-for="BarrioId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Latitud" class="control-label"></label>

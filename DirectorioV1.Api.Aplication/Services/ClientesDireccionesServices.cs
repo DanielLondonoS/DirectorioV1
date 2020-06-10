@@ -87,9 +87,9 @@ namespace DirectorioV1.Api.Aplication.Services
                 ci.Longitud = item.Longitud;
                 ci.Cliente = ClientesMapper.map(await this.clientesRepository.GetByIdAsync(item.ClienteId));
                 ci.ClienteId = item.ClienteId;
-                ci.Barrio_Id = item.Barrio_Id;
-                ci.Ciudad_Id = item.Ciudad_Id;
-                ci.Departamento_Id = item.Departamento_Id;
+                //ci.BarrioId = item.BarrioId;
+                //ci.CiudadId = item.CiudadId;
+                //ci.DepartamentoId = item.DepartamentoId;
                 ci.Direccion_A = item.Direccion_A;
                 ci.Direccion_B = item.Direccion_B;
                 ci.Direccion_Compuesta = item.Direccion_Compuesta;

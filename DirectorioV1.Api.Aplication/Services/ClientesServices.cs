@@ -16,9 +16,32 @@ namespace DirectorioV1.Api.Aplication.Services
     public class ClientesServices : IClientesServices
     {
         private readonly IClientesRepository _clientesRepository;
-        public ClientesServices(IClientesRepository clientesRepository)
+        private readonly ICategoriasRepository categoriasRepository;
+        private readonly IClientesDireccionesRepository clientesDireccionesRepository;
+        private readonly IClientesImagenesRepository clientesImagenesRepository;
+        private readonly IPaisesRepository paisesRepository;
+        private readonly IDepartamentosRepository departamentosRepository;
+        private readonly ICiudadesRepository ciudadesRepository;
+        private readonly IBarriosRepository barriosRepository;
+
+        public ClientesServices(
+            IClientesRepository clientesRepository,
+            ICategoriasRepository categoriasRepository,
+            IClientesDireccionesRepository clientesDireccionesRepository,
+            IClientesImagenesRepository clientesImagenesRepository,
+            IPaisesRepository paisesRepository,
+            IDepartamentosRepository departamentosRepository,
+            ICiudadesRepository ciudadesRepository,
+            IBarriosRepository barriosRepository)
         {
             this._clientesRepository = clientesRepository;
+            this.categoriasRepository = categoriasRepository;
+            this.clientesDireccionesRepository = clientesDireccionesRepository;
+            this.clientesImagenesRepository = clientesImagenesRepository;
+            this.paisesRepository = paisesRepository;
+            this.departamentosRepository = departamentosRepository;
+            this.ciudadesRepository = ciudadesRepository;
+            this.barriosRepository = barriosRepository;
         }
 
         public List<Clientes> ListadoDeClientes()
@@ -70,6 +93,87 @@ namespace DirectorioV1.Api.Aplication.Services
         public IEnumerable<SelectListItem> ObtenerComboClientes()
         {
             return this._clientesRepository.ComboClientes();
+        }
+
+        public async Task<List<Clientes>> ListadoDeClientesConCategorias()
+        {
+            var clientesCat = await _clientesRepository.ListaClientesConCategorias();
+            List<Clientes> rta = new List<Clientes>();
+
+            foreach (var item in clientesCat)
+            {
+                Clientes ci = new Clientes();
+
+                ci.Estado = item.Estado;
+                ci.Id = item.Id;
+                ci.Correo = item.Correo;
+                ci.CategoriaId = item.CategoriaId;
+                ci.Documento = item.Documento;
+                ci.Fecha_Creacion = item.Fecha_Creacion.Value;
+                ci.Nombre = item.Nombre;
+                ci.Tipo_Documento = item.Tipo_Documento;
+                ci.Categoria = CategoriasMapper.map(await this.categoriasRepository.GetByIdAsync(item.CategoriaId));
+
+                rta.Add(ci);
+            }
+            return rta;
+        }
+
+        public async Task<ICollection<Clientes>> ListadoDeClientesConDatos()
+        {
+
+            var result = await _clientesRepository.ListaClientesConTodo();
+            List<Clientes> listClientes = new List<Clientes>();
+            foreach (var item in result)
+            {
+                Clientes cl = new Clientes();
+                cl.CategoriaId = item.CategoriaId;
+                cl.Correo = item.Correo;
+                cl.Direcciones = ClientesDireccionesMapper.map( await this.clientesDireccionesRepository.ListaDireccionesPorClientes(item.Id));
+                cl.Documento = item.Documento;
+                cl.Estado = item.Estado;
+                cl.Fecha_Creacion = item.Fecha_Creacion.Value;
+                cl.Id = item.Id;
+                cl.Imagenes = ClientesImagenesMapper.map( await this.clientesImagenesRepository.ListaImagenesPorCliente(item.Id));
+                cl.Nombre = item.Nombre;
+                cl.Tipo_Documento = item.Tipo_Documento;
+                cl.Categoria = CategoriasMapper.map(await this.categoriasRepository.GetByIdAsync(item.CategoriaId));
+                listClientes.Add(cl);
+            }
+            return listClientes;
+           
+           
+        }
+
+        private async Task<List<ClientesDirecciones>> ToDirecciones(ICollection<ClientesDireccionesEntity> entity)
+        {
+            List<ClientesDirecciones> result = new List<ClientesDirecciones>();
+
+            foreach (var item in entity)
+            {
+                ClientesDirecciones cd = new ClientesDirecciones();
+                //cd.BarrioId = item.BarrioId;
+                //cd.CiudadId = item.CiudadId;
+                cd.ClienteId = item.ClienteId;
+                //cd.PaisId = item.PaisId;
+
+                //cd.DepartamentoId = item.DepartamentoId;
+                cd.Direccion_A = item.Direccion_A;
+                cd.Direccion_B = item.Direccion_B;
+                cd.Direccion_Compuesta = item.Direccion_Compuesta;
+                cd.Direccion_Observacion = item.Direccion_Observacion;
+                cd.Direccion_Tipo_A = item.Direccion_Tipo_A;
+                cd.Direccion_Tipo_B = item.Direccion_Tipo_B;
+                cd.Estado = item.Estado;
+                cd.Id = item.Id;
+                cd.Latitud = item.Latitud;
+                cd.Longitud = item.Longitud;
+                cd.Servicio_Domicilio = item.Servicio_Domicilio;
+                cd.Telefono = item.Telefono;
+                //cd.ciudades = CiudadesMapper.map( await this.ciudadesRepository.GetByIdAsync(item.CiudadId));
+            }
+
+            return result;
         }
     }
 }

@@ -22,5 +22,12 @@ namespace DirectorioV1.Api.DataAccess.Repositories
             return await this._directorioV1DBContext.ClientesDirecciones.Include(p => p.Cliente).ToListAsync();
         }
 
+        public async Task<ICollection<ClientesDireccionesEntity>> ListaDireccionesPorClientes(int id)
+        {
+            return await this._directorioV1DBContext.ClientesDirecciones
+                .Include(p => p.Cliente)
+                .Include(p => p.Cliente.Imagenes)
+                .Where(p => p.ClienteId == id).ToListAsync();
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace DirectorioV1.Api.Business.Mappers
             {
                 Id = dto.Id,
                 Estado = dto.Estado,
-                Categoria_Id = dto.Categoria_Id,
+                CategoriaId = dto.CategoriaId,
                 Correo = dto.Correo,
                 Documento = dto.Documento,
                 Fecha_Creacion = dto.Fecha_Creacion,
@@ -34,7 +34,7 @@ namespace DirectorioV1.Api.Business.Mappers
             {
                 Id = dto.Id,
                 Estado = dto.Estado,
-                Categoria_Id = dto.Categoria_Id,
+                CategoriaId = dto.CategoriaId,
                 Correo = dto.Correo,
                 Documento = dto.Documento,
                 Fecha_Creacion = dto.Fecha_Creacion.Value,

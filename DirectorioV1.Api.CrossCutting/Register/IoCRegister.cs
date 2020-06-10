@@ -27,6 +27,7 @@ namespace DirectorioV1.Api.CrossCutting.Register
             services.AddTransient<ICategoriasServices, CategoriasServices>();
             services.AddTransient<IClientesServices, ClientesServices>();
             services.AddTransient<IClientesDireccionesServices, ClientesDireccionesServices>();
+            services.AddTransient<IClientesImagenesServices, ClientesImagenesServices>();
 
             return services;
         }
@@ -37,6 +38,7 @@ namespace DirectorioV1.Api.CrossCutting.Register
             services.AddTransient<ICategoriasRepository, CategoriasRepository>();
             services.AddTransient<ICiudadesRepository, CiudadesRepository>();
             services.AddTransient<IClientesRepository, ClientesRepository>();
+            services.AddTransient<IClientesImagenesRepository, ClientesImagenesRepository>();
             services.AddTransient<IClientesDireccionesRepository, ClientesDireccionesRepository>();
             services.AddTransient<IDepartamentosRepository, DepartamentosRepository>();
             services.AddTransient<IPaisesRepository, PaisesRepository>();

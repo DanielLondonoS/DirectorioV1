@@ -18,6 +18,7 @@ namespace DirectorioV1.Api.DataAccess
         public DbSet<CiudadesEntity> Ciudades { get; set; }
         public DbSet<ClientesDireccionesEntity> ClientesDirecciones { get; set; }
         public DbSet<ClientesEntity> Clientes { get; set; }
+        public DbSet<ClientesImagenesEntity> ClientesImagenes { get; set; }
         public DbSet<DepartamentosEntity> Departamentos { get; set; }
         public DbSet<PaisesEntity> Paises { get; set; }
 
@@ -39,6 +40,7 @@ namespace DirectorioV1.Api.DataAccess
             CiudadesEntityConfig.SetEntityBuilder(modelBuilder.Entity<CiudadesEntity>());
             ClientesDireccionEntityConfig.SetEntityBuilder(modelBuilder.Entity<ClientesDireccionesEntity>());
             ClientesEntityConfig.SetEntityBuilder(modelBuilder.Entity<ClientesEntity>());
+            ClientesImagenesEntityConfig.SetEntityBuilder(modelBuilder.Entity<ClientesImagenesEntity>());
             DepartamentosEntityConfig.SetEntityBuilder(modelBuilder.Entity<DepartamentosEntity>());
             PaisesEntityConfig.SetEntityBuilder(modelBuilder.Entity<PaisesEntity>());
             UsuarioEntityConfig.SetEntityBuilder(modelBuilder.Entity<UsuariosEntity>());

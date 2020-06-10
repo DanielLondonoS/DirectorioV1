@@ -41,8 +41,9 @@ export class RegisterPage {
   cargarCategorias(){
     this.categoriasProvider.obtenerCategorias()
     .subscribe(res => {
-      if(res['esExitoso']){
-        this.listadoDeCategorias = res['listadoDeCategorias']
+      let list:any = res;
+      if(list != []){
+        this.listadoDeCategorias = list;
       }else{
         alert(res['mensaje'])
       }

@@ -9,23 +9,19 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
     public class ClientesEntity : IEntity
     {
         public int Id { get; set; }
-        [MaxLength(150, ErrorMessage = "El campo {0} solo puede contener hasta {1} caracteres.")]
+        [MaxLength(150)]
         public string Nombre { get; set; }
-        [DisplayName("Tipo de documento")]
-        [MaxLength(100, ErrorMessage = "El campo {0} solo puede contener hasta {1} caracteres.")]
-        public string Tipo_Documento { get; set; }
-        [DisplayName("Número de documento")]
-        [MaxLength(20, ErrorMessage = "El campo {0} solo puede contener hasta {1} caracteres.")]
-        public string Documento { get; set; }
-        [DisplayName("Categoria")]
-        [MaxLength(100, ErrorMessage = "El campo {0} solo puede contener hasta {1} caracteres.")]
-        public int Categoria_Id { get; set; }
-        [DisplayName("Fecha de creación")]
-        [MaxLength(100, ErrorMessage = "El campo {0} solo puede contener hasta {1} caracteres.")]
-        public DateTime? Fecha_Creacion { get; set; }
-        public Boolean Estado { get; set; }
+        [MaxLength(100)]
         public string Correo { get; set; }
-
+        public string Tipo_Documento { get; set; }
+        [MaxLength(20)]
+        public string Documento { get; set; }
+        public DateTime? Fecha_Creacion { get; set; }
+        public Boolean Estado { get; set; } 
+        
+        public int CategoriaId { get; set; }
+        public CategoriasEntity Categoria { get; set; }
         public ICollection<ClientesDireccionesEntity> Direcciones { get; set; }
+        public ICollection<ClientesImagenesEntity> Imagenes { get; set; }
     }
 }

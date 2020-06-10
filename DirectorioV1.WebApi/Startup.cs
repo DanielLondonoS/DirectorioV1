@@ -6,8 +6,10 @@ using DirectorioV1.Api.CrossCutting.Register;
 using DirectorioV1.Api.DataAccess;
 using DirectorioV1.WebApi.Config;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +34,20 @@ namespace DirectorioV1.WebApi
             );
             SwaggerConfig.AddRegistration(services);
             IoCRegister.AddRegistration(services);
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                                  builder =>
+                                  {
+                                      builder.AllowAnyOrigin()
+                                          .AllowAnyHeader()
+                                          .AllowAnyMethod();
+                                  });
+            });
+            services.AddControllers().AddNewtonsoftJson(x => {
+                x.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+                x.SerializerSettings.DefaultValueHandling = Newtonsoft.Json.DefaultValueHandling.Ignore;
+                });
             services.AddControllersWithViews();
         }
 
@@ -50,7 +66,7 @@ namespace DirectorioV1.WebApi
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseCors();
             app.UseRouting();
 
             app.UseAuthorization();
@@ -60,6 +76,7 @@ namespace DirectorioV1.WebApi
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }

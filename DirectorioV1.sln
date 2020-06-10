@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectorioV1.Api", "DirectorioV1.Api\DirectorioV1.Api.csproj", "{081EA390-B063-4F1D-BB5E-E8FFA2537114}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Layers", "1.Layers", "{8EE35829-3BA7-4827-B0C1-9C9F46EA8346}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1ServiciosDistribuidos", "1.1ServiciosDistribuidos", "{B809F88F-04E0-4275-88CD-477BBB80EEF4}"
@@ -31,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectorioV1.Api.CrossCutti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectorioV1.Api.Business", "DirectorioV1.Api.Business\DirectorioV1.Api.Business.csproj", "{A04B5C0F-C449-4C81-B8DB-1C2619018CC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectorioV1.WebApi", "DirectorioV1.WebApi\DirectorioV1.WebApi.csproj", "{7CE3A95B-A082-4F3A-A09E-0E2E88D1D0C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectorioV1.WebApi", "DirectorioV1.WebApi\DirectorioV1.WebApi.csproj", "{7CE3A95B-A082-4F3A-A09E-0E2E88D1D0C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +37,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{081EA390-B063-4F1D-BB5E-E8FFA2537114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{081EA390-B063-4F1D-BB5E-E8FFA2537114}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{081EA390-B063-4F1D-BB5E-E8FFA2537114}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{081EA390-B063-4F1D-BB5E-E8FFA2537114}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CE4E511F-C993-443A-9AD0-4C8005C370CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CE4E511F-C993-443A-9AD0-4C8005C370CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE4E511F-C993-443A-9AD0-4C8005C370CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -80,7 +74,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{081EA390-B063-4F1D-BB5E-E8FFA2537114} = {B809F88F-04E0-4275-88CD-477BBB80EEF4}
 		{B809F88F-04E0-4275-88CD-477BBB80EEF4} = {8EE35829-3BA7-4827-B0C1-9C9F46EA8346}
 		{C97000B1-2AFF-44CC-A86A-742C37F3B2F7} = {8EE35829-3BA7-4827-B0C1-9C9F46EA8346}
 		{CE4E511F-C993-443A-9AD0-4C8005C370CE} = {C97000B1-2AFF-44CC-A86A-742C37F3B2F7}
