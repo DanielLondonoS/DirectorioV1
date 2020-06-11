@@ -21,7 +21,7 @@
         </button>
         </ion-fab>
     </div>
-    <ion-item>
+    <ion-item (click)="viewDetail(item)">
         <ion-icon color="subtle" large item-start name='pricetag'></ion-icon>
         <h1>{{item.nombre}}</h1>
         <h2>{{item.categoria.descripcion}}</h2>
@@ -30,7 +30,7 @@
     <ion-item style="border-top: 1px solid lightgray;" actions>
         <span ion-text item-start color="secondary" class="item-bold">0.3 Km</span>
         <span ion-text item-start color="subtle">(2.6 min)</span>
-        <button ion-button color="primary" clear item-end icon-start>
+        <button (click)="makeCall(item)" ion-button color="primary" clear item-end icon-start>
           <ion-icon name='call'></ion-icon>
           Llamar
         </button>

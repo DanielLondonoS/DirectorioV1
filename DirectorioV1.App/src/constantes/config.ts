@@ -1,3 +1,4 @@
 export const API = {
-    url:'https://localhost:44396/api/'
+    url:'http://daniellondonos-001-site7.itempurl.com/api/'
+    // url:'https://localhost:44396/api/'
 }

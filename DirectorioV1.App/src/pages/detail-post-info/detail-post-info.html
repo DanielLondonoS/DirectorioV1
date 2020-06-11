@@ -1,0 +1,47 @@
+<!--
+  Generated template for the DetailPostInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title>Detalle</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card style="border-radius: 10px;" class="adv-map" *ngIf="customer != undefined">
+        <div style="position: relative">
+            <img [src]="customer['imagenes'][0]['imageFullPath']">
+            <!-- <ion-fab right top>
+        <button ion-fab class="fab-map">
+          <ion-icon name='pin'></ion-icon>
+        </button>
+      </ion-fab> -->
+        </div>
+        <ion-item>
+            <ion-icon color="subtle" large item-start name='pricetag'></ion-icon>
+            <h1>{{customer['nombre']}}</h1>
+            <h2>{{customer['categoria']['descripcion']}}</h2>
+        </ion-item>
+        <ion-item>
+            <p>{{customerAddress['correo']}}</p>
+            <p>{{customerAddress['direccion_Compuesta']}}</p>
+            <p>{{customerAddress['direccion_Observacion']}}</p>
+            <p>{{customerAddress['pais']['descripcion']}} - {{customerAddress['departamento']['descripcion']}} - {{customerAddress['ciudad']['descripcion']}} - {{customerAddress['barrio']['descripcion']}}</p>
+            <p>{{customerAddress['telefono']}}</p>
+        </ion-item>
+
+        <ion-item style="border-top: 1px solid lightgray;" actions>
+            <span ion-text item-start color="secondary" class="item-bold">0.3 Km</span>
+            <span ion-text item-start color="subtle">(2.6 min)</span>
+            <button ion-button color="primary" clear item-end icon-start>
+        <ion-icon name='call'></ion-icon>
+        Llamar
+      </button>
+        </ion-item>
+
+
+    </ion-card>
+</ion-content>

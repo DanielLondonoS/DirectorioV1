@@ -11,6 +11,8 @@ import { RegisterPageModule } from '../pages/register/register.module';
 import { CategoriasProvider } from '../providers/categorias/categorias';
 import { HttpClientModule } from '@angular/common/http';
 import { ClientesProvider } from '../providers/clientes/clientes';
+import { DetailPostPageModule } from '../pages/detail-post/detail-post.module';
+import { DetailPostInfoPageModule } from '../pages/detail-post-info/detail-post-info.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ClientesProvider } from '../providers/clientes/clientes';
     IonicModule.forRoot(MyApp),
     IntroPageModule,
     RegisterPageModule,
-    HttpClientModule
+    HttpClientModule,
+    DetailPostPageModule,
+    DetailPostInfoPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

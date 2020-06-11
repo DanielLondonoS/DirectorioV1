@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { ClientesProvider } from '../../providers/clientes/clientes';
+import { DetailPostPage } from '../detail-post/detail-post';
+import { DetailPostInfoPage } from '../detail-post-info/detail-post-info';
 
 /**
  * Generated class for the IntroPage page.
@@ -16,52 +18,52 @@ import { ClientesProvider } from '../../providers/clientes/clientes';
   templateUrl: 'intro.html',
 })
 export class IntroPage {
-  listCustomerPost :any[] = [];
-  listSearchPost:any[] = [];
-  search:boolean=false;
+  listCustomerPost: any[] = [];
+  listSearchPost: any[] = [];
+  search: boolean = false;
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public clientesProvider: ClientesProvider
-    ) {
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IntroPage');
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.getClientsList();
   }
 
-  regiterPage(){
+  regiterPage() {
     this.navCtrl.push(RegisterPage)
   }
 
-  getClientsList(){
+  getClientsList() {
     this.clientesProvider.obtenerClientes()
-    .subscribe(res => {
-      console.log({funcion:"GetClientsList",res:res})
-      let rta :any = res;
-      if(rta != []){
-        this.listCustomerPost = rta;
-      }
-      
-    })
+      .subscribe(res => {
+        console.log({ funcion: "GetClientsList", res: res })
+        let rta: any = res;
+        if (rta != []) {
+          this.listCustomerPost = rta;
+        }
+
+      })
   }
 
-  initializeItems(){
+  initializeItems() {
     this.search = true;
     this.listSearchPost = this.listCustomerPost;
   }
 
   getItems(ev: any) {
-    if(ev.target.value == ''){
+    if (ev.target.value == '') {
       this.search = false;
       this.listSearchPost = [];
       return
     }
-      
+
     // Reset items back to all of the items
     this.initializeItems();
 
@@ -73,6 +75,17 @@ export class IntroPage {
       this.listSearchPost = this.listSearchPost.filter((item) => {
         return ((item['nombre'].toLowerCase().indexOf(val.toLowerCase()) > -1) || (item['categoria']['descripcion'].toLowerCase().indexOf(val.toLowerCase()) > -1));
       })
+    }
+  }
+  makeCall(customer) {
+
+  }
+  viewDetail(customer) {
+    console.log(customer)
+    if(customer['direcciones'].length == 1){
+      this.navCtrl.push(DetailPostInfoPage,{customer:customer,address:customer['direcciones'][0]});
+    }else{
+      this.navCtrl.push(DetailPostPage,customer);
     }
   }
 }

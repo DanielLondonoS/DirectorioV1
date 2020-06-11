@@ -13,6 +13,6 @@
 
 <ion-content>
 
-    <post *ngIf="!search" [clienteDatos]="listCustomerPost"></post>
-    <post *ngIf="search" [clienteDatos]="listSearchPost"></post>
+    <post (onCall)="makeCall($event)" (onDetail)="viewDetail($event)" *ngIf="!search" [clienteDatos]="listCustomerPost"></post>
+    <post (onCall)="makeCall($event)" (onDetail)="viewDetail($event)" *ngIf="search" [clienteDatos]="listSearchPost"></post>
 </ion-content>

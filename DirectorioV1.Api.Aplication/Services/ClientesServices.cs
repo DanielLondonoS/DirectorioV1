@@ -129,7 +129,8 @@ namespace DirectorioV1.Api.Aplication.Services
                 Clientes cl = new Clientes();
                 cl.CategoriaId = item.CategoriaId;
                 cl.Correo = item.Correo;
-                cl.Direcciones = ClientesDireccionesMapper.map( await this.clientesDireccionesRepository.ListaDireccionesPorClientes(item.Id));
+                var di = await this.clientesDireccionesRepository.ListaDireccionesPorClientes(item.Id);
+                cl.Direcciones = await ToDirecciones(di);
                 cl.Documento = item.Documento;
                 cl.Estado = item.Estado;
                 cl.Fecha_Creacion = item.Fecha_Creacion.Value;
@@ -148,16 +149,20 @@ namespace DirectorioV1.Api.Aplication.Services
         private async Task<List<ClientesDirecciones>> ToDirecciones(ICollection<ClientesDireccionesEntity> entity)
         {
             List<ClientesDirecciones> result = new List<ClientesDirecciones>();
-
+            if (entity == null)
+                return result;
             foreach (var item in entity)
             {
                 ClientesDirecciones cd = new ClientesDirecciones();
-                //cd.BarrioId = item.BarrioId;
-                //cd.CiudadId = item.CiudadId;
+                cd.BarrioId = item.BarrioId;
+                cd.CiudadId = item.CiudadId;
+                cd.PaisId = item.PaisId;
+                cd.DepartamentoId = item.DepartamentoId;
                 cd.ClienteId = item.ClienteId;
-                //cd.PaisId = item.PaisId;
-
-                //cd.DepartamentoId = item.DepartamentoId;
+                cd.Pais = PaisesMapper.map(await this.paisesRepository.GetByIdAsync(item.PaisId));
+                cd.Departamento = DepartamentosMapper.map(await this.departamentosRepository.GetByIdAsync(item.DepartamentoId));
+                cd.Ciudad = CiudadesMapper.map(await this.ciudadesRepository.GetByIdAsync(item.CiudadId));
+                cd.Barrio = BarriosMapper.map(await this.barriosRepository.GetByIdAsync(item.BarrioId));
                 cd.Direccion_A = item.Direccion_A;
                 cd.Direccion_B = item.Direccion_B;
                 cd.Direccion_Compuesta = item.Direccion_Compuesta;
@@ -170,7 +175,8 @@ namespace DirectorioV1.Api.Aplication.Services
                 cd.Longitud = item.Longitud;
                 cd.Servicio_Domicilio = item.Servicio_Domicilio;
                 cd.Telefono = item.Telefono;
-                //cd.ciudades = CiudadesMapper.map( await this.ciudadesRepository.GetByIdAsync(item.CiudadId));
+                cd.Cliente = ClientesMapper.map(await this._clientesRepository.GetByIdAsync(item.ClienteId));
+                result.Add(cd);
             }
 
             return result;

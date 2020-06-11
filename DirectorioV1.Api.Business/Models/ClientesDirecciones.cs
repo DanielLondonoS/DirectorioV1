@@ -12,9 +12,9 @@ namespace DirectorioV1.Api.Business.Models
         public ClientesDirecciones()
         {
             this.Cliente = new Clientes();
-            this.Paises = new Paises();
-            this.Ciudades = new Ciudades();
-            this.Departamentos = new Departamentos();
+            this.Pais = new Paises();
+            this.Ciudad = new Ciudades();
+            this.Departamento = new Departamentos();
         }
         public int Id { get; set; }
         [DisplayName("Cliente")]
@@ -56,8 +56,9 @@ namespace DirectorioV1.Api.Business.Models
         public bool Estado { get; set; }
 
         public Clientes Cliente { get; set; } 
-        public Paises Paises { get; set; } 
-        public Ciudades Ciudades { get; set; } 
-        public Departamentos Departamentos { get; set; }
+        public Paises Pais { get; set; } 
+        public Ciudades Ciudad { get; set; } 
+        public Departamentos Departamento { get; set; }
+        public Barrios Barrio { get; set; }
     }
 }
