@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UtilitiesService } from 'src/app/services/utilities.service';
 
 @Component({
   selector: 'app-detail-post-info',
@@ -13,7 +14,8 @@ export class DetailPostInfoPage implements OnInit {
   deviceLongitud: any;
   deviceLatitud: any;
   constructor(
-    private router:Router
+    private router:Router,
+    private utilitiesServices:UtilitiesService
   ) {
     console.log({'constructorDetailPostInfo':router,currentNavigation:router.getCurrentNavigation()})
     this.customer = router.getCurrentNavigation().extras.state['customer'];
@@ -21,6 +23,10 @@ export class DetailPostInfoPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  makeCall(data:any){
+    this.utilitiesServices.makeCall(this.customerAddress['telefono'])
   }
 
 }

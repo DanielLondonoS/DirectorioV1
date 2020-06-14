@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CustomersService } from '../services/customers.service';
 import { Router } from '@angular/router';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+import { UtilitiesService } from '../services/utilities.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +13,8 @@ export class HomePage {
 
   constructor(
     private clientesProvider : CustomersService,
-    private router: Router
+    private router: Router,
+    private utilitiesServices : UtilitiesService
   ) {}
   listCustomerPost: any[] = [];
   listSearchPost: any[] = [];
@@ -65,9 +68,15 @@ export class HomePage {
       })
     }
   }
+  /**
+   * Make a call to first item of directions list to customer
+   * @param customer Customer to call
+   */
   makeCall(customer) {
-
+    console.log({funcion:'makeCall',emmit:customer})
+      this.utilitiesServices.makeCall(customer['direcciones'][0]['telefono']);
   }
+
   viewDetail(customer) {
     console.log(customer)
     if(customer['direcciones'].length == 1){

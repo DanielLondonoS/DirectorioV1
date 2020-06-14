@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule }    from '@angular/common/http';
 import { CustomersService } from './services/customers.service';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+import { UtilitiesService } from './services/utilities.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +26,9 @@ import { CustomersService } from './services/customers.service';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    CustomersService
+    CustomersService,
+    CallNumber,
+    UtilitiesService
   ],
   bootstrap: [AppComponent]
 })
