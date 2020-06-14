@@ -25,7 +25,7 @@ namespace DirectorioV1.Api.Business.Models
                 {
                     return null;
                 }
-                return $"https://localhost:44396{this.ImageUrl.Substring(1)}";
+                return $"http://daniellondonos-001-site7.itempurl.com{this.ImageUrl.Substring(1)}";
             }
         }
         public Clientes Cliente { get; set; }

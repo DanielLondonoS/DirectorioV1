@@ -1,7 +1,0 @@
-{
-  "name": "DirectorioV1App",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
-}
