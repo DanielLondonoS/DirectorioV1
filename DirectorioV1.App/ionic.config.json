@@ -1,0 +1,7 @@
+{
+  "name": "DirectorioV1",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

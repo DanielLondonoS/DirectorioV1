@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Información</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button>
+            </ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item *ngFor="let item of customer['direcciones']; index as i">
+            <ion-thumbnail slot="start">
+                <img [src]="customer.imagenes[0].imageFullPath">
+            </ion-thumbnail>
+            <ion-icon name="map-outline" slot="end" (click)="detailPostInfo(item,i)"></ion-icon>
+            <ion-label>
+                <h2>{{customer.nombre}}</h2>
+                <p style="white-space: normal;">{{item.direccion_Compuesta | slice:0:40}}</p>
+                <p style="white-space: normal;">{{item.pais.descripcion}}-{{item.departamento.descripcion}}-{{item.ciudad.descripcion}}-{{item.barrio.descripcion}}</p>
+                <p style="white-space: normal;">{{item.telefono}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

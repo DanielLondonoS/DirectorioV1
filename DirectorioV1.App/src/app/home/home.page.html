@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>
+            Directorio
+        </ion-title>
+        <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <!-- <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">Directorio</ion-title>
+            <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+        </ion-toolbar>
+    </ion-header> -->
+
+    <!-- <div id="container"> -->
+    <app-post (onCall)="makeCall($event)" (onDetail)="viewDetail($event)" *ngIf="!search" [clienteDatos]="listCustomerPost"></app-post>
+    <app-post (onCall)="makeCall($event)" (onDetail)="viewDetail($event)" *ngIf="search" [clienteDatos]="listSearchPost"></app-post>
+    <!-- </div> -->
+</ion-content>
