@@ -10,13 +10,11 @@
 
 <ion-content>
     <ion-card style="border-radius: 10px;" class="adv-map" *ngIf="customer != undefined">
-        <div id="map_canvas" style="position: relative">
-            <!-- <img [src]="customer['imagenes'][0]['imageFullPath']"> -->
-            <!-- <ion-fab right top>
-    <button ion-fab class="fab-map">
-      <ion-icon name='pin'></ion-icon>
-    </button>
-  </ion-fab> -->
+        <div class="map-wrapper">
+            <!-- <div id="map_center">
+                <img src="assets/icon/place-marker.png" />
+            </div> -->
+            <div #map id="map"></div>
         </div>
         <ion-item>
             <ion-icon name="pricetag" slot="start"></ion-icon>

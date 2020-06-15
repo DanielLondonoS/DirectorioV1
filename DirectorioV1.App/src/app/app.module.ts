@@ -12,6 +12,8 @@ import { HttpClientModule }    from '@angular/common/http';
 import { CustomersService } from './services/customers.service';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { UtilitiesService } from './services/utilities.service';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +30,9 @@ import { UtilitiesService } from './services/utilities.service';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     CustomersService,
     CallNumber,
-    UtilitiesService
+    UtilitiesService,
+    Geolocation,
+    NativeGeocoder
   ],
   bootstrap: [AppComponent]
 })
