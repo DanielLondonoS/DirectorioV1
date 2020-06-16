@@ -14,7 +14,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 import { UtilitiesService } from './services/utilities.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
-
+import { GoogleMaps } from '@ionic-native/google-maps';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -32,7 +32,9 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
     CallNumber,
     UtilitiesService,
     Geolocation,
-    NativeGeocoder
+    NativeGeocoder,
+    GoogleMaps,
+
   ],
   bootstrap: [AppComponent]
 })

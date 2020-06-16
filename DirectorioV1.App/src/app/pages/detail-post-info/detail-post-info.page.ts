@@ -14,8 +14,9 @@ declare var google;
   styleUrls: ['./detail-post-info.page.scss'],
 })
 export class DetailPostInfoPage implements OnInit {
-  @ViewChild('map', { static: false }) mapElement: ElementRef;
-  map: any = null;
+  @ViewChild('map_canvas', { static: false }) map_canvas: ElementRef;
+  mapNativo: GoogleMap;
+  map:any = null;
   customer: any;
   customerAddress: any
   deviceLongitud: number;
@@ -39,7 +40,11 @@ export class DetailPostInfoPage implements OnInit {
 
   async ngOnInit() {
     await this.platform.ready();
-    await this.loadMap();
+    if(this.platform.is("ios") || this.platform.is("android")){
+      this.loadMapNative();
+    }else{
+      await this.loadMap();
+    }
   }
 
   makeCall(data:any){
@@ -48,7 +53,7 @@ export class DetailPostInfoPage implements OnInit {
 
   async loadMap() {
     const resp = await this.getLocation()
-    const mapElement : HTMLElement = document.getElementById('map')  
+    const mapElement : HTMLElement = document.getElementById('map_canvas')  
       
     this.map = new google.maps.Map(mapElement,{
       center : resp,
@@ -63,6 +68,27 @@ export class DetailPostInfoPage implements OnInit {
       this.setMarker(resp.lng,resp.lat)
     }) 
     this.directionsRenderer.setMap(this.map);
+     
+  }
+
+  async loadMapNative() {
+    const resp :ILatLng = await this.getLocation()
+    const latlngCustomer :ILatLng = {lat:this.customerAddress['ciudad']['latitud'] ,lng: this.customerAddress['ciudad']['longitud']}
+    let mapOptions: GoogleMapOptions = {
+      camera: {
+        target: resp,
+        zoom: 18,
+        tilt: 30
+      }
+    }; 
+    this.mapNativo = GoogleMaps.create("map_canvas", mapOptions);
+
+    let markerOri: Marker = this.mapNativo.addMarkerSync({
+      title: 'Ionic',
+      icon: 'blue',
+      animation: 'DROP',
+      position: latlngCustomer
+    });   
      
   }
 
