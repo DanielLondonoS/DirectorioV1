@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -9,6 +10,7 @@ export class PostComponent implements OnInit {
   @Input() clienteDatos : any[] = [];
   @Output() onCall = new EventEmitter<any>();
   @Output() onDetail = new EventEmitter<any>();
+
   constructor() {
     console.log({constructor:'PostComponent',clientDatos:this.clienteDatos})
    }
@@ -23,4 +25,6 @@ export class PostComponent implements OnInit {
     console.log({funcion:'viewDetail',cliente:cliente})
     this.onDetail.emit(cliente);
   }
+
+  
 }
