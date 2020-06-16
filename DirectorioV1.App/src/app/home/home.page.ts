@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CustomersService } from '../services/customers.service';
 import { Router } from '@angular/router';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { UtilitiesService } from '../services/utilities.service';
-
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+declare var google;
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -14,7 +15,8 @@ export class HomePage {
   constructor(
     private clientesProvider : CustomersService,
     private router: Router,
-    private utilitiesServices : UtilitiesService
+    private utilitiesServices : UtilitiesService,
+    private ref: ChangeDetectorRef,
   ) {}
   listCustomerPost: any[] = [];
   listSearchPost: any[] = [];
@@ -31,36 +33,54 @@ export class HomePage {
     this.router.navigate(['/register'])
   }
 
-  getClientsList() {
+   async getClientsList() {
+    this.utilitiesServices.presentLoading();
     this.clientesProvider.obtenerClientes()
-      .subscribe(res => {
+      .subscribe(async res => {
+        this.utilitiesServices.loading.dismiss();
         console.log({ funcion: "GetClientsList", res: res })
         let rta: any = res;
         if (rta != []) {
           this.listCustomerPost = rta;
+          let resp:any =rta;
+          let list:any[]=[];
+          resp.forEach(element => {
+            element['distance'] = null;
+            element['duration'] = null;
+            list.push(element)
+          });
+          console.log(list);
+          this.listCustomerPost = list;
+          await this.loadMap(rta)         
+          this.ref.detectChanges()
         }
 
+      },error => {
+        console.log({ funcion: "GetClientsList", error: error })
+        this.utilitiesServices.loading.dismiss();
       })
   }
-
+/**
+ * Inicializa los parametros en la busqueda
+ */
   initializeItems() {
     this.search = true;
     this.listSearchPost = this.listCustomerPost;
   }
-
+  /**
+   * Obtiene la lista de la busqueda ingresada
+   * @param ev 
+   */
   getItems(ev: any) {
     if (ev.target.value == '') {
       this.search = false;
       this.listSearchPost = [];
       return
     }
-
     // Reset items back to all of the items
     this.initializeItems();
-
     // set val to the value of the searchbar
     const val = ev.target.value;
-
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.listSearchPost = this.listSearchPost.filter((item) => {
@@ -88,5 +108,51 @@ export class HomePage {
         state : {customer:customer}
       });//,customer);
     }
+  }
+
+  async loadMap(listClients:any[]){
+      this.utilitiesServices.getLocation().then(currentLocation => {
+        const currentLatLng = new google.maps.LatLng(currentLocation.lat, currentLocation.lng);
+        const mapElement: HTMLElement = document.getElementById('mapGuia')
+        const directionsService = new google.maps.DirectionsService();
+        const directionsRenderer = new google.maps.DirectionsRenderer();
+        const map = new google.maps.Map(mapElement, {
+          center: currentLatLng,
+          zoom: 12,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          
+        });
+        google.maps.event.addListenerOnce(map, 'idle', () => {
+          console.log('loaded map');
+          console.log({ google: google, maps: google.maps });
+          let newList:any[]=[]
+          let k = 0;
+          listClients.forEach(element => {
+            let desLatLng = null;
+            desLatLng = new google.maps.LatLng(element['direcciones'][0]['latitud'],element['direcciones'][0]['longitud']);
+            directionsService.route({
+              origin: currentLatLng,
+              destination: desLatLng,
+              travelMode: 'DRIVING'
+            }, (response, status) => {
+              console.log({ response: response, status: status })
+              if (status === 'OK') {
+                directionsRenderer.setDirections(response);
+                element['distance'] = response['routes'][0]['legs'][0]['distance']['text'];
+                element['duration'] = response['routes'][0]['legs'][0]['duration']['text'];
+                newList.push(element);
+              } else {
+                window.alert('Directions request failed due to ' + status);
+              }
+            });            
+          });
+          this.listCustomerPost = [];
+          this.listCustomerPost = newList;
+          // console.log({list:this.listCustomerPost})
+        })
+        directionsRenderer.setMap(map);
+      })
+      
+    
   }
 }

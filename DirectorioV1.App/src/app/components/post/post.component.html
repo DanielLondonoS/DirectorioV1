@@ -18,10 +18,10 @@
         <ion-grid style="margin: 0;padding: 0;">
             <ion-row>
                 <ion-col style="margin: auto;text-align: center;">
-                    <span ion-text item-start color="secondary" class="item-bold">0.3 Km</span>
+                    <span ion-text item-start color="secondary" class="item-bold">{{item.distance}}</span>
                 </ion-col>
                 <ion-col style="margin: auto;text-align: center;">
-                    <span ion-text item-start color="subtle">(2.6 min)</span>
+                    <span ion-text item-start color="subtle">{{item.duration}}</span>
                 </ion-col>
                 <ion-col style="margin: auto;text-align: center;">
                     <ion-button (click)="makeCall(item)" fill="clear">

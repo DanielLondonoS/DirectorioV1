@@ -1,6 +1,6 @@
 #map_canvas {
     width: 90%;
-    height: 80%;
+    height: 70%;
     border: 1px solid red;
 }
 
@@ -27,4 +27,12 @@
         margin-left: -21px;
         margin-top: -41px;
     }
+}
+
+#indicators {
+    padding: 16px;
+    height: 350px;
+    width: 100%;
+    overflow-y: auto;
+    display: block;
 }
