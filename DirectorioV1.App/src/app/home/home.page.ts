@@ -1,9 +1,8 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { CustomersService } from '../services/customers.service';
 import { Router } from '@angular/router';
-import { CallNumber } from '@ionic-native/call-number/ngx';
 import { UtilitiesService } from '../services/utilities.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { AlertController } from '@ionic/angular';
 declare var google;
 @Component({
   selector: 'app-home',
@@ -17,6 +16,7 @@ export class HomePage {
     private router: Router,
     private utilitiesServices : UtilitiesService,
     private ref: ChangeDetectorRef,
+    private alertCtrl:AlertController
   ) {}
   listCustomerPost: any[] = [];
   listSearchPost: any[] = [];
@@ -94,11 +94,27 @@ export class HomePage {
    */
   makeCall(customer) {
     console.log({funcion:'makeCall',emmit:customer})
+    if(customer['direcciones'].length > 1){
+      this.presentAlertVariasDireccionesLlamada(customer);
+    }else{
       this.utilitiesServices.makeCall(customer['direcciones'][0]['telefono']);
+    }      
   }
 
   viewDetail(customer) {
     console.log(customer)
+    if(customer['direcciones'].length == 1){
+      this.router.navigate(['detail-post-info'],{
+        state:{customer:customer,address:customer['direcciones'][0]}
+      })//;,{customer:customer,address:customer['direcciones'][0]});
+    }else{
+      this.router.navigate(['detail-post'],{
+        state : {customer:customer}
+      });//,customer);
+    }
+  }
+
+  geoClick(customer){
     if(customer['direcciones'].length == 1){
       this.router.navigate(['detail-post-info'],{
         state:{customer:customer,address:customer['direcciones'][0]}
@@ -127,7 +143,7 @@ export class HomePage {
           console.log({ google: google, maps: google.maps });
           let newList:any[]=[]
           let k = 0;
-          listClients.forEach(element => {
+          this.listCustomerPost.forEach(element => {
             let desLatLng = null;
             desLatLng = new google.maps.LatLng(element['direcciones'][0]['latitud'],element['direcciones'][0]['longitud']);
             directionsService.route({
@@ -140,19 +156,40 @@ export class HomePage {
                 directionsRenderer.setDirections(response);
                 element['distance'] = response['routes'][0]['legs'][0]['distance']['text'];
                 element['duration'] = response['routes'][0]['legs'][0]['duration']['text'];
-                newList.push(element);
+                // newList.push(element);
               } else {
                 window.alert('Directions request failed due to ' + status);
               }
             });            
           });
-          this.listCustomerPost = [];
-          this.listCustomerPost = newList;
+          // this.listCustomerPost = [];
+          // this.listCustomerPost = newList;
           // console.log({list:this.listCustomerPost})
         })
         directionsRenderer.setMap(map);
       })
-      
-    
+  }
+  async presentAlertVariasDireccionesLlamada(customer) {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Información!',
+      message: 'Este registro posee mas de un telefono o dirección, desea seleccionar alguna en especial?',
+      buttons: [
+        {
+          text: 'NO',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            this.utilitiesServices.makeCall(customer['direcciones'][0]['telefono']);
+          }
+        }, {
+          text: 'SI',
+          handler: () => {
+            this.viewDetail(customer);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

@@ -14,7 +14,7 @@
             <!-- <div id="map_center">
                 <img src="assets/icon/place-marker.png" />
             </div> -->
-            <div #map id="map_canvas"></div>
+            <div #map_canvas id="map_canvas"></div>
         </div>
         <ion-item>
             <ion-icon name="pricetag" slot="start"></ion-icon>
@@ -27,16 +27,22 @@
         <ion-item>
             <ion-label>
                 <p>
-                    <ion-icon name="mail-outline"></ion-icon> {{customer['correo']}}
+                    <ion-icon name="mail-outline"></ion-icon> <strong>Correo:</strong> {{customer['correo']}}
                 </p>
                 <p style="white-space: normal;">
-                    <ion-icon name="locate-outline"></ion-icon> {{customerAddress['direccion_Compuesta']}} {{customerAddress['direccion_Observacion']}}
+                    <ion-icon name="locate-outline"></ion-icon> <strong>Dirección:</strong> {{customerAddress['direccion_Compuesta']}}
                 </p>
                 <p style="white-space: normal;">
-                    <ion-icon name="map-outline"></ion-icon> {{customerAddress['pais']['descripcion']}} - {{customerAddress['departamento']['descripcion']}} - {{customerAddress['ciudad']['descripcion']}} - {{customerAddress['barrio']['descripcion']}}
+                    <ion-icon name="map-outline"></ion-icon> <strong>Ubicación:</strong> {{customerAddress['pais']['descripcion']}} - {{customerAddress['departamento']['descripcion']}} - {{customerAddress['ciudad']['descripcion']}} - {{customerAddress['barrio']['descripcion']}}
                 </p>
                 <p>
-                    <ion-icon name="call-outline"></ion-icon> {{customerAddress['telefono']}}
+                    <ion-icon name="call-outline"></ion-icon> <strong>Telefono:</strong> {{customerAddress['telefono']}}
+                </p>
+                <p *ngIf="customerAddress['servicio_Domicilio'] == true">
+                    <ion-icon name="paper-plane-outline"></ion-icon> <strong>Servicio Domicilio:</strong> SI
+                </p>
+                <p *ngIf="customerAddress['servicio_Domicilio'] == false">
+                    <ion-icon name="paper-plane-outline"></ion-icon> <strong>Servicio Domicilio:</strong> NO
                 </p>
             </ion-label>
         </ion-item>
@@ -45,10 +51,10 @@
             <ion-grid style="margin: 0;padding: 0;">
                 <ion-row>
                     <ion-col style="margin: auto;text-align: center;">
-                        <span ion-text item-start color="secondary" class="item-bold">{{distancia}}</span>
+                        <span ion-text item-start color="secondary" class="item-bold">{{customer['distance']}}</span>
                     </ion-col>
                     <ion-col style="margin: auto;text-align: center;">
-                        <span ion-text item-start color="subtle">{{duracion}}</span>
+                        <span ion-text item-start color="subtle">{{customer['duration']}}</span>
                     </ion-col>
                     <ion-col style="margin: auto;text-align: center;">
                         <ion-button (click)="makeCall(item)" fill="clear">
@@ -57,7 +63,7 @@
                         </ion-button>
                     </ion-col>
                 </ion-row>
-                <ion-row>
+                <ion-row *ngIf="!platform.is('android') && !platform.is('ios')">
                     <ion-col>
                         <div>
                             <h2>Indicaciones</h2>

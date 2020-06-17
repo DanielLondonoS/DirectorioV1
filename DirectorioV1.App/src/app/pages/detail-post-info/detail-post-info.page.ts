@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtilitiesService } from 'src/app/services/utilities.service';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, ILatLng, Marker, BaseArrayClass, GoogleMapOptions } from '@ionic-native/google-maps';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, ILatLng, Marker, BaseArrayClass, GoogleMapOptions, Spherical, HtmlInfoWindow } from '@ionic-native/google-maps';
 import { Platform } from '@ionic/angular';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
@@ -64,7 +64,7 @@ export class DetailPostInfoPage implements OnInit {
   async loadMap() {
     this.utilitiesServices.presentLoading();
     this.currentLocation = await this.utilitiesServices.getLocation()
-    const mapElement: HTMLElement = document.getElementById('map')
+    const mapElement: HTMLElement = document.getElementById('map_canvas')
     const indicatorsElement:HTMLElement = document.getElementById('indicators')
     this.directionsService = new google.maps.DirectionsService();
     this.map = new google.maps.Map(mapElement, {
@@ -87,24 +87,51 @@ export class DetailPostInfoPage implements OnInit {
 
 
   async loadMapNative() {
-    const resp :ILatLng = await this.getLocation()
-    const latlngCustomer :ILatLng = {lat:this.customerAddress['ciudad']['latitud'] ,lng: this.customerAddress['ciudad']['longitud']}
+    const resp :ILatLng = await this.utilitiesServices.getLocation()
+    const latlngCustomer :ILatLng = {lat:parseFloat(this.customerAddress['latitud']) ,lng: parseFloat(this.customerAddress['longitud'])}
     let mapOptions: GoogleMapOptions = {
       camera: {
         target: resp,
-        zoom: 18,
+        zoom: 12,
         tilt: 30
       }
     }; 
     this.mapNativo = GoogleMaps.create("map_canvas", mapOptions);
-
-    let markerOri: Marker = this.mapNativo.addMarkerSync({
-      title: 'Ionic',
+    let customerName = this.customer['nombre'] || "Titulo";
+    let markerDes: Marker = this.mapNativo.addMarkerSync({
+      // title: customerName,
       icon: 'blue',
       animation: 'DROP',
       position: latlngCustomer
-    });   
-     
+    });
+    let markerOri: Marker = this.mapNativo.addMarkerSync({
+      title: 'Tú',
+      icon: 'red',
+      animation: 'DROP',
+      position: resp
+    });
+    console.log({markerOri:markerOri});
+    this.mapNativo.addPolyline({points:[resp,latlngCustomer]})
+    
+    markerDes.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+      let htmlInfoWindow = new HtmlInfoWindow();
+
+      let frame: HTMLElement = document.createElement('div');
+      frame.style.textAlign = "center"
+      frame.innerHTML = [
+        '<h3 style="white-space:nowrap">'+customerName+'</h3>',
+        '<img style="height:140px;width:auto;" src="'+this.customer['imagenes'][0]['imageFullPath']+'">'
+      ].join("");
+      frame.getElementsByTagName("img")[0].addEventListener("click", () => {
+        // htmlInfoWindow.setBackgroundColor('red');
+      });
+      htmlInfoWindow.setContent(frame, {
+        width: "250px",
+        height: "200px"
+      });
+
+      htmlInfoWindow.open(markerDes);
+    });
   }
   /**
    * Crea un marker en el mapa y el marker del dispositivo
@@ -163,29 +190,6 @@ export class DetailPostInfoPage implements OnInit {
     google.maps.event.addListener(marker, 'click', () => {
       infoWindow.open(this.map, marker);
     });
-
-    // marker.addListener('click',res => {
-    //   console.log(event)
-    //   let desLatLng = new google.maps.LatLng(this.customerAddress['latitud'],this.customerAddress['longitud']);
-    //   this.getLocation()
-    //   .then(res => {
-    //     let currentLatLng = new google.maps.LatLng(res.lat,res.lng);
-    //     this.directionsService.route({
-    //         origin: currentLatLng,
-    //         destination: desLatLng,
-    //         travelMode: 'DRIVING'
-    //     }, (response, status) => {
-    //       console.log({response:response,status:status})
-    //         if (status === 'OK') {
-    //           this.directionsRenderer.setDirections(response);
-    //         } else {
-    //             window.alert('Directions request failed due to ' + status);
-    //         }
-    //     });
-    //   },error => {
-    //     window.alert('Directions request failed due to ' + error);
-    //   })
-    // });
   }
   
 }

@@ -3,7 +3,7 @@
         <ion-title>
             Directorio
         </ion-title>
-        <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+        <ion-searchbar placeholder="¿Que estas buscando?" (ionInput)="getItems($event)"></ion-searchbar>
     </ion-toolbar>
 </ion-header>
 
@@ -16,8 +16,8 @@
     </ion-header> -->
 
     <!-- <div id="container"> -->
-    <app-post (onCall)="makeCall($event)" (onDetail)="viewDetail($event)" *ngIf="!search" [clienteDatos]="listCustomerPost"></app-post>
-    <app-post (onCall)="makeCall($event)" (onDetail)="viewDetail($event)" *ngIf="search" [clienteDatos]="listSearchPost"></app-post>
+    <app-post (onCall)="makeCall($event)" (onDetail)="viewDetail($event)" (onGeoClick)="geoClick($event)" *ngIf="!search" [clienteDatos]="listCustomerPost"></app-post>
+    <app-post (onCall)="makeCall($event)" (onDetail)="viewDetail($event)" (onGeoClick)="geoClick($event)" *ngIf="search" [clienteDatos]="listSearchPost"></app-post>
     <!-- </div> -->
-    <div id="mapGuia"></div>
+    <div #mapGuia id="mapGuia"></div>
 </ion-content>

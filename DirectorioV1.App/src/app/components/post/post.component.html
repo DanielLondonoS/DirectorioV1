@@ -1,7 +1,7 @@
 <ion-card style="border-radius: 10px;" class="adv-map" *ngFor="let item of clienteDatos">
     <div style="position: relative;text-align: center;">
         <img [src]="item.imagenes[0].imageFullPath">
-        <ion-fab vertical="top" horizontal="end">
+        <ion-fab vertical="top" horizontal="end" (click)="geoClick(item)">
             <ion-fab-button>
                 <ion-icon name="location-outline"></ion-icon>
             </ion-fab-button>
@@ -18,9 +18,11 @@
         <ion-grid style="margin: 0;padding: 0;">
             <ion-row>
                 <ion-col style="margin: auto;text-align: center;">
+                    <img src="../../../assets/images/load-map.gif" alt="" width="24px" *ngIf="item.distance == null">
                     <span ion-text item-start color="secondary" class="item-bold">{{item.distance}}</span>
                 </ion-col>
                 <ion-col style="margin: auto;text-align: center;">
+                    <img src="../../../assets/images/load-map.gif" alt="" width="24px" *ngIf="item.duration == null">
                     <span ion-text item-start color="subtle">{{item.duration}}</span>
                 </ion-col>
                 <ion-col style="margin: auto;text-align: center;">
