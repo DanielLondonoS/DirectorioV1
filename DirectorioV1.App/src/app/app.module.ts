@@ -15,6 +15,7 @@ import { UtilitiesService } from './services/utilities.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { GoogleMaps } from '@ionic-native/google-maps';
+import { CategoriesService } from './services/categories.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [
@@ -35,6 +36,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
     Geolocation,
     NativeGeocoder,
     GoogleMaps,
+    CategoriesService
 
   ],
   bootstrap: [AppComponent]

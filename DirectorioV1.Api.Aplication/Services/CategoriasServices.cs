@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Linq;
 
 namespace DirectorioV1.Api.Aplication.Services
 {
@@ -22,8 +23,9 @@ namespace DirectorioV1.Api.Aplication.Services
 
         public List<Categorias> ListadoDeCategorias()
         {
-            var listaDePaises =  _categoriasRepository.GetAll();
-            return CategoriasMapper.map(listaDePaises);
+            var listaDeCategorias =  _categoriasRepository.GetAll();
+            listaDeCategorias.OrderBy(c => c.Descripcion);
+            return CategoriasMapper.map(listaDeCategorias);
         }
 
         public async Task<Categorias> CategoriaPorId(int? id)

@@ -42,5 +42,9 @@ export class UtilitiesService {
     }
   }
 
+  presentAlert(){
+    
+  }
+
 
 }
