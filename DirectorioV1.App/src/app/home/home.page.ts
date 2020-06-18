@@ -11,7 +11,12 @@ declare var google;
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-
+  segmentModel = "explorar";
+  listCustomerPost: any[] = [];
+  listSearchPost: any[] = [];
+  listCercaMi:any[]=[];
+  listCategories:any=[]=[];
+  search: boolean = false;
   constructor(
     private clientesProvider: CustomersService,
     private router: Router,
@@ -20,12 +25,31 @@ export class HomePage implements OnInit {
     private ref: ChangeDetectorRef,
     private alertCtrl: AlertController
   ) { }
-  listCustomerPost: any[] = [];
-  listSearchPost: any[] = [];
-  search: boolean = false;
+  
   ngOnInit() {
     console.log('ionViewDidLoad HomePage');
     this.presentAlertCategorias();
+  }
+
+  segmentChanged(event){
+    console.log(this.segmentModel);
+    switch (this.segmentModel) {
+      case 'explorar':
+        
+        break;
+        case 'cercami':
+          this.listCercaMi = this.listCustomerPost.sort(function (a: any, b: any) {
+            return a['distance'].split(' ')[0] - b['distance'].split(' ')[0]
+          })
+          break;
+          case 'categorias':
+        
+          break;
+      default:
+        break;
+    }
+    
+    console.log(event);
   }
 
   ionViewDidEnter() {
@@ -170,9 +194,7 @@ export class HomePage implements OnInit {
             }
           });
         });
-        this.listCustomerPost = this.listCustomerPost.sort(function (a: any, b: any) {
-          return a['distance'].split(' ')[0] - b['distance'].split(' ')[0]
-        })
+        
 
         // this.listCustomerPost = [];
         // this.listCustomerPost = newList;
@@ -210,6 +232,7 @@ export class HomePage implements OnInit {
     this.categoriesProvider.obtenerCategorias()
       .subscribe(async res => {
         let listCategorias: any = res;
+        this.listCategories = res;
         let inputs: any = [];
         listCategorias.forEach(element => {
           let item = {
@@ -278,5 +301,10 @@ export class HomePage implements OnInit {
 
       await alert.present();
     }
+  }
+
+  onCategoriesClick(item){
+    this.filtroCategoria(item['descripcion']);
+    this.segmentModel = 'explorar'
   }
 }
