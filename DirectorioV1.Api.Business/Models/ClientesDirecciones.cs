@@ -54,6 +54,7 @@ namespace DirectorioV1.Api.Business.Models
         [DisplayName("¿Tiene servicio domicilio?")]
         public bool Servicio_Domicilio { get; set; }
         public bool Estado { get; set; }
+        public string Horario { get; set; }
 
         public Clientes Cliente { get; set; } 
         public Paises Pais { get; set; } 

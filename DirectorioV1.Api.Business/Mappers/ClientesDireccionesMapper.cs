@@ -31,6 +31,7 @@ namespace DirectorioV1.Api.Business.Mappers
                 Telefono = dto.Telefono,
                 Servicio_Domicilio = dto.Servicio_Domicilio,
                 ClienteId = dto.ClienteId,
+                Horario = dto.Horario
             };
         }
 
@@ -57,6 +58,8 @@ namespace DirectorioV1.Api.Business.Mappers
                 Telefono = dto.Telefono,
                 Servicio_Domicilio = dto.Servicio_Domicilio,
                 ClienteId = dto.ClienteId,
+                Horario = dto.Horario
+
                 //Cliente = ClientesMapper.map(dto.Cliente)
             };
         }

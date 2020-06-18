@@ -55,7 +55,7 @@ export class DetailPostInfoPage implements OnInit {
     }
   }
 
-  makeCall(data: any) {
+  makeCall() {
     this.utilitiesServices.makeCall(this.customerAddress['telefono'])
   }
   /**

@@ -175,6 +175,7 @@ namespace DirectorioV1.Api.Aplication.Services
                 cd.Longitud = item.Longitud;
                 cd.Servicio_Domicilio = item.Servicio_Domicilio;
                 cd.Telefono = item.Telefono;
+                cd.Horario = item.Horario;
                 cd.Cliente = ClientesMapper.map(await this._clientesRepository.GetByIdAsync(item.ClienteId));
                 result.Add(cd);
             }

@@ -1,31 +1,26 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
-        <ion-title>
+        <!-- <ion-title>
             Directorio
-        </ion-title>
+        </ion-title> -->
         <ion-searchbar placeholder="¿Que estas buscando?" (ionInput)="getItems($event)"></ion-searchbar>
     </ion-toolbar>
     <ion-toolbar>
-        <ion-segment value="explorar" 
-        color="tertiary" 
-        scrollable="true"
-        mode="ios"
-        [(ngModel)]="segmentModel" 
-        (ionChange)="segmentChanged($event)">
-          <ion-segment-button value="explorar">
-            <ion-icon name="search-circle-outline" ></ion-icon>
-            <ion-label>Explorar</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="cercami">
-            <ion-icon name="locate-outline"></ion-icon>
-            <ion-label>Cerca mi</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="categorias">
-            <ion-icon name="book-outline"></ion-icon>
-            <ion-label>Categorias</ion-label>
-          </ion-segment-button>
+        <ion-segment value="explorar" color="tertiary" scrollable="true" mode="ios" [(ngModel)]="segmentModel" (ionChange)="segmentChanged($event)">
+            <ion-segment-button value="explorar">
+                <ion-icon name="search-circle-outline"></ion-icon>
+                <ion-label>Explorar</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="cercami">
+                <ion-icon name="locate-outline"></ion-icon>
+                <ion-label>Cerca mi</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="categorias">
+                <ion-icon name="book-outline"></ion-icon>
+                <ion-label>Categorias</ion-label>
+            </ion-segment-button>
         </ion-segment>
-      </ion-toolbar>
+    </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
     <div *ngIf="segmentModel === 'explorar'">
@@ -37,14 +32,14 @@
         <app-post (onCall)="makeCall($event)" (onDetail)="viewDetail($event)" (onGeoClick)="geoClick($event)" *ngIf="search" [clienteDatos]="listSearchPost"></app-post>
     </div>
     <div *ngIf="segmentModel === 'categorias'">
-       <ion-list *ngIf="!search" >
-           <ion-item *ngFor="let item of listCategories">
-            <ion-label (click)="onCategoriesClick(item)">
-                <h2>{{item['descripcion']}}</h2>
-              </ion-label>
-           </ion-item>
-       </ion-list>
-       <app-post (onCall)="makeCall($event)" (onDetail)="viewDetail($event)" (onGeoClick)="geoClick($event)" *ngIf="search" [clienteDatos]="listSearchPost"></app-post>
+        <ion-list *ngIf="!search">
+            <ion-item *ngFor="let item of listCategories">
+                <ion-label (click)="onCategoriesClick(item)">
+                    <h2>{{item['descripcion']}}</h2>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+        <app-post (onCall)="makeCall($event)" (onDetail)="viewDetail($event)" (onGeoClick)="geoClick($event)" *ngIf="search" [clienteDatos]="listSearchPost"></app-post>
 
     </div>
 </ion-content>

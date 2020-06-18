@@ -96,6 +96,7 @@ namespace DirectorioV1.Api.Aplication.Services
                 ci.Direccion_Observacion = item.Direccion_Observacion;
                 ci.Direccion_Tipo_A = item.Direccion_Tipo_A;
                 ci.Direccion_Tipo_B = item.Direccion_Tipo_B;
+                ci.Horario = item.Horario;
                 rta.Add(ci);
             }
             return rta;

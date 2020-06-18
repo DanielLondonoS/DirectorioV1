@@ -20,6 +20,7 @@ namespace DirectorioV1.Api.DataAccess.Contracts.Entities
         public string Latitud { get; set; }
         public string Longitud { get; set; }
         public string Telefono { get; set; }
+        public string Horario { get; set; }
         public bool Servicio_Domicilio { get; set; }
         public bool Estado { get; set; }
 

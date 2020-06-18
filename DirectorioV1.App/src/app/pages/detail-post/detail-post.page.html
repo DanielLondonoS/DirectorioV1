@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>Información</ion-title>
+        <ion-title style="white-space: nowrap;text-align: center;">{{customer.nombre}}</ion-title>
         <ion-buttons slot="start">
             <ion-back-button>
             </ion-back-button>
@@ -9,18 +9,44 @@
 </ion-header>
 
 <ion-content>
-    <ion-list>
-        <ion-item *ngFor="let item of customer['direcciones']; index as i">
-            <ion-thumbnail slot="start">
-                <img [src]="customer.imagenes[0].imageFullPath">
+    <div style="margin: 3px 0px;">
+        <div *ngFor="let item of customer['direcciones']; index as i" style="margin-bottom: 0.7em;
+            border: 1px solid lightgray;border-radius: 7px;display: flex;">
+            <ion-thumbnail slot="start" (click)="detailPostInfo(item,i)" style="margin: 0 3px 0 0;padding: 0;width: 85px;height: 85px;">
+                <img style="border-radius: 7px 0px 0px 7px;" [src]="customer.imagenes[0].imageFullPath">
             </ion-thumbnail>
-            <ion-icon name="map-outline" slot="end" (click)="detailPostInfo(item,i)"></ion-icon>
-            <ion-label>
-                <h2>{{customer.nombre}}</h2>
-                <p style="white-space: normal;">{{item.direccion_Compuesta | slice:0:40}}</p>
-                <p style="white-space: normal;">{{item.pais.descripcion}}-{{item.departamento.descripcion}}-{{item.ciudad.descripcion}}-{{item.barrio.descripcion}}</p>
-                <p style="white-space: normal;">{{item.telefono}}</p>
+            <ion-label (click)="detailPostInfo(item,i)" style="padding-top: 3px; margin: auto 3px;">
+                <p style="white-space: normal;">
+                    <ion-icon name="locate-outline"></ion-icon> {{item.direccion_Compuesta | slice:0:40}}
+                </p>
+                <p style="white-space: normal;">
+                    <ion-icon name="map-outline"></ion-icon>
+                    {{item.departamento.descripcion}}-{{item.ciudad.descripcion}}-{{item.barrio.descripcion}}
+                </p>
+                <p style="white-space: normal;">
+                    <ion-icon name="call-outline"></ion-icon> {{item.telefono}}
+                </p>
             </ion-label>
-        </ion-item>
-    </ion-list>
+            <ion-icon style="margin: auto;" name="chevron-forward-outline" slot="end" (click)="detailPostInfo(item,i)"></ion-icon>
+        </div>
+    </div>
+
+
+    <!-- <ion-list>
+                    <ion-item *ngFor="let item of customer['direcciones']; index as i" style="margin-bottom: 0.7em;
+                    border: 1px solid lightgray;border-radius: 7px;">
+                        <ion-thumbnail slot="start" (click)="detailPostInfo(item,i)" style="margin: 0 3px 0 0;padding: 0;width: 85px;height: 85px;">
+                            <img [src]="customer.imagenes[0].imageFullPath">
+                        </ion-thumbnail>
+                        <ion-label (click)="detailPostInfo(item,i)">
+                            <p style="white-space: normal;">
+                                <ion-icon name="locate-outline"></ion-icon> {{item.direccion_Compuesta | slice:0:40}}</p>
+                            <p style="white-space: normal;">
+                                <ion-icon name="map-outline"></ion-icon> {{item.departamento.descripcion}}-{{item.ciudad.descripcion}}-{{item.barrio.descripcion}}</p>
+                            <p style="white-space: normal;">
+                                <ion-icon name="call-outline"></ion-icon> {{item.telefono}}</p>
+                        </ion-label>
+                        <ion-icon name="map-outline" slot="end" (click)="detailPostInfo(item,i)"></ion-icon>
+                    </ion-item>
+                </ion-list> -->
 </ion-content>
